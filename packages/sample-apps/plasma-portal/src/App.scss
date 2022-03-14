@@ -1,0 +1,150 @@
+.AllergyIntoleranceView_container {
+  @apply max-w-sm rounded overflow-hidden shadow-lg;
+
+  > div {
+    @apply px-6 py-4;
+
+    .AllergyIntoleranceView_code {
+      @apply font-bold text-xl mb-2;
+    }
+
+    .AllergyIntoleranceView_recordedDate {
+      @apply text-gray-700 text-base;
+    }
+  }
+}
+
+.CodingSelector {
+  @apply capitalize;
+}
+
+.ConditionView_container {
+  > div {
+    @apply px-6 py-4;
+
+    .ConditionView_code {
+      @apply font-bold text-xl mb-2;
+    }
+
+    .ConditionView_content {
+      @apply text-gray-700 text-base;
+
+      .ConditionView_clinicalStatus {
+        @apply capitalize text-base;
+      }
+  
+      .ConditionView_onsetDate {
+        @apply text-gray-400 text-base;
+      }
+  
+      .ConditionView_recordedDate {
+        @apply text-gray-400 text-base;
+      }
+    }
+  }
+}
+
+.ImmunizationView_container {
+  > div {
+    @apply px-6 py-4;
+
+    .ImmunizationView_vaccineCode {
+      @apply font-bold text-xl mb-2;
+    }
+
+    .ImmunizationView_status {
+      @apply text-gray-700 text-base;
+    }
+
+    .ImmunizationView_occurrenceDateTime {
+      @apply text-gray-700 text-base;
+    }
+  }
+}
+
+.PatientHeader_container { 
+  @apply w-screen p-5 max-w-sm rounded overflow-hidden;
+
+  .PatientHeader_sexAgeDOB {
+    @apply text-gray-700 flex items-center;
+  }
+
+  .PatientHeader_patientId {
+    @apply text-gray-700 flex items-center;
+    > div {
+      @apply w-1/3 flex-grow;
+
+      > label {
+        @apply text-xs;
+      }
+    }
+  }
+
+  .PatientHeader_address {
+    @apply pt-5;
+
+    > label { @apply font-bold; }
+  }
+}
+
+.SexAgeDOB_age { @apply text-sm; }
+.SexAgeDOB_dob { @apply text-sm; }
+.SexAgeDOB_gender { @apply text-sm capitalize; }
+
+
+
+
+table.LabsTable {
+  @apply min-w-full leading-normal;
+
+  th { 
+    @apply px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider;
+  }
+
+  tr {
+    @apply hover:bg-indigo-200;
+  }
+
+  td {
+    @apply px-5 py-5 border-b border-gray-200 text-sm;
+  }
+}
+
+/* Slightly different than above */
+table.FamilyHistoryTable {
+  @apply min-w-full leading-normal;
+
+  th { 
+    @apply px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider;
+    font-weight: 700;
+  }
+
+  tr {
+    @apply hover:bg-indigo-200;
+  }
+
+  td {
+    @apply px-5 py-5 border-b border-gray-200 text-sm capitalize;
+  }
+}
+
+
+
+
+/* Purple
+table.LabsTable {
+  @apply relative w-full border;
+
+  th { 
+    @apply sticky top-0 px-6 py-3 text-purple-900 bg-purple-300;
+  }
+
+  tbody {
+    @apply divide-y bg-purple-100;
+  }
+
+  td {
+    @apply px-6 py-4 text-center;
+  }
+}
+*/
