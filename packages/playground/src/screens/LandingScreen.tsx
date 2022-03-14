@@ -12,12 +12,12 @@ function LandingScreen(props: any) {
 
             {/* DEBUG CARD */}
             <TestLaunchCard 
-                authParams_epicSandbox1={config.EPIC_SANDBOX_PATIENT}
-                authParams_epicSandbox2={config.EPIC_SANDBOX_PATIENT_2}
+                authParams_epicSandbox1={config.EPIC_PATIENT_SANDBOX}
+                authParams_epicSandbox2={config.EPIC_PATIENT_SANDBOX_2}
                 authParams_smartOnFhir={config.SMART}
                 authParams_ssmDSTU2={config.EPIC_PATIENT_DSTU2}
                 authParams_ssmR4={config.EPIC_PATIENT_R4}
-                authParams_cerner={config.CERNER_R4_PATIENT}            
+                authParams_cerner={config.CERNER_PATIENT_R4}
             />
 
         </div>
