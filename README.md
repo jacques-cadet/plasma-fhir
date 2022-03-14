@@ -12,6 +12,7 @@ Plasma FHIR Framework
 - TODO: `plasma-fhir-react-native-components`
 
 ## Getting Started - Development
+
 ### Build All Packages
 - `cd packages/create-plasma-fhir-app`
 - `yarn`
@@ -43,42 +44,6 @@ Plasma FHIR Framework
 1. Repeat the same process as above, but select "Ready for Production" and copy your Production Client ID
 2. Go to https://open.epic.com/MyApps/Endpoints and find the endpoint for the system you want to connect to
 
-
-
-
-Open Tasks:
-- [ ] Add a `/medications` page and component
-- [ ] Get a Cerner API key / sandbox option working
-- [ ] Make it work in "EHR Launch Mode"
-   - Use this: https://launch.smarthealthit.org/?auth_error=&fhir_version_2=r4&iss=&launch_ehr=1&launch_url=https%3A%2F%2Flocalhost%3A3000&patient=&prov_skip_auth=1&provider=&pt_skip_auth=1&public_key=&sde=&sim_ehr=1&token_lifetime=15&user_pt=
-   - This needs to be a new template or something
-   - You can test with SMART, but currently the config specifies which patient to select. That should change (obviously)
- - [ ] Create templates for these options.
-   - [ ] Patient Standalone - Blank
-   - [ ] Patient Standalone - Plasma Portal
-   - [ ] Patient Portal Launch - Blank
-   - [ ] Patient Portal Launch - Plasma Portal
-   - [ ] EHR Launch - Blank
-   - [ ] EHR Launch - Plasma Portal
- - [ ] Add all templates to the CLI
-   - It would be great if we could just have 2 templates (blank and plasma portal) and somehow adjust it based on how it should be launched. Maybe there can just be a flag somewhere and the config params are adjusted accordingly
- - [ ] Detect if app has access to a resource or not and show a message if not (rather than crashing)
- - [ ] Typed APIs for all the data we are getting
-   - Not sure how this would work with custom searches and all that
-   - But I was thinking like: `getConditions(patientId: string): Condition[]` rather than returning `any`
- - [ ] Figure out how to save/create more than one family member at a time
- - [ ] Make a drop-down selector for FamilyHistory relationship. Make it generic for CodeableConcept (maybe)
- - [ ] Make a drop-down selector for FamilyHistory sex.
- - [ ] Create a `FamilyMemberHistoryEdit` component that allows you to edit/create/save certain properties of a FamilyMemberHistory (no conditions for now)
- - [ ] Generate the Family History relationship list from the official HL7 list (https://terminology.hl7.org/3.1.0/CodeSystem-v3-RoleCode.json.html)
- - [x] Generate the Family History sex list
- - [ ] Update readme with vital information
- - [ ] Implement a condition searching feature in Family History. Maybe we can use this API? http://ihtsdo.github.io/sct-snapshot-rest-api/api.html
-
-
-
-
-
 ## Register an App with Cerner
 
 ## Testing Your App (Patient Standalone App)
@@ -92,14 +57,6 @@ Open Tasks:
 ### Cerner Sandbox
 
 
-## Testing Your App (Provider EHR App)
-
-
-
-
-
-
-
 ## Tips and Tricks:
 
 ### Launch App With HTTPS (Needed when connecting to a live Epic System)
@@ -111,9 +68,6 @@ Open Tasks:
 
 ### OAuth2 Error (Epic)
 - This usually means your API has not yet been setup with Epic
-  - TODO: What to do
-
-
 
 ## Other Notes
 
@@ -123,4 +77,30 @@ Open Tasks:
   - TailwindCSS
   - React Table
   - fhirclient
+
+___
+
+Open Tasks:
+- [ ] Get a Cerner API key / sandbox option working
+- [ ] Make it work in "EHR Launch Mode"
+   - Use this: https://launch.smarthealthit.org/?auth_error=&fhir_version_2=r4&iss=&launch_ehr=1&launch_url=https%3A%2F%2Flocalhost%3A3000&patient=&prov_skip_auth=1&provider=&pt_skip_auth=1&public_key=&sde=&sim_ehr=1&token_lifetime=15&user_pt=
+   - This needs to be a new template or something
+   - You can test with SMART, but currently the config specifies which patient to select. That should change (obviously)
+ - [ ] Create templates for these options.
+   - [ ] Patient Standalone - Blank
+   - [ ] Patient Standalone - Plasma Portal
+   - [ ] Patient Portal Launch - Blank
+   - [ ] Patient Portal Launch - Plasma Portal
+   - [ ] EHR Launch - Blank
+   - [ ] EHR Launch - Plasma Portal
+ - [ ] Figure out how to save/create more than one family member at a time
+ - [ ] Create a `FamilyMemberHistoryEdit` component that allows you to edit/create/save certain properties of a FamilyMemberHistory (no conditions for now)
+ - [ ] Generate the Family History relationship list from the official HL7 list (https://terminology.hl7.org/3.1.0/CodeSystem-v3-RoleCode.json.html)
+ - [ ] Implement a condition searching feature in Family History. Maybe we can use this API? http://ihtsdo.github.io/sct-snapshot-rest-api/api.html
+
+
+
+
+
+
 
