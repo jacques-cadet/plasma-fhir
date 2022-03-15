@@ -20,8 +20,6 @@ export interface IFamilyMemberHistoryEditDialogProps {
 // TODO: Make a "getDefault()" method
 
 export default function FamilyMemberHistoryEditDialog(props: IFamilyMemberHistoryEditDialogProps) {
-    console.log(props.familyMemberHistory, props.familyMemberHistory?.name);
-
     const [name, setName] = useState<string>("");
     const [relationship, setRelationship] = useState<Coding>(FamilyMemberHistory_Relationship.Father);
     const [sex, setSex] = useState<Coding | null>(null);

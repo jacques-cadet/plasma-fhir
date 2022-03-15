@@ -55,15 +55,24 @@ function TestScreen(props: ITestScreenProps) {
         if (!fhirClient) { return; }
         if (!fhirClient.patient.id) { return; }
 
+        // Build promises for creating family members...
         const testFamily = createTestFamily(fhirClient.patient.id);
-        testFamily.forEach((familyMemberHistory: FamilyMemberHistory) => {
-            fhirClient.create(familyMemberHistory as fhirclient.FHIR.Resource).then(() => {
-                console.log("Added new Family Member");
-            });
+        const pCreateRelatives = testFamily.map((relative: FamilyMemberHistory) => {
+            return fhirClient.create(relative as fhirclient.FHIR.Resource);
         });
 
+        // Create all family members...
+        setIsLoading(true);
+        Promise.all(pCreateRelatives).then((values: fhirclient.FHIR.Resource[]) => {
+            console.log("New family members have been created", values);
+            setIsFamilyMemberHistoryLoaded(true);
+            setIsLoading(false);
 
-    }, [context]);
+            // Assign new family members to the data structure...
+            setFamilyMemberHistory([...familyMemberHistory, ...testFamily]);
+        });
+
+    }, [context, familyMemberHistory, setFamilyMemberHistory, setIsLoading, setIsFamilyMemberHistoryLoaded]);
 
     //
     // EDIT ACTIONS
@@ -80,8 +89,9 @@ function TestScreen(props: ITestScreenProps) {
 
     // Occurs when "Add Family Member" is clicked...
     const onAddFamilyMemberClick = useCallback(() => {
-        setShowEditDialog(true);
-        setIndexOfActiveFamilyMember(-1);
+        //setShowEditDialog(true);
+        //setIndexOfActiveFamilyMember(-1);
+        console.log("Ok");
 
 
         /*
@@ -199,42 +209,33 @@ function TestScreen(props: ITestScreenProps) {
             />
 
             {/* Loading */}
-            {isLoading || !isPatientDataLoaded ? 
+            {isLoading || !isPatientDataLoaded || !isFamilyMemberHistoryLoaded ? 
             <div className="bg-indigo-200 rounded shadow" style={{ position: "absolute", padding: "20px", left: "50%"}}>
                 <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black inline" viewBox="0 0 24 24">
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
                 Loading...
             </div> : null}
-
-            {/* Button to create test family */}
-            <div className="pt-5" />
-            <Button onClick={onCreateTestFamilyClick}>Create Test Family</Button>
             
-            <div className="pt-5" />
             {isFamilyMemberHistoryLoaded ?
                 <FamilyHistoryTable data={data} />
                 : null
-            }          
+            }
 
-            <div className="pt-5" />
-            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={onAddFamilyMemberClick}>Add Family Member</button>
+            {/* Button to create test family */}
+            <div className="pt-2" />
+            <Button onClick={onCreateTestFamilyClick}>Create Test Family</Button>
 
-            <br /><br />
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded">
-                Pull Family History From EHR
-            </button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded">
-                Save to EHR
-            </button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded">
-                Save to PlasmaFHIR
-            </button>
+            <div className="pt-2" />
+            <GreenButton onClick={onAddFamilyMemberClick}>Add Family Member</GreenButton>
 
-            <br /><br />
-            <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 mx-2 rounded">
-                Inquire Family Member
-            </button>
+            <div className="pt-2" />
+            <BlueButton>Pull Family History From EHR</BlueButton><span className="px-1" />
+            <BlueButton>Save to EHR</BlueButton><span className="px-1" />
+            <BlueButton>Save to PlasmaFHIR</BlueButton>
+
+            <div className="pt-2" />
+            <IndigoButton>Inquire Family Member</IndigoButton>
         </div>
     )
 }
@@ -257,6 +258,18 @@ const createTestFamily = (patientId: string): FamilyMemberHistory[] => {
     son.ageAge = Age.fromYears(25);
 
     return [father, mother, son];
+}
+
+function BlueButton(props: any) {
+    return <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" {...props}>{props.children}</button>
+}
+
+function IndigoButton(props: any) {
+    return <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded" {...props}>{props.children}</button>
+}
+
+function GreenButton(props: any) {
+    return <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" {...props}>{props.children}</button>
 }
 
 // Circle with text in it. Try to keep text to 2 characters.
