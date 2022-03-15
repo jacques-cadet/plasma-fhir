@@ -17,7 +17,7 @@ export default function ObservationValueView(props: IObservationValueViewProps) 
     else if (props.value.valueRatio)                { elValue = <RatioView ratio={props.value.valueRatio} />; }
     // TODO: valueSampledData
     // TODO: valueTime    
-    else if (props.value.valueDateTime)             { elValue = <DateView datetime={props.value.valueDateTime} />; }
+    else if (props.value.valueDateTime)             { elValue = <DateView date={props.value.valueDateTime} />; }
     else if (props.value.valuePeriod)               { elValue = <PeriodView period={props.value.valuePeriod} />; }
     // TODO: valueAttachment   
     else                                            { elValue = <span>Error: Unknown</span>; } // Hopefully we don't hit this case

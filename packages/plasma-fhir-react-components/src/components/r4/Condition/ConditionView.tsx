@@ -21,11 +21,11 @@ export const ConditionView: React.FC<IConditionViewProps> = (props) => {
                     </div> : null}
 
                     {!!props.condition.onsetDateTime ? <div className="ConditionView_onsetDate">
-                        Onset Date: <DateView datetime={props.condition.onsetDateTime} />
+                        Onset Date: <DateView date={props.condition.onsetDateTime} />
                     </div> : null}
 
                     {!!props.condition.recordedDate ? <div className="ConditionView_recordedDate">
-                        Recorded Date: <DateView datetime={props.condition.recordedDate} />
+                        Recorded Date: <DateView date={props.condition.recordedDate} />
                     </div> : null}
                 </div>
             </div>

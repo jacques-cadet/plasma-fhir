@@ -16,7 +16,7 @@ export const AllergyIntoleranceView: React.FC<IAllergyIntoleranceViewProps> = (p
                     <CodeableConceptView codeableConcept={props.allergyIntolerance.code} />
                 </div>
                 <p className="AllergyIntoleranceView_recordedDate">
-                    Added: <DateView datetime={props.allergyIntolerance.recordedDate} />
+                    Added: <DateView date={props.allergyIntolerance.recordedDate} />
                 </p>
             </div>
         </div>

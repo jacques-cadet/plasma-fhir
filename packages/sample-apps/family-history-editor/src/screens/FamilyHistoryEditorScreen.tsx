@@ -24,12 +24,7 @@ function TestScreen(props: ITestScreenProps) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [showDeleteDialog, setShowDeleteDialog] = useState<boolean>(false);
     const [showEditDialog, setShowEditDialog] = useState<boolean>(false);
-    const [indexOfActiveFamilyMember, setIndexOfActiveFamilyMember] = useState<number>(-1);
-
-    // Family Member properties (this should be a control)...
-    const [name, setName] = useState<string>("");
-    const [relationship, setRelationship] = useState<Coding>(FamilyMemberHistory_Relationship.Father);
-    const [sex, setSex] = useState<Coding | null>(AdministrativeGender.Female);
+    const [indexOfActiveFamilyMember, setIndexOfActiveFamilyMember] = useState<number>(-1);   
 
     // Load patient data...
     useEffect(() => {
@@ -113,7 +108,7 @@ function TestScreen(props: ITestScreenProps) {
             console.log("Added new Family Member", famHxObj);
         });
         */
-    }, [sex, relationship, name]);
+    }, []);
 
     const onSaveEditFamilyMemberClick = useCallback(() => {
         setShowEditDialog(false);
@@ -177,8 +172,13 @@ function TestScreen(props: ITestScreenProps) {
 
     return (
         <div className="p-5">
+            {/* Header Info */}
             <h1>Family History</h1>
+            <hr />
+            <PatientHeader patient={patientData} />
+            <hr />         
 
+            {/* Delete Confirmation */}
             <ConfirmationDialog 
                 show={showDeleteDialog}
                 onHide={() => setShowDeleteDialog(false)}
@@ -188,6 +188,7 @@ function TestScreen(props: ITestScreenProps) {
                 message="Are you sure you want to delete this family member?"
             />
 
+            {/* Edit Modal */}
             <FamilyMemberHistoryEditDialog
                 show={showEditDialog}
                 onHide={() => setShowEditDialog(false)}
@@ -197,22 +198,14 @@ function TestScreen(props: ITestScreenProps) {
                 familyMemberHistory={(indexOfActiveFamilyMember === -1) ? null : familyMemberHistory[indexOfActiveFamilyMember]}
             />
 
-            {isLoading ? 
-            <div style={{ position: "absolute", paddingTop: "20px", left: "50%"}}>
+            {/* Loading */}
+            {isLoading || !isPatientDataLoaded ? 
+            <div className="bg-indigo-200 rounded shadow" style={{ position: "absolute", padding: "20px", left: "50%"}}>
                 <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black inline" viewBox="0 0 24 24">
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
+                Loading...
             </div> : null}
-
-            {/* Loading Spinner */}
-            {!isPatientDataLoaded ? 
-            <div style={{ position: "absolute", paddingTop: "20px", left: "50%"}}>
-                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black inline" viewBox="0 0 24 24">
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-            </div> : null}
-
-            {patientData && <FHIRr4.PatientHeader patient={patientData} />}
 
             {/* Button to create test family */}
             <div className="pt-5" />
@@ -222,21 +215,7 @@ function TestScreen(props: ITestScreenProps) {
             {isFamilyMemberHistoryLoaded ?
                 <FamilyHistoryTable data={data} />
                 : null
-            }
-
-            {/* Inputs for name and relationship 
-            <input type="text" placeholder="Name" className="border-2 border-black my-2 p-2" value={name} onChange={(e) => setName(e.target.value)} /><br />
-            <FHIRr4.CodingSelector 
-                codes={Object.keys(FamilyMemberHistory_Relationship).map((key) => (FamilyMemberHistory_Relationship as any)[key])} 
-                selectedCode={relationship}
-                onChange={(code: Coding) => setRelationship(code)} 
-            /><br /><br />
-            <FHIRr4.CodingSelector 
-                codes={Object.keys(AdministrativeGender).map((key) => (AdministrativeGender as any)[key])} 
-                selectedCode={sex}
-                onChange={(code: Coding) => setSex(code)} 
-            /><br /><br />
-            */}
+            }          
 
             <div className="pt-5" />
             <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={onAddFamilyMemberClick}>Add Family Member</button>
@@ -256,26 +235,12 @@ function TestScreen(props: ITestScreenProps) {
             <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 mx-2 rounded">
                 Inquire Family Member
             </button>
-
-            {/* Patient Header 
-            {isPatientDataLoaded ? 
-            <div className="g-4">
-                <Card>
-                    <FHIRr4.PatientHeader patient={patientData} />
-                </Card>
-            </div> : null}
-            */}
-
         </div>
     )
 }
 
+// Creates and returns a test family...
 const createTestFamily = (patientId: string): FamilyMemberHistory[] => {
-
-    // Sample data...
-    //const r4test11874: fhir4.FamilyMemberHistory = {"resourceType":"FamilyMemberHistory","id":"mother","status":"completed","patient":{"reference":"Patient/100","display":"Peter Patient"},"relationship":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/v3-RoleCode","code":"MTH","display":"mother"}]},"condition":[{"code":{"coding":[{"system":"http://snomed.info/sct","code":"371041009","display":"Embolic Stroke"}],"text":"Stroke"},"onsetAge":{"value":56,"unit":"yr","system":"http://unitsofmeasure.org","code":"a"}}]};
-    //const r4test11881: fhir4.FamilyMemberHistory = {"resourceType":"FamilyMemberHistory","id":"father","identifier":[{"value":"12345"}],"instantiatesUri":["http://example.org/family-member-history-questionnaire"],"status":"completed","patient":{"reference":"Patient/example","display":"Peter Patient"},"date":"2011-03-18","relationship":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/v3-RoleCode","code":"FTH","display":"father"}]},"sex":{"coding":[{"system":"http://hl7.org/fhir/administrative-gender","code":"male","display":"Male"}]},"condition":[{"code":{"coding":[{"system":"http://snomed.info/sct","code":"315619001","display":"Myocardial Infarction"}],"text":"Heart Attack"},"contributedToDeath":true,"onsetAge":{"value":74,"unit":"yr","system":"http://unitsofmeasure.org","code":"a"},"note":[{"text":"Was fishing at the time. At least he went doing someting he loved."}]}]};
-
     const father = new FamilyMemberHistory(patientId, "R_01", "Father");
     father.name = "John";
     father.sex = AdministrativeGender.Male;
@@ -292,6 +257,61 @@ const createTestFamily = (patientId: string): FamilyMemberHistory[] => {
     son.ageAge = Age.fromYears(25);
 
     return [father, mother, son];
+}
+
+// Circle with text in it. Try to keep text to 2 characters.
+function CircleText(props: { cssClass?: string, children: any }) {
+    let cssClass = "w-5 h-5 p-4 rounded-full flex justify-center items-center text-center";
+    if (props.cssClass) { cssClass += " " + props.cssClass; }
+
+    return (
+        <div className={cssClass}>
+            {props.children}
+        </div>
+    )
+}
+
+// Patient header
+interface IPatientHeaderProps { patient?: Patient }
+function PatientHeader(props: IPatientHeaderProps) {
+    if (!props.patient) { return <div />; }
+    if (!props.patient.name || !props.patient.name[0]) { return <div />; }
+
+    // Determine patient's initials...
+    const patientName = props.patient.name[0];
+    let patientInitials = "";
+    if (patientName.given && patientName.given.length > 0) { patientInitials += patientName.given[0].charAt(0); }
+    if (patientName.family) { patientInitials += patientName.family.charAt(0); }
+
+    return (
+        <div>
+            <div className="flex flex-row">
+                <CircleText cssClass="bg-blue-500 text-white">{patientInitials}</CircleText>
+                <div style={{ paddingLeft: "4px"}} />
+                <div className="pl-2">
+                    {/* Name */}
+                    <div className="font-bold"><FHIRr4.HumanNameView humanName={props.patient.name[0]} /></div>
+
+                    {/* Sex, Age, DOB */}
+                    <div>
+                        <label className="capitalize">{props.patient.gender}</label>
+                        <span>, </span>
+                        <FHIRr4.AgeView dob={props.patient.birthDate} />
+                        <span>, 🎂 </span>
+                        <FHIRr4.DateView date={props.patient?.birthDate} />
+                    </div>
+
+                    {/* Address */}
+                    <div className="pt-2">
+                        <span className="font-bold">🏠 Address</span>
+                        {props.patient?.address?.map((addr, idx: number) => { 
+                            return <FHIRr4.AddressView key={`AddressView_${idx}`} address={addr} />; 
+                        })}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default TestScreen;

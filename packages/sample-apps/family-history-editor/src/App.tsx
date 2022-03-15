@@ -3,11 +3,13 @@ import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FHIRClientContextWrapper } from "./plasma-fhir/FHIRClient";
+import { Footer } from "./components";
 import { TestScreen, LandingScreen, LaunchScreen } from "./screens";
 
 export default function App() {
   return (
-    <div className="App">
+    <div className="App flex flex-col h-screen">
+      <div className="mb-auto">
       <BrowserRouter>
         <Routes>
           
@@ -17,6 +19,8 @@ export default function App() {
 
         </Routes>
       </BrowserRouter>
+      </div>
+      <Footer />
     </div>
   );
 }
