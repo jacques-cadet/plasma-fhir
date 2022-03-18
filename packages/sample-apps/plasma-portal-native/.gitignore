@@ -1,4 +1,4 @@
-src/config/config.ts
+config/config.ts
 
 node_modules/
 .expo/
