@@ -8,17 +8,14 @@ import {
 } from "../components";
 import { FHIRr4 } from "plasma-fhir-react-components";
 import { FHIRClientContext } from "../plasma-fhir/FHIRClient";
-import * as FHIRClientHelper from '../plasma-fhir/api/FHIRClientHelper';
-import { FamilyMemberHistory, FamilyMemberHistoryCondition, CodeableConcept, Age, Coding,
-    AdministrativeGender, FamilyMemberHistory_Relationship 
-} from "../plasma-fhir/api/FHIRResourceHelpers";
+import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 
 interface ITestScreenProps { };
 function TestScreen(props: ITestScreenProps) {
     const context = useContext(FHIRClientContext);    
     const [patientData, setPatientData] = useState<Patient | undefined>(undefined);
     const [isPatientDataLoaded, setIsPatientDataLoaded] = useState<boolean>(false);
-    const [familyMemberHistory, setFamilyMemberHistory] = useState<FamilyMemberHistory[]>([]);
+    const [familyMemberHistory, setFamilyMemberHistory] = useState<PlasmaFHIR.FamilyMemberHistory[]>([]);
     const [isFamilyMemberHistoryLoaded, setIsFamilyMemberHistoryLoaded] = useState<boolean>(false);
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -36,7 +33,7 @@ function TestScreen(props: ITestScreenProps) {
         if (!fhirClient) { return; }
 
         // Query for FamilyMemberHistory...
-        FHIRClientHelper.getFamilyMemberHistory(fhirClient).then((data: FamilyMemberHistory[]) => {
+        FHIRClientHelper.getFamilyMemberHistory(fhirClient).then((data: PlasmaFHIR.FamilyMemberHistory[]) => {
             console.log("famhx", data);
             setFamilyMemberHistory(data);
             setIsFamilyMemberHistoryLoaded(true);
@@ -57,7 +54,7 @@ function TestScreen(props: ITestScreenProps) {
 
         // Build promises for creating family members...
         const testFamily = createTestFamily(fhirClient.patient.id);
-        const pCreateRelatives = testFamily.map((relative: FamilyMemberHistory) => {
+        const pCreateRelatives = testFamily.map((relative: PlasmaFHIR.FamilyMemberHistory) => {
             return fhirClient.create(relative as fhirclient.FHIR.Resource);
         });
 
@@ -241,21 +238,21 @@ function TestScreen(props: ITestScreenProps) {
 }
 
 // Creates and returns a test family...
-const createTestFamily = (patientId: string): FamilyMemberHistory[] => {
-    const father = new FamilyMemberHistory(patientId, "R_01", "Father");
+const createTestFamily = (patientId: string): PlasmaFHIR.FamilyMemberHistory[] => {
+    const father = new PlasmaFHIR.FamilyMemberHistory(patientId, "R_01", "Father");
     father.name = "John";
-    father.sex = AdministrativeGender.Male;
-    father.ageAge = Age.fromYears(60);
+    father.sex = PlasmaFHIR.AdministrativeGender.Male;
+    father.ageAge = PlasmaFHIR.Age.fromYears(60);
 
-    const mother = new FamilyMemberHistory(patientId, "R_02", "Mother");
+    const mother = new PlasmaFHIR.FamilyMemberHistory(patientId, "R_02", "Mother");
     mother.name = "Mary";
-    mother.sex = AdministrativeGender.Female;
-    mother.ageAge = Age.fromYears(58);
+    mother.sex = PlasmaFHIR.AdministrativeGender.Female;
+    mother.ageAge = PlasmaFHIR.Age.fromYears(58);
 
-    const son = new FamilyMemberHistory(patientId, "R_03", "Son");
+    const son = new PlasmaFHIR.FamilyMemberHistory(patientId, "R_03", "Son");
     son.name = "Tim";
-    son.sex = AdministrativeGender.Male;
-    son.ageAge = Age.fromYears(25);
+    son.sex = PlasmaFHIR.AdministrativeGender.Male;
+    son.ageAge = PlasmaFHIR.Age.fromYears(25);
 
     return [father, mother, son];
 }

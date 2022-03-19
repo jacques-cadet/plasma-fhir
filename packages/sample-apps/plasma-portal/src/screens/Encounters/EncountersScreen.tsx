@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import { useTable, useSortBy, Column } from "react-table";
 import { FHIRr4 } from "plasma-fhir-react-components";
 
-import { Encounter, CodeableConcept } from "../../plasma-fhir/api/FHIRResourceHelpers";
-import { getEncounters } from "../../plasma-fhir/api/FHIRClientHelper";
+import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "../../plasma-fhir/FHIRClient";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
 
@@ -12,9 +11,9 @@ export default function EncountersScreen() {
     const { 
         data: encounters, isDataLoaded, hasErrorLoading, errorMessage,
         elLoadingSpinner, elErrorMessage
-    } = useDataLoadScreen<Encounter>({
+    } = useDataLoadScreen<PlasmaFHIR.Encounter>({
         context: context,
-        getData: getEncounters
+        getData: FHIRClientHelper.getEncounters
     });
 
     // TODO: Figure out how to use react-table datetime sorting
@@ -32,14 +31,14 @@ export default function EncountersScreen() {
         return (rowA: any, rowB: any, columnId: string, desc: boolean) => { 
             const cca = rowA.values[columnId].props.codeableConcept;
             const ccb = rowB.values[columnId].props.codeableConcept;
-            return CodeableConcept.sortByDisplayText(cca, ccb);
+            return PlasmaFHIR.CodeableConcept.sortByDisplayText(cca, ccb);
         };
     }, []);
 
     const data = React.useMemo(() => {
         return encounters.map((encounter, idx) => {
             return {
-                date: (encounter.period && encounter.period.start) ? <FHIRr4.DateView datetime={encounter.period.start} /> : <span>{"Unknown"}</span>,
+                date: (encounter.period && encounter.period.start) ? <FHIRr4.DateView date={encounter.period.start} /> : <span>{"Unknown"}</span>,
                 type: (encounter.type && encounter.type.length > 0) ? <FHIRr4.CodeableConceptView codeableConcept={encounter.type[0]} /> : <span>{"Unknown"}</span>,
                 reason: "N/A"
             };

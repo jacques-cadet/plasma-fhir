@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
 import { FHIRr4 } from "plasma-fhir-react-components";
 
-import { CodeableConcept, Observation } from "../../plasma-fhir/api/FHIRResourceHelpers";
-import { getVitals } from "../../plasma-fhir/api/FHIRClientHelper";
+import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "../../plasma-fhir/FHIRClient";
 import { useTable, useSortBy, Column, useRowState } from "react-table";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
 
-const getVitalCategory = (vitalCode: CodeableConcept) => {
+const getVitalCategory = (vitalCode: PlasmaFHIR.CodeableConcept) => {
     const vitalKey: string = vitalCode.coding ? (vitalCode.coding[0].code || '') : (vitalCode.text || '');
-    const vitalDisplay: string = CodeableConcept.getDisplayText(vitalCode, true);
+    const vitalDisplay: string = PlasmaFHIR.CodeableConcept.getDisplayText(vitalCode, true);
     
     return {
         'vitalKey': vitalKey,
@@ -22,9 +21,9 @@ export default function VitalsScreen() {
     const { 
         data: vitalsData, isDataLoaded, hasErrorLoading, errorMessage,
         elLoadingSpinner, elErrorMessage
-    } = useDataLoadScreen<Observation>({
+    } = useDataLoadScreen<PlasmaFHIR.Observation>({
         context: context,
-        getData: getVitals
+        getData: FHIRClientHelper.getVitals
     });
 
     // TODO: Figure out how to use react-table datetime sorting
@@ -51,7 +50,7 @@ export default function VitalsScreen() {
             return da === db ? eb.localeCompare(ea) : db - da;
         });
 
-        const vitalsGroupedByEncounter: Observation[][] = vitalsSortedByDateAndEncounter.reduce((vitalGroups: Observation[][], vital) => {
+        const vitalsGroupedByEncounter: PlasmaFHIR.Observation[][] = vitalsSortedByDateAndEncounter.reduce((vitalGroups: PlasmaFHIR.Observation[][], vital) => {
             if (vitalGroups.length === 0) {
                 vitalGroups.push([vital]);
                 return vitalGroups;

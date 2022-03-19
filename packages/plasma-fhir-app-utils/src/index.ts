@@ -1,2 +1,2 @@
-import * as api from "./api";
-export { api };
+import { FHIRClientHelper, FHIRResourceHelpers } from "./api";
+export { FHIRClientHelper, FHIRResourceHelpers };

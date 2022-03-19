@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 
-import { AllergyIntolerance } from "../../plasma-fhir/api/FHIRResourceHelpers";
-import { getAllergyIntolerance } from "../../plasma-fhir/api/FHIRClientHelper";
+import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "../../plasma-fhir/FHIRClient";
 import { Card } from "../../components";
 import { FHIRr4, FHIRdstu2 } from "plasma-fhir-react-components";
@@ -12,9 +11,9 @@ export default function AllergiesScreen() {
     const { 
         data: allergyIntolerance, isDataLoaded, hasErrorLoading, errorMessage,
         elLoadingSpinner, elErrorMessage
-    } = useDataLoadScreen<AllergyIntolerance>({
+    } = useDataLoadScreen<PlasmaFHIR.AllergyIntolerance>({
         context: context,
-        getData: getAllergyIntolerance
+        getData: FHIRClientHelper.getAllergyIntolerance
     });
 
     // Determine which FHIR release version we're using...

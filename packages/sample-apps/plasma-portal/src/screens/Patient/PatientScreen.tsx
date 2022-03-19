@@ -4,7 +4,7 @@ import { FHIRr4 } from "plasma-fhir-react-components";
 import { FHIRClientContext } from "../../plasma-fhir/FHIRClient";
 import { Patient } from 'fhir/r4';
 import { Card } from "../../components";
-import * as FHIRClientHelper from '../../plasma-fhir/api/FHIRClientHelper';
+import { FHIRClientHelper } from "plasma-fhir-app-utils";
 
 interface IPatientScreenProps { };
 function PatientScreen(props: IPatientScreenProps) {

@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { FHIRr4 } from "plasma-fhir-react-components";
 
-import { Immunization } from "../../plasma-fhir/api/FHIRResourceHelpers";
-import { getImmunizations } from "../../plasma-fhir/api/FHIRClientHelper";
+import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "../../plasma-fhir/FHIRClient";
 import { Card } from "../../components";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
@@ -12,9 +11,9 @@ export default function ImmunizationScreen() {
     const { 
         data: immunizationData, isDataLoaded, hasErrorLoading, errorMessage,
         elLoadingSpinner, elErrorMessage
-    } = useDataLoadScreen<Immunization>({
+    } = useDataLoadScreen<PlasmaFHIR.Immunization>({
         context: context,
-        getData: getImmunizations
+        getData: FHIRClientHelper.getImmunizations
     });
 
     return (

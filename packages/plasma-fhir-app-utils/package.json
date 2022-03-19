@@ -2,13 +2,14 @@
   "name": "plasma-fhir-app-utils",
   "version": "0.0.1",
   "description": "PlasmaFHIR app utils",
-  "main": "src/index.ts",
-  "module": "src/index.ts",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "EM",
   "devDependencies": {
+    "tsc": "^2.0.4",
     "typescript": "^4.5.5"
   },
   "dependencies": {

@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import { useTable, useSortBy, Column } from "react-table";
 import { FHIRr4 } from "plasma-fhir-react-components";
 
-import { Observation, CodeableConcept } from "../../plasma-fhir/api/FHIRResourceHelpers";
-import { getLabs } from "../../plasma-fhir/api/FHIRClientHelper";
+import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "../../plasma-fhir/FHIRClient";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
 
@@ -12,16 +11,16 @@ export default function LabsScreen() {
     const { 
         data: labs, isDataLoaded, hasErrorLoading, errorMessage,
         elLoadingSpinner, elErrorMessage
-    } = useDataLoadScreen<Observation>({
+    } = useDataLoadScreen<PlasmaFHIR.Observation>({
         context: context,
-        getData: getLabs
+        getData: FHIRClientHelper.getLabs
     });
 
     const sortCode = React.useMemo(() => {
         return (rowA: any, rowB: any, columnId: string, desc: boolean) => { 
             const cca = rowA.values[columnId].props.codeableConcept;
             const ccb = rowB.values[columnId].props.codeableConcept;
-            return CodeableConcept.sortByDisplayText(cca, ccb);
+            return PlasmaFHIR.CodeableConcept.sortByDisplayText(cca, ccb);
         };
     }, []);
 

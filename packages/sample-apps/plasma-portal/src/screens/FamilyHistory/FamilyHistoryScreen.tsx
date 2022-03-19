@@ -3,8 +3,7 @@ import { useTable, useSortBy, Column } from "react-table";
 import { FHIRr4 } from "plasma-fhir-react-components";
 
 import { FHIRClientContext } from "../../plasma-fhir/FHIRClient";
-import { getFamilyMemberHistory } from "../../plasma-fhir/api/FHIRClientHelper";
-import { FamilyMemberHistory, CodeableConcept } from "../../plasma-fhir/api/FHIRResourceHelpers";
+import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
 
 export default function FamilyHistoryScreen() {
@@ -12,16 +11,16 @@ export default function FamilyHistoryScreen() {
     const { 
         data: familyMemberHistory, isDataLoaded, hasErrorLoading, errorMessage,
         elLoadingSpinner, elErrorMessage
-    } = useDataLoadScreen<FamilyMemberHistory>({
+    } = useDataLoadScreen<PlasmaFHIR.FamilyMemberHistory>({
         context: context,
-        getData: getFamilyMemberHistory
+        getData: FHIRClientHelper.getFamilyMemberHistory
     });
 
     const sortCode = React.useMemo(() => {
         return (rowA: any, rowB: any, columnId: string, desc: boolean) => { 
             const cca = rowA.values[columnId].props.codeableConcept;
             const ccb = rowB.values[columnId].props.codeableConcept;
-            return CodeableConcept.sortByDisplayText(cca, ccb);
+            return PlasmaFHIR.CodeableConcept.sortByDisplayText(cca, ccb);
         };
     }, []);
 

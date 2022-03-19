@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { FHIRr4 } from "plasma-fhir-react-components";
-import { 
-    FamilyMemberHistory, FamilyMemberHistoryCondition, CodeableConcept, Age, Coding,
-    AdministrativeGender, FamilyMemberHistory_Relationship 
-} from "../../plasma-fhir/api/FHIRResourceHelpers";
+import { FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 
 export interface IFamilyMemberHistoryEditDialogProps {
-    familyMemberHistory: FamilyMemberHistory | null;
+    familyMemberHistory: PlasmaFHIR.FamilyMemberHistory | null;
 
 
     show: boolean;
@@ -21,8 +18,8 @@ export interface IFamilyMemberHistoryEditDialogProps {
 
 export default function FamilyMemberHistoryEditDialog(props: IFamilyMemberHistoryEditDialogProps) {
     const [name, setName] = useState<string>("");
-    const [relationship, setRelationship] = useState<Coding>(FamilyMemberHistory_Relationship.Father);
-    const [sex, setSex] = useState<Coding | null>(null);
+    const [relationship, setRelationship] = useState<PlasmaFHIR.Coding>(PlasmaFHIR.FamilyMemberHistory_Relationship.Father);
+    const [sex, setSex] = useState<PlasmaFHIR.Coding | null>(null);
 
     useEffect(() => {
         if (props.familyMemberHistory && props.familyMemberHistory.name) {
@@ -34,7 +31,7 @@ export default function FamilyMemberHistoryEditDialog(props: IFamilyMemberHistor
         if (props.familyMemberHistory && props.familyMemberHistory.relationship && props.familyMemberHistory.relationship.coding) {
             setRelationship(props.familyMemberHistory.relationship.coding[0]);
         } else {
-            setRelationship(FamilyMemberHistory_Relationship.Father);
+            setRelationship(PlasmaFHIR.FamilyMemberHistory_Relationship.Father);
         }
 
         if (props.familyMemberHistory && props.familyMemberHistory.sex && props.familyMemberHistory.sex.coding) {
@@ -57,15 +54,15 @@ export default function FamilyMemberHistoryEditDialog(props: IFamilyMemberHistor
             /><br /><br />
             
             <FHIRr4.CodingSelector 
-                codes={Object.keys(FamilyMemberHistory_Relationship).map((key) => (FamilyMemberHistory_Relationship as any)[key])} 
+                codes={Object.keys(PlasmaFHIR.FamilyMemberHistory_Relationship).map((key) => (PlasmaFHIR.FamilyMemberHistory_Relationship as any)[key])} 
                 selectedCode={relationship}
-                onChange={(code: Coding) => setRelationship(code)} 
+                onChange={(code: PlasmaFHIR.Coding) => setRelationship(code)} 
             /><br /><br />
 
             <FHIRr4.CodingSelector 
-                codes={Object.keys(AdministrativeGender).map((key) => (AdministrativeGender as any)[key])} 
+                codes={Object.keys(PlasmaFHIR.AdministrativeGender).map((key) => (PlasmaFHIR.AdministrativeGender as any)[key])} 
                 selectedCode={sex}
-                onChange={(code: Coding) => setSex(code)} 
+                onChange={(code: PlasmaFHIR.Coding) => setSex(code)} 
             /><br /><br />
 
             </Modal.Body>

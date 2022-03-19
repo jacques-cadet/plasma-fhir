@@ -3,7 +3,7 @@ import { FHIRClientContext } from "../plasma-fhir/FHIRClient";
 import { Patient, Immunization } from 'fhir/r4';
 import { Card } from "../components";
 import { FHIRr4 } from "plasma-fhir-react-components";
-import * as FHIRClientHelper from '../plasma-fhir/api/FHIRClientHelper';
+import { FHIRClientHelper } from "plasma-fhir-app-utils";
 
 interface ITestScreenProps { };
 function TestScreen(props: ITestScreenProps) {
