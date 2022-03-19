@@ -12,13 +12,15 @@ export interface ITestLaunchCardProps {
 }
 
 /** Just for convenience. Let's you quickly launch to several platforms */
-export default function TestingLaunchCard(props: ITestLaunchCardProps) {
+export default function TestLaunchCard(props: ITestLaunchCardProps) {
     return (
         <View style={{ flex: 1 }}>
             <View>
+                {/*
                 <a href="#">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Testing</h5>
                 </a>
+                */}
 
                 <Text>
                     Here are some test environments to try out:

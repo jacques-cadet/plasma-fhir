@@ -11,7 +11,7 @@ export interface ITestLaunchCardProps {
 }
 
 /** Just for convenience. Let's you quickly launch to several platforms */
-export default function TestingLaunchCard(props: ITestLaunchCardProps) {
+export default function TestLaunchCard(props: ITestLaunchCardProps) {
     return (
         <div className="w-full">
             <div className="p-6 w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">

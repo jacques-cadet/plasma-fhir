@@ -19,6 +19,7 @@ export type RootStackParamList = {
   NotFound: undefined;
 
   Launch: any;    // TODO: Define param types
+  App: any;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

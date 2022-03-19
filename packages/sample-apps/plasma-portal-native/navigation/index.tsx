@@ -45,6 +45,7 @@ function RootNavigator() {
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
 
+      <Stack.Screen name="App" component={ModalScreen} />
       <Stack.Screen name="Launch" component={LaunchScreen} />
     </Stack.Navigator>
   );
