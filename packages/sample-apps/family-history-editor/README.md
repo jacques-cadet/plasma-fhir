@@ -1,4 +1,5 @@
 # family-history-editor
+PlasmaFHIR Family History Editor
 
 ## Description
 - Family History editing tool using PlasmaFHIR
@@ -20,22 +21,24 @@
     - Update `App.tsx` to use `App.scss`
 3. Copy `plasma-fhir` modules
     - Create a `src/plasma-fhir` directory
-    - Copy `FHIRResourceHelpers.ts` and `FHIRClientHelper.ts` into `/src/plasma-fhir/api`
-    - Copy `FHIRClient` files into `src/plasma-fhir/FHIRClient`
-4. Install FHIR types
+    - Copy modules into it
+4. Install local `PlasmaFHIR` packages
+    - `npm install --save ../../plasma-fhir-react-components`
+    - `npm install --save ../../plasma-fhir-app-utils`
+5. Install FHIR types
     - `yarn add @types/fhir`
-5. Install `fhirclient`
+6. Install `fhirclient`
     - `yarn add fhirclient`
-6. Install `react-router-dom`
+7. Install `react-router-dom`
     - `yarn add react-router-dom`
-7. Create `config.ts` with the API key configurations
-8. Install some libraries
+8. Create `src/config/config.ts` with the API key configurations
+9. Install some libraries
   - Tailwind CSS
     - https://tailwindcss.com/docs/guides/create-react-app
     - `npm install -D tailwindcss postcss autoprefixer`
     - `npx tailwindcss init -p`
-    - Update `tailwind.config.js`
-    - Update `index.css`
+    - Update `tailwind.config.js` (see instructions)
+    - Update `index.css` (see instructions)
   - react-table
     - https://github.com/TanStack/react-table
     - `yarn add react-table`

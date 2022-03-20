@@ -23,12 +23,12 @@ async function run() {
     },
 
     { 
-      type: "list", name: "userContext", message: "Who will be using this app?", choices: ["Patients", "Clinicians"], filter(val) { return val.toLowerCase(); } 
+      type: "list", name: "userContext", message: "Who will be using this app?", choices: ["Patients"/*, "Clinicians"*/], filter(val) { return val.toLowerCase(); } 
     },
 
-    { 
-      type: "checkbox", name: "platforms", message: "What platforms do you want to support?", choices: ["Epic", "Cerner"], default: ["Epic", "Cerner"]
-    },
+    //{ 
+    //  type: "checkbox", name: "platforms", message: "What platforms do you want to support?", choices: ["Epic", "Cerner"], default: ["Epic", "Cerner"]
+    //},
 
     { 
       type: "list", name: "templateType", message: "Would you like to start with a template, or create a blank app?", choices: ["Template", "Blank"], filter(val) { return val.toLowerCase(); } 
@@ -74,8 +74,8 @@ function getTemplateName(userContext, templateType) {
 
   // Patient...
   if (userContext === "patients") {
-    if (templateType === "template") { return "patient-portal-starter"; }
-    else if (templateType === "blank") { return "patient-portal-blank"; }
+    if (templateType === "template") { return "patient-portal-standalone"; }
+    else if (templateType === "blank") { return "patient-standlone-blank"; }
   }
 
   // Provider...

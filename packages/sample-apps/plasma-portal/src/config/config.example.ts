@@ -1,6 +1,12 @@
+/**
+ * This config file contains the API keys for various platforms.
+ * 
+ * Since this app is also deployed on plasmafhir.com, and because there's a redirect URL,
+ * we have a switch to determine whether we're running in local or production mode.
+ */
 
 // VERSION...
-const appVersion = "20220306.001";
+const appVersion = "";
 
 // TESTING MODE...
 let mode = "LOCAL";

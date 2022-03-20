@@ -2,7 +2,7 @@
 PlasmaFHIR Patient Portal
 
 ## Description
-- Standalone patient portal utilizing FHIR and the PlasmaFHIR framework. 
+- Standalone patient portal utilizing FHIR and the PlasmaFHIR framework.
 - Currently only works with Epic customer systems.
 - Select your health system, login using your MyChart credentials, and view your health data!
 
