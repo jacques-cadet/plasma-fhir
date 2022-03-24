@@ -29,7 +29,7 @@
 }
 
 .CodingSelector {
-  @apply capitalize;
+  @apply capitalize border-2;
 }
 
 table.FamilyHistoryTable {  
@@ -47,4 +47,9 @@ table.FamilyHistoryTable {
   td {
     @apply px-5 py-5 border-b border-gray-200 text-sm capitalize;
   }
+}
+
+
+.FamilyMemberHistoryEditDialog_ModalBody {
+  
 }
