@@ -14,4 +14,6 @@ export default interface IValue {
     valueDateTime?: string;
     valuePeriod?: Period;
     valueAttachment?: Attachment;
+
+    dataAbsentReason?: CodeableConcept;
 }
