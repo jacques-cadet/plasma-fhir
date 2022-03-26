@@ -29,7 +29,8 @@
 }
 
 .CodingSelector {
-  @apply capitalize border-2;
+  @apply capitalize border-2 rounded;
+  height: 36px;
 }
 
 table.FamilyHistoryTable {  

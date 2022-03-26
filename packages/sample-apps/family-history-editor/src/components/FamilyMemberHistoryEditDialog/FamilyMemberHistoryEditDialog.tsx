@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button } from "react-bootstrap";
 import { FHIRr4 } from "plasma-fhir-react-components";
 import { FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
-
+import { Modal, Text, Input, Checkbox, Button, Group } from '@mantine/core';
 
 // TODO: Imported CodingSelector doesn't work
 
@@ -37,7 +36,6 @@ function CodingSelector(props: ICodingSelectorProps) {
 export interface IFamilyMemberHistoryEditDialogProps {
     familyMemberHistory: PlasmaFHIR.FamilyMemberHistory | null;
 
-
     show: boolean;
     title: string;
     onSaveClick: () => void;
@@ -59,25 +57,112 @@ export default function FamilyMemberHistoryEditDialog(props: IFamilyMemberHistor
     const [father, setFather] = useState<string>("");
 
     useEffect(() => {
-        if (props.familyMemberHistory && props.familyMemberHistory.name) {
-            setName(props.familyMemberHistory.name);
-        } else {
-            setName("");
-        }
+        if (!props.familyMemberHistory) { return; }
 
-        if (props.familyMemberHistory && props.familyMemberHistory.relationship && props.familyMemberHistory.relationship.coding) {
-            setRelationship(props.familyMemberHistory.relationship.coding[0]);
-        } else {
-            setRelationship(PlasmaFHIR.FamilyMemberHistory_Relationship.Father);
-        }
+        if (props.familyMemberHistory.name) { setName(props.familyMemberHistory.name); }
+        if (props.familyMemberHistory.relationship && props.familyMemberHistory.relationship.coding) { setRelationship(props.familyMemberHistory.relationship.coding[0]); }
+        if (props.familyMemberHistory.sex && props.familyMemberHistory.sex.coding) { setSex(props.familyMemberHistory.sex.coding[0]); }
+        if (props.familyMemberHistory.deceasedBoolean) { setIsDeceased(true); }
+        
+        // TODO: 
+        //deceasedAge?: Age | undefined;
+        //deceasedRange?: Range | undefined;
+        //deceasedDate?: string | undefined;
+        //deceasedString?: string | undefined;
 
-        if (props.familyMemberHistory && props.familyMemberHistory.sex && props.familyMemberHistory.sex.coding) {
-            setSex(props.familyMemberHistory.sex.coding[0]);
-        } else {
-            setSex(null);
-        }
+        // TODO: 
+        //ageAge?: Age | undefined;
+        //ageRange?: Range | undefined;
+        //ageString?: string | undefined;
+        //bornPeriod?: Period | undefined;
+        //bornDate?: string | undefined;
+        //bornString?: string | undefined;
+
+        // TODO: .note is an Annotation[]
+
     }, [props]);
     
+
+    return (
+        <>
+            <Modal opened={props.show} onClose={props.onHide} title={props.title}>
+                <div className="FamilyMemberHistoryEditDialog_ModalBody w-full">
+                    <div className="mb-4">
+
+                        {/* Name */}
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                        <Input placeholder="Name" value={name} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)} />
+                        <div className="pb-3" />
+
+                        {/* Relationship */}
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Relationship</label>
+                        <CodingSelector 
+                            codes={Object.keys(PlasmaFHIR.FamilyMemberHistory_Relationship).map((key) => (PlasmaFHIR.FamilyMemberHistory_Relationship as any)[key])} 
+                            selectedCode={relationship}
+                            onChange={(code: PlasmaFHIR.Coding) => setRelationship(code)} 
+                        />
+                        <div className="pb-3" />
+
+                        <Group grow>
+                            {/* Sex */}
+                            <div>
+                                <label className="text-gray-700 text-sm font-bold pr-2">Sex</label>
+                                <CodingSelector 
+                                    codes={Object.keys(PlasmaFHIR.AdministrativeGender).map((key) => (PlasmaFHIR.AdministrativeGender as any)[key])} 
+                                    selectedCode={sex}
+                                    onChange={(code: PlasmaFHIR.Coding) => setSex(code)} 
+                                />
+                            </div>
+
+                            {/* Is Deceased? */}
+                            <Checkbox checked={isDeceased} label="Deceased?" onChange={(event) => setIsDeceased(event.currentTarget.checked)} />
+                        </Group>
+                        <div className="pb-2" />
+
+                        {/* Age */}
+                        {!isDeceased ? 
+                            <>
+                            <label className="block text-gray-700 text-sm font-bold mb-2">Age</label>
+                            <Input placeholder="Age" value={age} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setAge(event.target.value)} />
+                            <div className="pb-2" />
+                            </>
+                        : null}
+
+                        {/* Death Age */}
+                        {isDeceased ? 
+                            <>
+                            <label className="block text-gray-700 text-sm font-bold mb-2">Death age</label>
+                            <Input placeholder="Death age" value={deathAge} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setDeathAge(event.target.value)} />
+                            <div className="pb-2" />
+                            </>
+                        : null}
+                        
+                        {/* Note */}
+                        <label className="block text-gray-700 text-sm font-bold mb-2 w-full">Note</label>
+                        <textarea rows={5} placeholder="Note" className="border-2 my-2 p-2 w-full" 
+                            value={note} onChange={(e) => setNote(e.target.value)} 
+                        />
+                        <div className="pb-2" />
+
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Mother</label>
+                        <div className="pb-2" />
+
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Father</label>
+                        <div className="pb-2" />
+
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Conditions</label>
+                        <div className="pb-2" />
+
+                    </div>
+
+                    <button onClick={props.onCancelClick} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4">Cancel</button>
+                    <button onClick={props.onSaveClick} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Save</button>
+                </div>
+            </Modal>
+        </>
+    )
+
+    /*
 
     return (
         <Modal show={props.show} onHide={props.onHide}>
@@ -146,4 +231,5 @@ export default function FamilyMemberHistoryEditDialog(props: IFamilyMemberHistor
             </Modal.Footer>
         </Modal>
     );
+    */
 }
