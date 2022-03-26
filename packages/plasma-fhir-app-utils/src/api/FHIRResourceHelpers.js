@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FamilyMemberHistoryCondition = exports.FamilyMemberHistory = exports.FamilyMemberHistory_Relationship = exports.AdministrativeGender = exports.Encounter = exports.Immunization = exports.Condition = exports.AllergyIntolerance = exports.Observation = exports.Age = exports.Quantity = exports.CodeableConcept = exports.Coding = exports.Reference = void 0;
+exports.DateTimeUtils = exports.FamilyMemberHistoryCondition = exports.FamilyMemberHistory = exports.FamilyMemberHistory_Relationship = exports.AdministrativeGender = exports.Encounter = exports.Immunization = exports.Condition = exports.AllergyIntolerance = exports.Observation = exports.Period = exports.Range = exports.Age = exports.Quantity = exports.CodeableConcept = exports.Coding = exports.Reference = void 0;
 class Reference {
     constructor(reference) {
         this.reference = reference;
@@ -90,6 +90,92 @@ class Age {
     }
 }
 exports.Age = Age;
+class Range {
+    constructor(low, high) {
+        this.low = low;
+        this.high = high;
+    }
+    // Parse a string into a Range element.
+    // Valid formats:
+    //      50
+    //      50-75
+    //      50 - 75
+    static fromString(s) {
+        // Single Number...
+        if (!isNaN(s)) {
+            const f = parseFloat(s);
+            return new Range(new Quantity(f, ""), undefined);
+        }
+        // Range (e.g. "35-40")...
+        if (s.indexOf("-") >= 0) {
+            const s1 = s.split("-")[0];
+            const s2 = s.split("-")[1];
+            if (!isNaN(s1) && !isNaN(s2)) {
+                const f1 = parseFloat(s1);
+                const f2 = parseFloat(s2);
+                return new Range(new Quantity(f1, ""), new Quantity(f2, ""));
+            }
+        }
+        return undefined;
+    }
+}
+exports.Range = Range;
+class Period {
+    constructor(start, end) {
+        this.start = start;
+        this.end = end;
+    }
+    // Get start date as a Date object...
+    static getStartDate(period) {
+        if (!period.start) {
+            return undefined;
+        }
+        return DateTimeUtils.fromString(period.start);
+    }
+    // Get end date as a Date object...
+    static getEndDate(period) {
+        if (!period.end) {
+            return undefined;
+        }
+        return DateTimeUtils.fromString(period.end);
+    }
+    // Parse an age string into a Period element. The start/end dates will correspond to start/end DOBs.
+    // Valid formats: 50, 50-60, 50's, 50s
+    static fromAgeString(s, now) {
+        // Same decade (e.g. "40's", "40s") (Note: "late 40s" will just be "40s")
+        if (s.indexOf("s") >= 0) {
+            // All this does is convert "40s" to "40-49" to be processed by the range block (changes "s" to be like "40-49")
+            let decadeString = s.split("s")[0];
+            if (decadeString.indexOf("'") >= 0) {
+                decadeString = decadeString.replace("'", "");
+            }
+            if (!isNaN(decadeString)) {
+                const decadeNumber = parseInt(decadeString);
+                const decadeEnd = decadeNumber + 9;
+                s = decadeNumber.toString() + "-" + decadeEnd.toString();
+            }
+        }
+        // Check if a range was given...
+        const range = Range.fromString(s);
+        if (range !== undefined) {
+            // If it was a single number, we return the highest/lowest DOB for that age...
+            if (range.low && range.low.value && !range.high) {
+                const dob = DateTimeUtils.getDOBFromAge(range.low.value, now);
+                return new Period(dob.dobStart.toISOString(), dob.dobEnd.toISOString());
+            }
+            // If it was a range, we return the lowest DOB for the lower age and highest DOB for the higher age...
+            if (range.low && range.low.value && range.high && range.high.value) {
+                const dob1 = DateTimeUtils.getDOBFromAge(range.low.value, now);
+                const dob2 = DateTimeUtils.getDOBFromAge(range.high.value, now);
+                return new Period(dob1.dobStart.toISOString(), dob2.dobEnd.toISOString());
+            }
+            // If we got here, then it parsed the Range, but couldn't parse the DOB, so return undefined...
+            return undefined;
+        }
+        return undefined;
+    }
+}
+exports.Period = Period;
 class Observation {
     constructor() {
     }
@@ -278,3 +364,27 @@ class FamilyMemberHistoryCondition {
     }
 }
 exports.FamilyMemberHistoryCondition = FamilyMemberHistoryCondition;
+//
+// --- UTILS ---
+//
+class DateTimeUtils {
+    // Parse the string into a date...
+    static fromString(s) {
+        return new Date(s);
+    }
+    // Given an age, returns the highest/lowest possible DOB
+    // dobStart = Date that makes you the YOUNGEST
+    // dobEnd = Date that makes you the OLDEST
+    // Note: dobStart comes AFTER dobEnd chronologically
+    static getDOBFromAge(age, now) {
+        if (!now) {
+            now = new Date();
+        }
+        const dStart = new Date(now);
+        dStart.setFullYear(dStart.getFullYear() - age);
+        const dEnd = new Date(now);
+        dEnd.setFullYear(dEnd.getFullYear() - age - 1);
+        return { dobStart: dStart, dobEnd: dEnd };
+    }
+}
+exports.DateTimeUtils = DateTimeUtils;
