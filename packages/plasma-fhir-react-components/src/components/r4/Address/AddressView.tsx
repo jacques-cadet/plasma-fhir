@@ -42,6 +42,7 @@ function getCityStateZipElement(address: Address): JSX.Element
     );
 }
 
+// TODO: Move to app-utils
 // Formats the city and state as <city>, <state>
 function formatCityStateZip(city?: string, state?: string, postalCode?: string): string
 {

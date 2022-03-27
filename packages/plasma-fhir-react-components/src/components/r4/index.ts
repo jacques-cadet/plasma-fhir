@@ -16,5 +16,6 @@ export { default as PatientHeader } from "./Patient/PatientHeader";
 export { default as SexAgeDOB } from "./Patient/SexAgeDOB";
 export { default as PeriodView } from "./Period/PeriodView";
 export { default as QuantityView } from "./Quantity/QuantityView";
+export { default as RangeInput } from "./Range/RangeInput";
 export { default as RangeView } from "./Range/RangeView";
 export { default as RatioView } from "./Ratio/RatioView";

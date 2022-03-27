@@ -6,6 +6,7 @@ export default function QuantityView(props: IQuantityViewProps) {
     // Check if data is available...
     if (!props.quantity) { return <div />; }
 
+    // TODO: Move this to app-utils
     // Format display value...
     let display = "";
     if (props.quantity.comparator) { display += props.quantity.comparator; }

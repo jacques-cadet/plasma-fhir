@@ -8968,6 +8968,7 @@
   dependencies:
     "@types/fhir" "^0.0.34"
     "fhirclient" "^2.4.0"
+    "plasma-fhir-app-utils" "file:../plasma-fhir-app-utils"
 
 "plist@^3.0.2", "plist@^3.0.4":
   "integrity" "sha512-ksrr8y9+nXOxQB2osVNqrgvX/XQPOXaU4BQMKjYq8PvaY1U18mo+fKgBSwzK+luSyinOuPae956lSVcBwxlAMg=="

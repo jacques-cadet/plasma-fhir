@@ -6,6 +6,7 @@ export default function RatioView(props: IRatioViewProps) {
     // Check if data is available...
     if (!props.ratio) { return <div />; }
 
+    // TODO: Move to app-utils
     // Format display value...
     let display = "";
     if (props.ratio.numerator) { display += props.ratio.numerator; }

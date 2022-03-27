@@ -10,6 +10,7 @@ export default function AgeView(props: IAgeViewProps) {
     return <span className="AgeView_age">{age + "y"}</span>
 }
 
+// TODO: Move this to app-utils
 // Returns the age from the given DOB (based on today's date). Got this from StackOverflow.
 function getAgeFromDate(dob: Date): number {
     var ageDifMs = Date.now() - dob.getTime();

@@ -27,6 +27,9 @@ function TestScreen(props: ITestScreenProps) {
     const [rangeValue, setRangeValue] = useState<PlasmaFHIR.Range | undefined>(new PlasmaFHIR.Range(new PlasmaFHIR.Quantity(0, ""), undefined));
     const [rangeFormat, setRangeFormat] = useState<string>("0 - 10");
 
+    const [rangeValue2, setRangeValue2] = useState<PlasmaFHIR.Range | undefined>(new PlasmaFHIR.Range(new PlasmaFHIR.Quantity(0, ""), undefined));
+    const [rangeFormat2, setRangeFormat2] = useState<string>("20 - 30");
+
     const [ageValue, setAgeValue] = useState<PlasmaFHIR.Range | undefined>(undefined);
     const [ageFormat, setAgeFormat] = useState<string>("");
 
@@ -260,6 +263,8 @@ function TestScreen(props: ITestScreenProps) {
                     }
                 }}
             />
+
+            {/*<FHIRr4.RangeInput />*/}
 
             
             {isFamilyMemberHistoryLoaded ?

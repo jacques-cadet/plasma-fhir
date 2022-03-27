@@ -9,7 +9,7 @@ export default function DateView(props: IDateViewProps) {
 
     // Format display value...
     const date = new Date(props.date + "T00:00:00");    // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
-    const display = (isNaN(date as any)) ? "Unknown" : date.toLocaleDateString();
+    const display = (isNaN(date as any)) ? "Unknown" : date.toLocaleDateString();       // TODO: Move to app-utils
 
     return <span className="DateView_container">{display}</span>;
 }
