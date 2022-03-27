@@ -144,6 +144,16 @@ export class Range {
 
         return undefined;
     }
+
+    // Convert Range to a string...
+    public static toString(range: Range): string {
+        if (!range) { return ""; }
+
+        let s = "";
+        if (range.low) { s += range.low.value; }
+        if (range.high) { s += " - " + range.high.value; }
+        return s;
+    }
 }
 
 //
@@ -206,6 +216,17 @@ export class Period {
         }
 
         return undefined;
+    }
+
+    // Convert to an age string
+    public static toAgeString(period: Period): string {
+        if (!period) { return ""; }
+
+        let s = "";
+        if (period.start) { s += period.start; }
+        if (period.end) { s += " - " + period.end; }
+        s += "y";
+        return s;
     }
 }
 

@@ -1,44 +1,66 @@
-# PlasmaFHIR Components
-Set of React components for displaying FHIR R4 resources.
+# plasma-fhir-react-components
+- Set of React components for displaying FHIR R4 resources.
+- Components bind directly to FHIR resources.
+- Styles can be customized using CSS.
+
+___
 
 ## Usage
 Import the components and use them in your application. They should take a FHIR resource as a prop.
 
-```
+```ts
 import { FHIRr4 } from "plasma-fhir-react-components";
 
-export function MyComponent(props) {
+export function MyComponent(props: any) {
     return (
-        <FHIRr4.AllertyIntoleranceView allergyIntolerance={...} />
-    )
+        <FHIRr4.AllergyIntoleranceView allergyIntolerance={...} />
+    );
 }
 ```
 
-## Styling
+### Styling
 - Each component has a unique CSS class name(s). You can specify the styles for these classes in your own custom CSS file.
 - If you are using SASS along with another CSS library, you can use the `@apply` operator to add classes directly
+- Use "Inspect Element" in the browser to determine the class names of each component
 
-## Storybook
-`yarn storybook`
-`yarn build-storybook`
+```css
+.CodingSelector {
+    @apply capitalize;
+}
+```
 
-## Unit Tests
-`yarn test`
+___
+## Testing/Development
 
-## Rollup
-`yarn rollup`
+### Storybook
+- `yarn storybook`
+- `yarn build-storybook`
 
-## Publish
-- Increment version
-- `yarn rollup`
-- `npm publish`
+### Unit Tests
+- `yarn test`
 
-## Install/Update Locally
+### Install/Update Locally
 - In your app: 
   - `npm install --save ../plasma-fhir-react-components`
 - After making changes:
   - This package: `yarn rollup`
   - Your app: `npm install --save ../plasma-fhir-react-components`
+
+___
+
+## Deployment
+
+When deploying, please rollup and publish new version to NPM
+
+### Rollup
+- `yarn rollup`
+
+### Publish/Deploy
+- Increment version
+- `yarn rollup`
+- `npm publish`
+
+___
 
 ## References:
 - https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe
