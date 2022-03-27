@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Grid, Card } from "@mantine/core";
-import { IconVirus } from "@tabler/icons";
 
 import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "../../plasma-fhir/FHIRClient";
@@ -31,8 +30,7 @@ export default function AllergiesScreen() {
     return (
         <div className="p-5">
             <h1 className="text-2xl font-bold pb-4 flex content-center flex-row items-center">
-                <IconVirus style={{ marginRight: "4px" }} />
-                Allergies
+                🤧 Allergies
             </h1>
 
             {/* Error Message */}
