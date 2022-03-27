@@ -1,5 +1,7 @@
 export { default as AddressView } from "./Address/AddressView";
 export { default as AllergyIntoleranceView } from "./AllergyIntolerance/AllergyIntoleranceView";
+export { default as AllergyIntoleranceReactionView } from "./AllergyIntolerance/AllergyIntoleranceReactionView";
+export { default as AnnotationView } from "./Annotation/AnnotationView";
 export { default as CodeableConceptView } from "./CodeableConcept/CodeableConceptView";
 export { default as CodingView } from "./Coding/CodingView";
 export { default as CodingSelector } from "./Coding/CodingSelector";

@@ -20,6 +20,8 @@ export default function useDataLoadScreen<T>(props: IUseDataLoadScreenProps<T>) 
             if (!fhirClient)  { return; }
             
             props.getData(fhirClient).then((value: T[]) => {
+                console.log(value);
+
                 setIsDataLoaded(true);
                 setData(value);
             }).catch((error) => {

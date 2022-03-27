@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
+import { Grid, Card } from "@mantine/core";
+import { IconVirus } from "@tabler/icons";
 
 import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "../../plasma-fhir/FHIRClient";
-import { Card } from "../../components";
 import { FHIRr4, FHIRdstu2 } from "plasma-fhir-react-components";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
 
@@ -29,7 +30,10 @@ export default function AllergiesScreen() {
 
     return (
         <div className="p-5">
-            <h1 className="text-2xl font-bold">Allergies</h1>
+            <h1 className="text-2xl font-bold pb-4 flex content-center flex-row items-center">
+                <IconVirus style={{ marginRight: "4px" }} />
+                Allergies
+            </h1>
 
             {/* Error Message */}
             {elErrorMessage}
@@ -39,24 +43,29 @@ export default function AllergiesScreen() {
 
             {/* Allergies */}
             {isDataLoaded && !hasErrorLoading ? 
-            <div className="g-4">
+            <Grid>
             {
                 allergyIntolerance.map((allergy, idx) => { 
                     return (
-                        <div className="py-2" key={"AllergyIntoleranceItem_" + idx.toString()}>
+                        <Grid.Col md={4} key={"AllergyIntoleranceItem_" + idx.toString()}>
                             {fhirVersion === 2 ? <FHIRdstu2.AllergyIntoleranceView allergyIntolerance={allergy as any} /> : null}
 
                             {fhirVersion === 4
-                                ? <Card style={{ marginTop: "10px" }}>
-                                    <FHIRr4.AllergyIntoleranceView allergyIntolerance={allergy} />
+                                ? <Card shadow="lg" className="border">
+                                    <div>
+                                        <FHIRr4.AllergyIntoleranceView allergyIntolerance={allergy} />
+                                        {allergy.reaction ? allergy.reaction.map((reaction, idx) => {
+                                            return <FHIRr4.AllergyIntoleranceReactionView reaction={reaction} />
+                                        }) : null}                                        
+                                    </div>
                                 </Card>
                                 : null
                             }                            
-                        </div>
+                        </Grid.Col>
                     );
                 })
             }
-            </div> : null}
+            </Grid> : null}
         </div>
     );
 }

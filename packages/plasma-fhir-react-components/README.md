@@ -28,7 +28,6 @@ export function MyComponent(props: any) {
     @apply capitalize;
 }
 ```
-
 ___
 ## Testing/Development
 

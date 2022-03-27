@@ -3,8 +3,9 @@ PlasmaFHIR Patient Portal
 
 ## Description
 - Standalone patient portal utilizing FHIR and the PlasmaFHIR framework.
-- Currently only works with Epic customer systems.
 - Select your health system, login using your MyChart credentials, and view your health data!
+  - Note: Currently only Epic-based health systems are available
+___
 
 ## To Run Locally
 - Update `config/config.ts` to set `mode = "LOCAL"`
@@ -12,6 +13,7 @@ PlasmaFHIR Patient Portal
 - Run in https
   - Windows: `($env:HTTPS = "true") -and (npm start)`
   - Mac: `HTTPS=true npm start`
+___
 
 ## Instructions for Deploying to https://plasmafhir.com/portal
 - Update `config/config.ts` to set `mode = "PRODUCTION"`

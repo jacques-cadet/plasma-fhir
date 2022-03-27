@@ -1,8 +1,10 @@
-.AllergyIntoleranceView_container {
-  @apply max-w-sm rounded overflow-hidden shadow-lg;
+/**
+* ALLERGIES
+**/
 
+.AllergyIntoleranceView_container {
   > div {
-    @apply px-6 py-4;
+    @apply px-6 pt-4;
 
     .AllergyIntoleranceView_code {
       @apply font-bold text-xl mb-2;
@@ -13,6 +15,31 @@
     }
   }
 }
+
+.AllergyIntoleranceReactionView_container {
+    @apply px-6 pt-2 pb-4;
+}
+
+.AllergyIntoleranceReactionView_manifestation { 
+  display: inline-block;
+}
+
+.AllergyIntoleranceReactionView_description {
+  display: none;
+}
+
+.AllergyIntoleranceReactionView_severity {
+  @apply capitalize pl-1;
+}
+
+.AllergyIntoleranceReactionView_severity:before { content: '('; }
+.AllergyIntoleranceReactionView_severity:after { content: ')'; }
+
+/**
+* CODING
+**/
+
+
 
 .CodingSelector {
   @apply capitalize;
