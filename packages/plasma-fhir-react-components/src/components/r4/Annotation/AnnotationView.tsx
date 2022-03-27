@@ -7,9 +7,8 @@ export const AnnotationView: React.FC<IAnnotationViewProps> = (props) => {
 
     return (
         <div className="AnnotationView_container">
-            <div>
-                TODO: AnnotationView
-            </div>
+            {props.annotation.text ? <span className="AnnotationView_text">{props.annotation.text}</span> : null}
+            {props.annotation.time ? <span className="AnnotationView_time">{props.annotation.time}</span> : null}
         </div>
     );
 }
