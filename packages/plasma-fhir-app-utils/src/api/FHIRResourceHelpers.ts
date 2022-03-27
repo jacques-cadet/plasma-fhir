@@ -231,6 +231,17 @@ export class Period {
 }
 
 //
+// ANNOTATION
+//
+
+export interface Annotation extends r4.Annotation {}
+export class Annotation {
+    constructor(text: string) {
+        this.text = text;
+    }
+}
+
+//
 // OBSERVATION
 //
 
