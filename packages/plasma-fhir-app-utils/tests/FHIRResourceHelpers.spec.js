@@ -4,7 +4,7 @@ const chai_1 = require("chai");
 require("mocha");
 const src_1 = require("../src");
 describe("Range", () => {
-    it("Should parse different range formats", () => {
+    it("Range.fromString()", () => {
         var _a, _b, _c, _d, _e, _f;
         let result = null;
         // "3"
@@ -23,9 +23,27 @@ describe("Range", () => {
         result = src_1.FHIRResourceHelpers.Range.fromString("zzz");
         (0, chai_1.expect)(result).to.be.undefined;
     });
+    it("Range.fromAgeString()", () => {
+        var _a, _b, _c, _d;
+        let result = null;
+        // "30s"
+        result = src_1.FHIRResourceHelpers.Range.fromAgeString("30s");
+        (0, chai_1.expect)((_a = result === null || result === void 0 ? void 0 : result.low) === null || _a === void 0 ? void 0 : _a.value).to.equal(30);
+        (0, chai_1.expect)((_b = result === null || result === void 0 ? void 0 : result.high) === null || _b === void 0 ? void 0 : _b.value).to.equal(39);
+        // "30's"...
+        result = src_1.FHIRResourceHelpers.Range.fromAgeString("30's");
+        (0, chai_1.expect)((_c = result === null || result === void 0 ? void 0 : result.low) === null || _c === void 0 ? void 0 : _c.value).to.equal(30);
+        (0, chai_1.expect)((_d = result === null || result === void 0 ? void 0 : result.high) === null || _d === void 0 ? void 0 : _d.value).to.equal(39);
+    });
+    it("Range.toString()", () => {
+        const r1 = src_1.FHIRResourceHelpers.Range.fromNumbers(0);
+        const r2 = src_1.FHIRResourceHelpers.Range.fromNumbers(0, 10);
+        (0, chai_1.expect)(src_1.FHIRResourceHelpers.Range.toString(r1)).to.equal("0");
+        (0, chai_1.expect)(src_1.FHIRResourceHelpers.Range.toString(r2)).to.equal("0 - 10");
+    });
 });
 describe("Period", () => {
-    it("Should parse different DOB formats", () => {
+    it("Period.fromAgeString()", () => {
         let result = null;
         const now = new Date(2010, 5, 10); // June 10, 2010
         // "3"

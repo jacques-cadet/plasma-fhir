@@ -114,9 +114,17 @@ export class Age {
 
 export interface Range extends r4.Range {}
 export class Range {
-    constructor(low: Quantity | undefined, high: Quantity | undefined) {
+    constructor(low: Quantity | undefined, high?: Quantity | undefined) {
         this.low = low;
-        this.high = high;
+        if (high) { this.high = high; }
+    }
+
+    // Get a range from unspecified numbers...
+    public static fromNumbers(low: number, high?: number): Range {
+        return new Range(
+            new Quantity(low, ""), 
+            (high) ? new Quantity(high, "") : undefined
+        );
     }
 
     // Parse a string into a Range element.
@@ -128,7 +136,7 @@ export class Range {
         // Single Number...
         if (!isNaN(s as any)) {          
             const f: number = parseFloat(s);
-            return new Range(new Quantity(f, ""), undefined);
+            return Range.fromNumbers(f);
         }
 
         // Range (e.g. "35-40")...
@@ -136,14 +144,34 @@ export class Range {
             const s1 = s.split("-")[0];
             const s2 = s.split("-")[1];
 
-            if (!isNaN(s1 as any) && !isNaN(s2 as any)) {
+            if (!isNaN(s1 as any) && !isNaN(s2 as any) && s1.trim() !== "" && s2.trim() !== "") {
                 const f1 = parseFloat(s1);
                 const f2 = parseFloat(s2);
-                return new Range(new Quantity(f1, ""), new Quantity(f2, ""));
+                return Range.fromNumbers(f1, f2);
             }
         }
 
         return undefined;
+    }
+
+    // Parse a string into a Range element. Specifically for age ranges.
+    // This allows you to also use formats like "40's" or "40s"
+    public static fromAgeString(s: string): Range | undefined {
+
+        // Same decade (e.g. "40's", "40s") (Note: "late 40s" will just be "40s")
+        if (s.indexOf("s") >= 0) {
+            // All this does is convert "40s" to "40-49" to be processed by the range block (changes "s" to be like "40-49")
+            let decadeString = s.split("s")[0];
+            if (decadeString.indexOf("'") >= 0) { decadeString = decadeString.replace("'", ""); }
+            if (!isNaN(decadeString as any)) {
+                const decadeNumber = parseInt(decadeString);
+                const decadeEnd = decadeNumber + 9;
+                s = decadeNumber.toString() + "-" + decadeEnd.toString();
+            }
+        }
+
+        // Now use the default Range parsing...
+        return Range.fromString(s);
     }
 
     // Convert Range to a string...
@@ -151,8 +179,8 @@ export class Range {
         if (!range) { return ""; }
 
         let s = "";
-        if (range.low) { s += range.low.value; }
-        if (range.high) { s += " - " + range.high.value; }
+        if (range.low && !Number.isNaN(range.low.value)) { s += range.low.value; }
+        if (range.high && !Number.isNaN(range.high.value)) { s += " - " + range.high.value; }
         return s;
     }
 }
@@ -180,40 +208,34 @@ export class Period {
         return DateTimeUtils.fromString(period.end);
     }
 
+    // Parse a Range into a Period element. The start/end dates will correspond to start/end DOBs.
+    // The Range MUST represent age in years.
+    public static fromAgeRange(range: Range, now?: Date): Period | undefined {
+        // If it was a single number, we return the highest/lowest DOB for that age...
+        if (range.low && range.low.value && !range.high) {
+            const dob: { dobStart: Date, dobEnd: Date } = DateTimeUtils.getDOBFromAge(range.low.value, now);
+            return new Period(dob.dobStart.toISOString(), dob.dobEnd.toISOString());
+        }
+
+        // If it was a range, we return the lowest DOB for the lower age and highest DOB for the higher age...
+        if (range.low && range.low.value && range.high && range.high.value) {
+            const dob1: { dobStart: Date, dobEnd: Date } = DateTimeUtils.getDOBFromAge(range.low.value, now);
+            const dob2: { dobStart: Date, dobEnd: Date } = DateTimeUtils.getDOBFromAge(range.high.value, now);
+            return new Period(dob1.dobStart.toISOString(), dob2.dobEnd.toISOString());
+        }
+
+        // If we got here, we couldn't parse the range, so return undefined...
+        return undefined;
+    }
+
     // Parse an age string into a Period element. The start/end dates will correspond to start/end DOBs.
     // Valid formats: 50, 50-60, 50's, 50s
     public static fromAgeString(s: string, now?: Date): Period | undefined {
 
-        // Same decade (e.g. "40's", "40s") (Note: "late 40s" will just be "40s")
-        if (s.indexOf("s") >= 0) {
-            // All this does is convert "40s" to "40-49" to be processed by the range block (changes "s" to be like "40-49")
-            let decadeString = s.split("s")[0];
-            if (decadeString.indexOf("'") >= 0) { decadeString = decadeString.replace("'", ""); }
-            if (!isNaN(decadeString as any)) {
-                const decadeNumber = parseInt(decadeString);
-                const decadeEnd = decadeNumber + 9;
-                s = decadeNumber.toString() + "-" + decadeEnd.toString();
-            }
-        }
-
-        // Check if a range was given...
-        const range = Range.fromString(s);
+        // Try parsing the string into a Range...
+        const range = Range.fromAgeString(s);
         if (range !== undefined) {
-            // If it was a single number, we return the highest/lowest DOB for that age...
-            if (range.low && range.low.value && !range.high) {
-                const dob: { dobStart: Date, dobEnd: Date } = DateTimeUtils.getDOBFromAge(range.low.value, now);
-                return new Period(dob.dobStart.toISOString(), dob.dobEnd.toISOString());
-            }
-
-            // If it was a range, we return the lowest DOB for the lower age and highest DOB for the higher age...
-            if (range.low && range.low.value && range.high && range.high.value) {
-                const dob1: { dobStart: Date, dobEnd: Date } = DateTimeUtils.getDOBFromAge(range.low.value, now);
-                const dob2: { dobStart: Date, dobEnd: Date } = DateTimeUtils.getDOBFromAge(range.high.value, now);
-                return new Period(dob1.dobStart.toISOString(), dob2.dobEnd.toISOString());
-            }
-
-            // If we got here, then it parsed the Range, but couldn't parse the DOB, so return undefined...
-            return undefined;
+            return Period.fromAgeRange(range, now);
         }
 
         return undefined;

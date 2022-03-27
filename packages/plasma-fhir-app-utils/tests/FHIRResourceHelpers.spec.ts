@@ -5,7 +5,7 @@ import { FHIRResourceHelpers as PlasmaFHIR } from '../src';
 
 describe("Range", () => {
 
-  it("Should parse different range formats", () => {
+  it("Range.fromString()", () => {
     let result = null;
 
     // "3"
@@ -28,11 +28,33 @@ describe("Range", () => {
     expect(result).to.be.undefined;
   });
 
+  it("Range.fromAgeString()", () => {
+    let result = null;
+
+    // "30s"
+    result = PlasmaFHIR.Range.fromAgeString("30s");
+    expect(result?.low?.value).to.equal(30);
+    expect(result?.high?.value).to.equal(39);
+
+    // "30's"...
+    result = PlasmaFHIR.Range.fromAgeString("30's");
+    expect(result?.low?.value).to.equal(30);
+    expect(result?.high?.value).to.equal(39);
+  });
+
+  it("Range.toString()", () => {
+    const r1 = PlasmaFHIR.Range.fromNumbers(0);
+    const r2 = PlasmaFHIR.Range.fromNumbers(0, 10);
+
+    expect(PlasmaFHIR.Range.toString(r1)).to.equal("0");
+    expect(PlasmaFHIR.Range.toString(r2)).to.equal("0 - 10");    
+  });
+
 });
 
 describe("Period", () => {
 
-  it("Should parse different DOB formats", () => {
+  it("Period.fromAgeString()", () => {
     let result = null;
     const now = new Date(2010, 5, 10);    // June 10, 2010
 

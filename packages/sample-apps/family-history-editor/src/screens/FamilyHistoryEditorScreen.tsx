@@ -21,7 +21,15 @@ function TestScreen(props: ITestScreenProps) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [showDeleteDialog, setShowDeleteDialog] = useState<boolean>(false);
     const [showEditDialog, setShowEditDialog] = useState<boolean>(false);
-    const [indexOfActiveFamilyMember, setIndexOfActiveFamilyMember] = useState<number>(-1);   
+    const [indexOfActiveFamilyMember, setIndexOfActiveFamilyMember] = useState<number>(-1);
+
+
+    const [rangeValue, setRangeValue] = useState<PlasmaFHIR.Range | undefined>(new PlasmaFHIR.Range(new PlasmaFHIR.Quantity(0, ""), undefined));
+    const [rangeFormat, setRangeFormat] = useState<string>("0 - 10");
+
+    const [ageValue, setAgeValue] = useState<PlasmaFHIR.Range | undefined>(undefined);
+    const [ageFormat, setAgeFormat] = useState<string>("");
+
 
     // Load patient data...
     useEffect(() => {
@@ -213,6 +221,46 @@ function TestScreen(props: ITestScreenProps) {
                 </svg>
                 Loading...
             </div> : null}
+
+            
+            {/* TODO: Testing around with a Range input */}
+            <input type="text" className="border p-2 m-4" placeholder="TESTING: RANGE" 
+                value={rangeFormat}
+                onChange={(e) => {
+                    const s = e.target.value;
+                    const range = PlasmaFHIR.Range.fromString(s);
+
+                    // Try to parse the range. If we can, then update the value and reformat.
+                    // If we can't, erase the value and leave the format as-is.
+                    if (range) {
+                        setRangeValue(range);
+                        setRangeFormat(PlasmaFHIR.Range.toString(range));
+                    } else {
+                        setRangeValue(undefined);
+                        setRangeFormat(s);
+                    }
+                }}
+            />
+
+            {/* TODO: Testing around with an Age input */}
+            <input type="text" className="border p-2 m-4" placeholder="TESTING: AGE" 
+                value={ageFormat}
+                onChange={(e) => {
+                    const s = e.target.value;
+                    const range = PlasmaFHIR.Range.fromAgeString(s);
+
+                    // Try to parse the range. If we can, then update the value and reformat.
+                    // If we can't, erase the value and leave the format as-is.
+                    if (range) {
+                        setAgeValue(range);
+                        setAgeFormat(PlasmaFHIR.Range.toString(range));
+                    } else {
+                        setAgeValue(undefined);
+                        setAgeFormat(s);
+                    }
+                }}
+            />
+
             
             {isFamilyMemberHistoryLoaded ?
                 <FamilyHistoryTable data={data} />
