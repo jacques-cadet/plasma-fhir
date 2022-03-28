@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Button, Image } from "react-native";
 import config, { mode, appVersion } from "../config/config";
 import { FHIRVersionSelector, HealthSystemSearch, TestLaunchCard } from "./../components";
 

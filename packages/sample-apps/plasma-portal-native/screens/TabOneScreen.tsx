@@ -1,18 +1,44 @@
 import React, { useState } from "react";
-import { StyleSheet } from 'react-native';
-
+import { StyleSheet, Button } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
 import config, { mode, appVersion } from "../config/config";
 import { FHIRVersionSelector, HealthSystemSearch, TestLaunchCard } from "./../components";
 
+
+import * as AuthSession from 'expo-auth-session';
+import * as WebBrowser from 'expo-web-browser';
+
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   const [version, setVersion] = useState<"r4" | "dstu2">("r4");
+
+   // AUTH TESTING
+   WebBrowser.maybeCompleteAuthSession();    
+   const useProxy = true;
+   const redirectUri = AuthSession.makeRedirectUri({ useProxy });
+   console.log("RedirectUri", redirectUri);
+
+   // ERM: MAJOR TESTING
+   config.SMART.redirectUri = redirectUri;
+   (config.SMART as any).aud = "patient";
+   (config.SMART as any).scopes = config.SMART.scope.split(" ");
+
+   const discovery = AuthSession.useAutoDiscovery('https://launch.smarthealthit.org/v/r4/fhir');
+   const [request, result, promptAsync] = AuthSession.useAuthRequest(config.SMART, discovery);
+
+   console.log(request, result, promptAsync);
+   //
+
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One</Text>
+
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Button title="Login!" onPress={() => promptAsync({ useProxy })} />
+            {result && <Text>{JSON.stringify(result, null, 2)}</Text>}
+            </View>
 
       <FHIRVersionSelector version={version} 
         onVersionChange={(version: "r4" | "dstu2") => setVersion(version)}
