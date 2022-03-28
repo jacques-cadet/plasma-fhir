@@ -68,6 +68,29 @@ describe("Period", () => {
         (0, chai_1.expect)(result.end).to.equal((new Date(1970, 5, 10)).toISOString());
     });
 });
+describe("DateTimeUtils", () => {
+    it("getDOBFromAge", () => {
+        let result = null;
+        const now = new Date(2010, 5, 10); // June 10, 2010
+        result = src_1.DateTimeUtils.getDOBFromAge(30, now);
+        (0, chai_1.expect)(result.dobStart.getTime()).to.equal((new Date(1980, 5, 10)).getTime());
+        (0, chai_1.expect)(result.dobEnd.getTime()).to.equal((new Date(1979, 5, 10)).getTime());
+    });
+    it("getAgeFromDOB", () => {
+        let result = null;
+        const now = new Date(2010, 5, 10); // June 10, 2010
+        result = src_1.DateTimeUtils.getAgeFromDOB(new Date(1980, 5, 10), now);
+        (0, chai_1.expect)(result).to.equal(30);
+    });
+});
+describe("Convert", () => {
+    it("Converter Lookup", () => {
+        let converter = src_1.Convert.findConverter("kg", "lbs");
+        (0, chai_1.expect)(converter).not.to.be.undefined;
+        let value = converter(1);
+        (0, chai_1.expect)(value).to.equal(2.20462);
+    });
+});
 const helloTest = function () { return true; };
 describe('First test', () => {
     it('should return true', () => {

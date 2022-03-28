@@ -80,12 +80,16 @@ export class Quantity {
         this.code = code;
     }
 
-    public static getDisplayText(quantity: Quantity): string {
+    // Convert Quantity to a string...
+    public static toString(quantity: Quantity, fractionDigits?: number): string {
         if (!quantity) { return ""; }
+
+        // If a fractionDigits was specified, use that...
+        const value = (quantity.value && fractionDigits) ? quantity.value.toFixed(fractionDigits) : quantity.value;
 
         let s = "";
         if (quantity.comparator) { s += quantity.comparator; }
-        if (quantity.value) { s += quantity.value; }
+        if (quantity.value) { s += value; }
         if (quantity.unit) { s += " " + quantity.unit; }
         return s;
     }
@@ -183,6 +187,13 @@ export class Range {
         if (range.high && !Number.isNaN(range.high.value)) { s += " - " + range.high.value; }
         return s;
     }
+
+    // Convert Range to an age string. Values MUST be in years...
+    public static toAgeString(range: Range): string {
+        if (!range) { return ""; }
+
+        return Range.toString(range) + "y";
+    }
 }
 
 //
@@ -241,15 +252,35 @@ export class Period {
         return undefined;
     }
 
-    // Convert to an age string
-    public static toAgeString(period: Period): string {
-        if (!period) { return ""; }
+    // Convert Period to a string...
+    public static toString(period: Period): string {
+        let display = "";
+        if (period.start) { display += period.start; }
+        if (period.start && period.end) { display += " - "; }
+        if (period.end) { display += period.end; }
+        return display;
+    }    
+}
 
-        let s = "";
-        if (period.start) { s += period.start; }
-        if (period.end) { s += " - " + period.end; }
-        s += "y";
-        return s;
+//
+// RATIO
+//
+
+export interface Ratio extends r4.Ratio {}
+export class Ratio {
+    constructor(numerator: Quantity, denominator: Quantity) {
+        this.numerator = numerator;
+        this.denominator = denominator;
+    }
+
+    public static toString(ratio: Ratio): string {
+        if (!ratio) { return ""; }
+
+        let display = "";
+        if (ratio.numerator) { display += ratio.numerator.value; }
+        if (ratio.numerator && ratio.denominator) { display += " / "; }
+        if (ratio.denominator) { display += ratio.denominator.value; }
+        return display;
     }
 }
 

@@ -1,2 +1,2 @@
-import { FHIRClientHelper, FHIRResourceHelpers } from "./api";
-export { FHIRClientHelper, FHIRResourceHelpers };
+import { FHIRClientHelper, FHIRResourceHelpers, DateTimeUtils, Convert } from "./api";
+export { FHIRClientHelper, FHIRResourceHelpers, DateTimeUtils, Convert };

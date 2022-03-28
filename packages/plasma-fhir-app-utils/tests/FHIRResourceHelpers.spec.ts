@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import { FHIRResourceHelpers as PlasmaFHIR } from '../src';
+import { FHIRResourceHelpers as PlasmaFHIR, DateTimeUtils, Convert } from '../src';
 
 describe("Range", () => {
 
@@ -87,6 +87,35 @@ describe("Period", () => {
 
 });
 
+describe("DateTimeUtils", () => {
+  it("getDOBFromAge", () => {
+    let result = null;
+    const now = new Date(2010, 5, 10);    // June 10, 2010
+    
+    result = DateTimeUtils.getDOBFromAge(30, now);
+    expect(result.dobStart.getTime()).to.equal( (new Date(1980, 5, 10)).getTime() );
+    expect(result.dobEnd.getTime()).to.equal( (new Date(1979, 5, 10)).getTime() );
+  });
+
+  it("getAgeFromDOB", () => {
+    let result = null;
+    const now = new Date(2010, 5, 10);    // June 10, 2010
+
+    result = DateTimeUtils.getAgeFromDOB(new Date(1980, 5, 10), now);
+    expect(result).to.equal(30);
+  });
+});
+
+describe("Convert", () => {
+  it("Converter Lookup", () => {
+    let converter = Convert.findConverter("kg", "lbs");
+    expect(converter).not.to.be.undefined;
+
+    let value = converter!(1);
+    expect(value).to.equal(2.20462);
+  });
+
+});
 
 const helloTest = function(){ return true; }
 

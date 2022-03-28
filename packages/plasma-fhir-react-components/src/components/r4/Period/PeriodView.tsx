@@ -7,12 +7,6 @@ export default function PeriodView(props: IPeriodViewProps) {
     // Check if data is available...
     if (!props.period) { return <div />; }
 
-    // TODO: Move this to app-utils
-    // Format display value...
-    let display = "";
-    if (props.period.start) { display += props.period.start; }
-    if (props.period.start && props.period.end) { display += " - "; }
-    if (props.period.end) { display += props.period.end; }
-
+    const display = PlasmaFHIR.Period.toString(props.period);
     return <span className="PeriodView_container">{display}</span>;
 }

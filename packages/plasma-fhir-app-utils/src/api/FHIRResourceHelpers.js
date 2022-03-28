@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FamilyMemberHistoryCondition = exports.FamilyMemberHistory = exports.FamilyMemberHistory_Relationship = exports.AdministrativeGender = exports.Encounter = exports.Immunization = exports.Condition = exports.AllergyIntolerance = exports.Observation = exports.Annotation = exports.Period = exports.Range = exports.Age = exports.Quantity = exports.CodeableConcept = exports.Coding = exports.Reference = void 0;
+exports.FamilyMemberHistoryCondition = exports.FamilyMemberHistory = exports.FamilyMemberHistory_Relationship = exports.AdministrativeGender = exports.Encounter = exports.Immunization = exports.Condition = exports.AllergyIntolerance = exports.Observation = exports.Annotation = exports.Ratio = exports.Period = exports.Range = exports.Age = exports.Quantity = exports.CodeableConcept = exports.Coding = exports.Reference = void 0;
 const utils_1 = require("./utils");
 class Reference {
     constructor(reference) {
@@ -62,16 +62,19 @@ class Quantity {
         this.system = system;
         this.code = code;
     }
-    static getDisplayText(quantity) {
+    // Convert Quantity to a string...
+    static toString(quantity, fractionDigits) {
         if (!quantity) {
             return "";
         }
+        // If a fractionDigits was specified, use that...
+        const value = (quantity.value && fractionDigits) ? quantity.value.toFixed(fractionDigits) : quantity.value;
         let s = "";
         if (quantity.comparator) {
             s += quantity.comparator;
         }
         if (quantity.value) {
-            s += quantity.value;
+            s += value;
         }
         if (quantity.unit) {
             s += " " + quantity.unit;
@@ -158,6 +161,13 @@ class Range {
         }
         return s;
     }
+    // Convert Range to an age string. Values MUST be in years...
+    static toAgeString(range) {
+        if (!range) {
+            return "";
+        }
+        return Range.toString(range) + "y";
+    }
 }
 exports.Range = Range;
 class Period {
@@ -206,23 +216,45 @@ class Period {
         }
         return undefined;
     }
-    // Convert to an age string
-    static toAgeString(period) {
-        if (!period) {
-            return "";
-        }
-        let s = "";
+    // Convert Period to a string...
+    static toString(period) {
+        let display = "";
         if (period.start) {
-            s += period.start;
+            display += period.start;
+        }
+        if (period.start && period.end) {
+            display += " - ";
         }
         if (period.end) {
-            s += " - " + period.end;
+            display += period.end;
         }
-        s += "y";
-        return s;
+        return display;
     }
 }
 exports.Period = Period;
+class Ratio {
+    constructor(numerator, denominator) {
+        this.numerator = numerator;
+        this.denominator = denominator;
+    }
+    static toString(ratio) {
+        if (!ratio) {
+            return "";
+        }
+        let display = "";
+        if (ratio.numerator) {
+            display += ratio.numerator.value;
+        }
+        if (ratio.numerator && ratio.denominator) {
+            display += " / ";
+        }
+        if (ratio.denominator) {
+            display += ratio.denominator.value;
+        }
+        return display;
+    }
+}
+exports.Ratio = Ratio;
 class Annotation {
     constructor(text) {
         this.text = text;
