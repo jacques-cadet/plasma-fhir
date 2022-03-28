@@ -1,5 +1,6 @@
 import React from 'react';
 import { Address } from "fhir/r4";
+import { FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 
 export interface IAddressViewProps { address?: Address };
 export function AddressView(props: IAddressViewProps) {
@@ -37,21 +38,9 @@ function getCityStateZipElement(address: Address): JSX.Element
 {
     return (
         <div className="AddressView_cityStateContainer">
-            {formatCityStateZip(address.city, address.state, address.postalCode)}
+            {PlasmaFHIR.Address.toString(address)}
         </div>
     );
-}
-
-// TODO: Move to app-utils
-// Formats the city and state as <city>, <state>
-function formatCityStateZip(city?: string, state?: string, postalCode?: string): string
-{
-    let s = "";
-    if (city) { s += city; }
-    if (city && state) { s += ", "; }
-    if (state) { s += state; }
-    if (postalCode) { s += " " + postalCode; }
-    return s;
 }
 
 export default AddressView;

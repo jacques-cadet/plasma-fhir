@@ -285,6 +285,31 @@ export class Ratio {
 }
 
 //
+// ADDRESS
+//
+
+export interface Address extends r4.Address {}
+export class Address {
+
+    public static toString(address: Address): string {
+        if (!address) { return ""; }
+
+        return Address.__formatCityStateZip(address.city, address.state, address.postalCode);
+    }
+
+    // City, State Zip
+    private static __formatCityStateZip(city?: string, state?: string, postalCode?: string): string
+    {
+        let s = "";
+        if (city) { s += city; }
+        if (city && state) { s += ", "; }
+        if (state) { s += state; }
+        if (postalCode) { s += " " + postalCode; }
+        return s;
+    }
+}
+
+//
 // ANNOTATION
 //
 
