@@ -20,7 +20,7 @@ ___
 - Instructions found here: https://github.com/rafgraph/spa-github-pages
   - Add the `404.html` page in the root directory and set `pathSegmentsToKeep = 1` since we will be using `/portal`
   - Add the script from the instructions into `index.html`
-  - Set `<BrowserRouter basename="/portal">`
+  - Set `<BrowserRouter basename="/portal">` (this is already handled by `config.ts`)
   - Set the `redirectUri` to `https://plasmafhir.com/portal/app`
 - Build the site with `yarn build`
 - Copy files into the `/portal` directory, but DO NOT copy `404.html`. Keep `404.html` at the root level
