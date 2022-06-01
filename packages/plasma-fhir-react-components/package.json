@@ -52,7 +52,6 @@
   },
   "dependencies": {
     "@types/fhir": "^0.0.34",
-    "fhirclient": "^2.4.0",
-    "plasma-fhir-app-utils": "file:../plasma-fhir-app-utils"
+    "fhirclient": "^2.4.0"
   }
 }
