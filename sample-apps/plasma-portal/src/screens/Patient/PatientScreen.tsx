@@ -3,7 +3,7 @@ import { FHIRr4 } from "plasma-fhir-react-components";
 
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
 import { Patient } from 'fhir/r4';
-import { Card } from "../../components";
+import { Card } from "@mantine/core";
 import { FHIRClientHelper } from "plasma-fhir-app-utils";
 
 interface IPatientScreenProps { };
@@ -45,6 +45,8 @@ function PatientScreen(props: IPatientScreenProps) {
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
             </div> : null}
+
+            <h1 className="text-2xl font-bold pb-5">Patient Summary</h1>
 
             {/* Patient Header */}
             {isPatientDataLoaded ? 

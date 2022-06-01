@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
 import { Patient, Immunization } from 'fhir/r4';
-import { Card } from "../components";
+import { Card } from "@mantine/core";
 import { FHIRr4 } from "plasma-fhir-react-components";
 import { FHIRClientHelper } from "plasma-fhir-app-utils";
 
@@ -50,6 +50,8 @@ function TestScreen(props: ITestScreenProps) {
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
             </div> : null}
+
+            <h1 className="text-2xl font-bold pb-5">Patient Summary</h1>
 
             {/* Patient Header */}
             {isPatientDataLoaded ? 

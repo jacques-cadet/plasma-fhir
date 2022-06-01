@@ -3,7 +3,7 @@ import { FHIRr4 } from "plasma-fhir-react-components";
 
 import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
-import { Card } from "../../components";
+import { Card } from "@mantine/core";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
 
 export default function ImmunizationScreen() {
@@ -32,7 +32,7 @@ export default function ImmunizationScreen() {
                 {
                     immunizationData.map((immunization, idx) => { 
                         return (
-                            <Card style={{ marginTop: "10px" }} key={`ImmunizationCard_${idx}`}>
+                            <Card style={{ marginTop: "10px" }} key={`ImmunizationCard_${idx}`} shadow="sm" className="border">
                                 <FHIRr4.ImmunizationView immunization={immunization} />
                             </Card>
                         );

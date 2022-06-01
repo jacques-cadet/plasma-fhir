@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { MediaQuery, Button, Group, Text, Burger, Image, Header as MantineHeader } from "@mantine/core";
+import { MediaQuery, Button, Group, Text, Burger, Image, Header as MantineHeader, Center } from "@mantine/core";
 
 interface IAppHeaderProps {
     opened: boolean;
@@ -28,7 +28,9 @@ export default function AppHeader(props: IAppHeaderProps) {
                 <Group>
                     <Link to="/" style={{ display: "flex" }}>
                         <img src={require("./../../assets/img/logo.jpg")} style={{ maxHeight: "40px", borderRadius: "10px" }} alt="logo" />
-                        <Text size="xl" style={{ paddingLeft: "10px" }}>Plasma Portal</Text>
+                        <Center>
+                          <Text size="xl" style={{ paddingLeft: "10px" }}>Plasma Portal</Text>
+                        </Center>
                     </Link>
                 </Group>
 

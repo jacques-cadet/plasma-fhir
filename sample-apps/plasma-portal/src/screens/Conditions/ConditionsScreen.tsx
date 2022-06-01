@@ -4,7 +4,7 @@ import { FHIRr4 } from "plasma-fhir-react-components";
 
 import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
-import { Card } from "../../components";
+import { Card } from "@mantine/core";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
 
 // TODO: For DSTU2, we don't want to pass in "problem-list-item". Don't pass in anything.
@@ -38,7 +38,7 @@ export default function ConditionsScreen() {
                 conditions.map((condition: PlasmaFHIR.Condition, idx: number) => { 
                     return (
                         <div className="py-2" key={"ConditionView_" + idx.toString()}>
-                            <Card style={{ marginTop: "10px" }}>
+                            <Card shadow="sm" className="border">
                                 <FHIRr4.ConditionView condition={condition} />
                             </Card>
                         </div>

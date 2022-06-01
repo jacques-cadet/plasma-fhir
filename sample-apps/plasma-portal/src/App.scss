@@ -11,7 +11,7 @@
     }
 
     .AllergyIntoleranceView_recordedDate {
-      @apply text-gray-700 text-base;
+      @apply text-base;
     }
   }
 }
@@ -39,8 +39,6 @@
 * CODING
 **/
 
-
-
 .CodingSelector {
   @apply capitalize;
 }
@@ -54,18 +52,18 @@
     }
 
     .ConditionView_content {
-      @apply text-gray-700 text-base;
+      @apply text-base;
 
       .ConditionView_clinicalStatus {
         @apply capitalize text-base;
       }
   
       .ConditionView_onsetDate {
-        @apply text-gray-400 text-base;
+        @apply text-base;
       }
   
       .ConditionView_recordedDate {
-        @apply text-gray-400 text-base;
+        @apply text-base;
       }
     }
   }
@@ -80,11 +78,11 @@
     }
 
     .ImmunizationView_status {
-      @apply text-gray-700 text-base;
+      @apply text-base;
     }
 
     .ImmunizationView_occurrenceDateTime {
-      @apply text-gray-700 text-base;
+      @apply text-base;
     }
   }
 }
@@ -93,11 +91,11 @@
   @apply w-screen p-5 max-w-sm rounded overflow-hidden;
 
   .PatientHeader_sexAgeDOB {
-    @apply text-gray-700 flex items-center;
+    @apply flex items-center;
   }
 
   .PatientHeader_patientId {
-    @apply text-gray-700 flex items-center;
+    @apply flex items-center;
     > div {
       @apply w-1/3 flex-grow;
 

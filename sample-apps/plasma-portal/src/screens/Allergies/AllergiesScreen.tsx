@@ -49,7 +49,7 @@ export default function AllergiesScreen() {
                             {fhirVersion === 2 ? <FHIRdstu2.AllergyIntoleranceView allergyIntolerance={allergy as any} /> : null}
 
                             {fhirVersion === 4
-                                ? <Card shadow="lg" className="border">
+                                ? <Card shadow="sm" className="border">
                                     <div>
                                         <FHIRr4.AllergyIntoleranceView allergyIntolerance={allergy} />
                                         {allergy.reaction ? allergy.reaction.map((reaction, idx) => {
