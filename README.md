@@ -2,14 +2,22 @@
 Plasma FHIR Framework
 
 ## Packages
-- `create-plasma-fhir-app` This is a Command Line Interface (CLI) for creating a PlasmaFHIR app. You can choose from various templates to get started with.
+- `create-plasma-fhir-app` Command Line Interface (CLI) for creating a PlasmaFHIR app. You can choose from various templates to get started with.
+- `plasma-fhir-app-utils` Utility functions and APIs to help with building apps
 - `plasma-fhir-react-client-context` A React component that provides access to the `fhirclient` in a React app
-- `plasma-fhir-react-components` A library of React components for displaying and interacting with FHIR R4 resources. Styles can be customized as needed.
-- `playground` Package for testing things out
-- `sample-apps` A collection of sample applications built using the PlasmaFHIR framework
+- `plasma-fhir-react-components` A library of React components for displaying and interacting with FHIR resources. Styles can be customized as needed.
+- `plasma-fhir-react-native-components` A library of React Native components for displaying and interacting with FHIR resources.
+
+## Sample Apps
+- `playground` Package for testing things out (not actually a real app)
+- `plasma-portal` Patient Portal application
+
+## Tools
+- Tools used to help with development (scraping data, generating code, etc.)
+
+
+
 - TODO: `plasma-fhir-client-api` A set of APIs for interacting with FHIR resources
-- TODO: `tools` Various scripts and tools for things like collecting and formatting data
-- TODO: `plasma-fhir-react-native-components`
 
 ## Getting Started - Development
 

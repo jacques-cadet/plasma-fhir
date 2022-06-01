@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FamilyMemberHistoryCondition = exports.FamilyMemberHistory = exports.FamilyMemberHistory_Relationship = exports.AdministrativeGender = exports.Encounter = exports.Immunization = exports.Condition = exports.AllergyIntolerance = exports.Observation = exports.Annotation = exports.Ratio = exports.Period = exports.Range = exports.Age = exports.Quantity = exports.CodeableConcept = exports.Coding = exports.Reference = void 0;
+exports.FamilyMemberHistoryCondition = exports.FamilyMemberHistory = exports.FamilyMemberHistory_Relationship = exports.AdministrativeGender = exports.Encounter = exports.Immunization = exports.Condition = exports.AllergyIntolerance = exports.Observation = exports.Annotation = exports.Address = exports.Ratio = exports.Period = exports.Range = exports.Age = exports.Quantity = exports.CodeableConcept = exports.Coding = exports.Reference = void 0;
 const utils_1 = require("./utils");
 class Reference {
     constructor(reference) {
@@ -255,6 +255,32 @@ class Ratio {
     }
 }
 exports.Ratio = Ratio;
+class Address {
+    static toString(address) {
+        if (!address) {
+            return "";
+        }
+        return Address.__formatCityStateZip(address.city, address.state, address.postalCode);
+    }
+    // City, State Zip
+    static __formatCityStateZip(city, state, postalCode) {
+        let s = "";
+        if (city) {
+            s += city;
+        }
+        if (city && state) {
+            s += ", ";
+        }
+        if (state) {
+            s += state;
+        }
+        if (postalCode) {
+            s += " " + postalCode;
+        }
+        return s;
+    }
+}
+exports.Address = Address;
 class Annotation {
     constructor(text) {
         this.text = text;

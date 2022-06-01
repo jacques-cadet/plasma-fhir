@@ -1,0 +1,13 @@
+{
+    "name": "plasma-fhir",
+    "author": "EM",
+    "private": true,
+    "workspaces": {
+        "packages": [
+            "packages/*",
+            "tools/*",
+            "sample-apps/*",
+            "docs/*"
+        ]
+    }
+}
