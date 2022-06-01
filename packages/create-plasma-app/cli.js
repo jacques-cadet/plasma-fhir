@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const inquirer = require("inquirer");
 const path = require("path");
 const fse = require("fs-extra");
@@ -74,8 +76,8 @@ function getTemplateName(userContext, templateType) {
 
   // Patient...
   if (userContext === "patients") {
-    if (templateType === "template") { return "patient-portal-standalone"; }
-    else if (templateType === "blank") { return "patient-standlone-blank"; }
+    if (templateType === "template") { return "patient-standalone-template-portal"; }
+    else if (templateType === "blank") { return "patient-standalone-blank"; }
   }
 
   // Provider...

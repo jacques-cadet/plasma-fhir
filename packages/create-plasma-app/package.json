@@ -1,15 +1,17 @@
 {
   "name": "create-plasma-app",
-  "version": "1.0.0",
+  "author": "EM",
+  "version": "0.0.3",
   "description": "Create a new Plasma app",
+  "main": "cli.js",
   "bin": {
     "create-plasma-app": "cli.js"
   },
   "scripts": {
     "start": "node cli.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create-plasma-app": "node cli.js"
   },
-  "author": "EM",
   "dependencies": {
     "fs-extra": "^10.0.0",
     "inquirer": "^8.0.0"
