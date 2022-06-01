@@ -60,8 +60,11 @@ async function run() {
   const sharedTemplate = path.resolve(__dirname, "templates", templateName);
   await fse.copy(sharedTemplate, projectDir);
 
-  // Install packages...
-  execSync("npm install", { stdio: "inherit", cwd: projectDir });
+  // Install the new project...
+  console.log("Installing...");
+  try {
+    execSync(`cd ${projectDir} && npm install`, { stdio: "inherit" });
+  } catch (error) { console.log("Unable to install."); }
 
   // Finished...
   console.log("Done! Check out the README for information on how to launch your app!");

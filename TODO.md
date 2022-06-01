@@ -1,5 +1,7 @@
 # TODO
 
+- [ ] Make an easier way to get everything installed when first downloading
+
 ### create-plasma-fhir-app
 - [ ] Test it??? Does it even work?
 - [ ] Improve the README

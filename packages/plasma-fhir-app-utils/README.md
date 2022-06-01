@@ -22,3 +22,8 @@ ___
 
 ### Unit Tests
 - `yarn test`
+
+### Publish/Deploy
+- Login as `plasmafhir`
+- Increment version
+- `npm publish`
