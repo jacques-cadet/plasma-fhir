@@ -32,7 +32,7 @@
     "expo-web-browser": "~10.1.0",
     "fhir-kit-client": "^1.9.0",
     "fhirclient": "^2.4.0",
-    "plasma-fhir-app-utils": "file:../../plasma-fhir-app-utils",
+    "plasma-fhir-app-utils": "*",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",

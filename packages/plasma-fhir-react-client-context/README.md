@@ -5,7 +5,7 @@ A React component that provides access to the `fhirclient` in a React app.
 ___
 
 ### Installation
-Make sure to install `fhirclient`.
+- Make sure to install `fhirclient`.
 - `yarn add plasma-fhir-react-client-context`
 
 ### Usage In Application

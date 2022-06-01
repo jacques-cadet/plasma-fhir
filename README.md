@@ -43,7 +43,10 @@ ___
 ___
 
 ### Build All Packages
-- `cd` into each package and run `yarn`
+- `cd` into each package and run `yarn` or `npm install`
+- For `plasma-fhir-react-components`
+  - `npm install`
+  - `yarn rollup`
 
 ## Integrating with EHR Vendors - Epic
 ___
