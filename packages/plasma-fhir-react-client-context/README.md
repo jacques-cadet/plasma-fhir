@@ -19,3 +19,7 @@ ___
 
 ### Build
 - `yarn build`
+
+### Deploy
+- Increment version
+- `npm publish` (Make sure you install `json` via `npm install -g json`)

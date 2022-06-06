@@ -14,6 +14,11 @@ ___
 ### Sample Apps
 - `playground` Package for testing things out (not actually a real app)
 - `plasma-portal` Patient Portal application
+- 🔜 `family-history-editor`
+- 🔜 `plasma-portal-mobile`
+- 🔜 `family-history-social-network`
+- 🔜 `pedigree-mobile`
+- 🔜 `risk-calculator`
 
 ### Tools
 - Tools used to help with development (scraping data, generating code, etc.)
