@@ -1,6 +1,9 @@
 {
   "name": "plasma-pedigree",
-  "version": "1.0.0",
+  "author": "Eric Morgan",
+  "version": "0.0.1",
+  "description": "",
+  "license": "UNLICENSED",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",

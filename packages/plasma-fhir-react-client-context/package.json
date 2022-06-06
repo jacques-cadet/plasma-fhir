@@ -1,6 +1,9 @@
 {
   "name": "plasma-fhir-react-client-context",
+  "author": "Eric Morgan",
   "version": "0.0.1",
+  "description": "Provide the fhir client context",
+  "license": "Apache-2.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

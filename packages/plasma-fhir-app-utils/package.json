@@ -1,14 +1,15 @@
 {
   "name": "plasma-fhir-app-utils",
+  "author": "Eric Morgan",
   "version": "0.0.1",
   "description": "PlasmaFHIR app utils",
+  "license": "Apache-2.0",
   "main": "src/index.js",
   "module": "src/index.js",
   "scripts": {
     "test": "tsc && mocha -r ts-node/register tests/**/*.spec.ts",
     "build": "tsc"
   },
-  "author": "EM",
   "devDependencies": {
     "@types/chai": "^4.3.0",
     "@types/mocha": "^9.1.0",

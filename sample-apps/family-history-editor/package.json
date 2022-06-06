@@ -1,7 +1,9 @@
 {
   "name": "family-history-editor",
-  "version": "0.1.0",
-  "private": true,
+  "author": "Eric Morgan",
+  "version": "0.0.1",
+  "description": "",
+  "license": "UNLICENSED",
   "dependencies": {
     "@headlessui/react": "^1.5.0",
     "@mantine/core": "^4.0.8",

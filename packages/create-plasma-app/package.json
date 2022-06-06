@@ -1,8 +1,9 @@
 {
   "name": "create-plasma-app",
-  "author": "EM",
+  "author": "Eric Morgan",
   "version": "0.0.3",
   "description": "Create a new Plasma app",
+  "license": "Apache-2.0",
   "main": "cli.js",
   "bin": {
     "create-plasma-app": "cli.js"

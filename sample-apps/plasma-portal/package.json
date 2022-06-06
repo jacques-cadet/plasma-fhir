@@ -1,6 +1,9 @@
 {
   "name": "plasma-portal",
-  "version": "0.1.0",
+  "author": "Eric Morgan",
+  "version": "0.0.1",
+  "description": "",
+  "license": "UNLICENSED",
   "homepage": "https://plasmafhir.com/portal",
   "private": true,
   "dependencies": {
