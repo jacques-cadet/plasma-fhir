@@ -78,6 +78,11 @@ ___
 1. Repeat the same process as above, but select "Ready for Production" and copy your Production Client ID
 2. Go to https://open.epic.com/MyApps/Endpoints and find the endpoint for the system you want to connect to
 
+### Other Notes
+
+#### OAuth2 Error
+If you are getting an OAuth2 error with your Epic API key, it usually means your API has not yet been setup with Epic. In my observation, it takes about 1 business day (not Saturday/Sunday) before the API key will begin working.
+
 ## Integrating with EHR Vendors - Cerner
 ___
 TODO:
@@ -94,8 +99,7 @@ You should try to use HTTPS when testing. This is required in some cases (like E
 - Mac: `HTTPS=true npm start`
 - Other platforms: https://create-react-app.dev/docs/using-https-in-development/
 
-### OAuth2 Error (Epic)
-If you are getting an OAuth2 error with your Epic API key, it usually means your API has not yet been setup with Epic. In my observation, it takes about 1 business day (not Saturday/Sunday) before the API key will begin working.
+
 
 ### Invalid Hook Call
 ```
