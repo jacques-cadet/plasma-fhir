@@ -25,7 +25,7 @@ Plasma FHIR Framework.
 
 ## Getting Started - Create a New App
 ___
-- `npx create-plasma-app`
+- `npx create-plasma-app my-app`
   - This will setup a basic template for you to start working with
 
 ## Getting Started - Testing Your App
