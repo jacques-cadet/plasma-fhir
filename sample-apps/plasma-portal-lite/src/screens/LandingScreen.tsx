@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import config from "../config/config";
 
@@ -9,7 +9,7 @@ function LandingScreen(props: any) {
     return (
         <div className="min-h-screen flex flex-col items-center bg-gray-50 p-6 relative overflow-hidden sm:py-12">
             {/* HEADER */}
-            <img src={require("./../assets/img/logo.jpg")} className="rounded-lg" style={{ maxHeight: "50px" }} />
+            <img src={require("./../assets/img/logo.jpg")} alt="logo" className="rounded-lg" style={{ maxHeight: "50px" }} />
             <h1 className="text-3xl font-bold text-center">Plasma Portal (Lite)</h1>
             <div className="py-3" />
 

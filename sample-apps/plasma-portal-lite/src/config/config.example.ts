@@ -1,7 +1,7 @@
 
 const baseUrl = "https://localhost:3000";
 
-export default {
+const config = {
     // SMART-on-FHIR
     "SMART": { 
         "clientId":           "smart-client-id-not-needed",
@@ -24,3 +24,5 @@ export default {
     // Cerner (R4)
     "CERNER_PATIENT_R4": { },
 }
+
+export default config;

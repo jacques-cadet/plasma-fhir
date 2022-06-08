@@ -23,7 +23,7 @@ function Navbar() {
                 <div className="flex">
                     <Link to="/">
                         <div className="flex items-center flex-shrink-0 text-black text-2xl mr-6 px-2">
-                            <img src={require("./../../assets/img/logo.jpg")} className="rounded-lg" style={{ maxHeight: "50px" }} />
+                            <img src={require("./../../assets/img/logo.jpg")} alt="logo" className="rounded-lg" style={{ maxHeight: "50px" }} />
                             <label className="pl-2 text-gray-400">Plasma Portal (Lite)</label>
                         </div>
                     </Link>

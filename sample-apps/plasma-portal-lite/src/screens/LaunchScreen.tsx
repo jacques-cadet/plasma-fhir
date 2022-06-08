@@ -11,7 +11,7 @@ interface ILocationState {
 }
 
 function LaunchScreen() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const location = useLocation();
   const locationState = location.state as ILocationState;
   const launch = searchParams.get("launch");    // EHR-Launch will provide this parameter

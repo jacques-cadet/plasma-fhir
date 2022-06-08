@@ -31,7 +31,7 @@ function TestScreen(props: ITestScreenProps) {
             console.log("vitals", value);
         });
 
-    }, [isPatientDataLoaded]);
+    }, [isPatientDataLoaded, context.client]);
 
     return (
         <div className="p-5">
