@@ -1,8 +1,7 @@
 # plasma-fhir
-Plasma FHIR Framework
+Plasma FHIR Framework.
 
 ## Summary
-___
 
 ### Packages
 - `create-plasma-app` Command Line Interface (CLI) for creating a PlasmaFHIR app. You can choose from various templates to get started with.
@@ -14,10 +13,11 @@ ___
 ### Sample Apps
 - `playground` Package for testing things out (not actually a real app)
 - `plasma-portal` Patient Portal application
+- `plasma-portal-lite` This is used as the template for `create-plasma-app`
 - 🔜 `family-history-editor`
-- 🔜 `plasma-portal-mobile`
+- 🔜 `plasma-pedigree`
+- 🔜 `plasma-portal-native`
 - 🔜 `family-history-social-network`
-- 🔜 `pedigree-mobile`
 - 🔜 `risk-calculator`
 
 ### Tools
@@ -25,24 +25,32 @@ ___
 
 ## Getting Started - Create a New App
 ___
-- Use `create-plasma-fhir-app` to get started. This will setup a basic template for you to start working with.
+- `npx create-plasma-app`
+  - This will setup a basic template for you to start working with
 
 ## Getting Started - Testing Your App
+
+### Patient Standalone App
 ___
-### Testing Your App (Patient Standalone App)
-- TODO: How to simulate a patient-standalone launch
 
-### Testing Your App (SMART on FHIR)
-- TODO: How to launch from the SMART console
+#### Local Testing (SMART-on-FHIR Sandbox)
+#### Epic Sandbox
+#### Epic Live Health System
+#### Cerner Sandbox
 
-### Testing Your App (Epic Sandbox)
-- TODO: How to launch in Epic sandbox
+### Provider EHR App
+___
 
-### Testing Your App (Epic Live Health System)
-- TODO: 
+#### Local Testing (SMART-on-FHIR Sandbox)
+- `yarn start`
+- Navigate to https://launch.smarthealthit.org/?auth_error=&fhir_version_2=r4&iss=&launch_ehr=1&launch_url=https%3A%2F%2Flocalhost%3A3000%2Flaunch&patient=&prov_skip_auth=1&provider=&pt_skip_auth=0&public_key=&sde=&sim_ehr=1&token_lifetime=15&user_pt=
+- Choose `Provider EHR Launch` (Simulate launch within the EHR)
+- Set App Launch URL = `https://localhost:3000/launch`
 
-### Testing Your App (Cerner Sandbox)
-- TODO: How to launch in Cerner Sandbox
+#### Epic Sandbox
+#### Epic Live Health System
+#### Cerner Sandbox
+
 
 ## Development (on PlasmaFHIR)
 ___

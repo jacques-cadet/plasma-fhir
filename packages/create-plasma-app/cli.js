@@ -18,14 +18,18 @@ run().then(
 // create-plasma-app...
 async function run() {
 
+  // Check if a folder was passed as an argument...
+  let dir = "";
+  if (process.argv.length > 2) { dir = process.argv[2]; }
+
   // List of prompts for the user...
   const questions = [
     { 
-      type: "input", name: "dir", message: "Where would you like to create your app?", default: "./my-plasma-app" 
+      type: "input", name: "dir", message: "Where would you like to create your app?", default: "./my-plasma-app", when: () => (dir === "") 
     },
 
     { 
-      type: "list", name: "userContext", message: "Who will be using this app?", choices: ["Patients"/*, "Clinicians"*/], filter(val) { return val.toLowerCase(); } 
+      type: "list", name: "userContext", message: "Who will be using this app?", choices: ["Patients", "Providers"], filter(val) { return val.toLowerCase(); } 
     },
 
     //{ 
@@ -41,6 +45,7 @@ async function run() {
   console.log("🔥 🎇Welcome to PlasmaFHIR! Let's create a new project!🎇");
   console.log("");
   const answers = await inquirer.prompt(questions);
+  if (!answers.dir) { answers.dir = dir; }  // Add directory if it was specified in the arguments...
 
   // Create directory...
   const projectDir = path.resolve(process.cwd(), answers.dir);
@@ -80,13 +85,13 @@ function getTemplateName(userContext, templateType) {
   // Patient...
   if (userContext === "patients") {
     if (templateType === "template") { return "patient-standalone-template-portal"; }
-    else if (templateType === "blank") { return "patient-standalone-blank"; }
+    else if (templateType === "blank") { return "patient-standalone-template-blank"; }
   }
 
   // Provider...
-  if (userContext === "clinicians") {
-    if (templateType === "template") { return "provider-portal-starter"; }
-    else if (templateType === "blank") { return "provider-portal-blank"; }
+  if (userContext === "providers") {
+    if (templateType === "template") { return "provider-ehr-template-portal"; }
+    else if (templateType === "blank") { return "provider-ehr-template-blank"; }
   }
 
   return "";
