@@ -125,8 +125,24 @@ ___
 
 ## References
 ___
+### SMART-on-FHIR
+- App Launcher: https://launch.smarthealthit.org/
 - `fhirclient`: https://github.com/smart-on-fhir/client-js
+  - Docs: http://docs.smarthealthit.org/client-js/typedoc/index.html
 
+### Epic
+- Test providers: https://fhir.epic.com/Documentation?docId=testpatients
+  - FHIR, USER
+    - Login: `FHIR` / `EpicFhir11!`
+- Test patients: https://fhir.epic.com/Documentation?docId=testpatients
+  - Explore their data here: https://fhir.epic.com/mychart-fhir/Authentication/Login
+  - Camila Lopez
+    - ID: `erXuFYUfucBZaryVksYEcMg3`
+    - MyChart Login: `fhircamila` / `epicepic1`
+  - Derrick Lin
+    - ID: `eq081-VQEgP8drUUqCWzHfw3`
+    - MyChart Login: `fhirderrick` / `epicepic1`
 
-
+- API's that will be auto-downloaded (meaning you can immediately use it on an Epic Client):
+  - https://fhir.epic.com/Documentation?docId=patientfacingfhirapps
 
