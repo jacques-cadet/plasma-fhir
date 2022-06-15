@@ -4,7 +4,7 @@ import { fhirclient } from "fhirclient/lib/types";
 import { FHIRClientLauncher } from 'plasma-fhir-react-client-context';
 
 import config from "../config/config";
-const AUTH_PARAMS_SMART = config.SMART;
+const AUTH_PARAMS = config.SMART;
 
 interface ILocationState {
   authParams?: any;
@@ -17,7 +17,7 @@ function LaunchScreen() {
   const launch = searchParams.get("launch");    // EHR-Launch will provide this parameter
 
   // If authParams were passed from the previous page, use those. Otherwise, use the ones we loaded...
-  let authParams: fhirclient.AuthorizeParams = Object.assign({}, AUTH_PARAMS_SMART);
+  let authParams: fhirclient.AuthorizeParams = Object.assign({}, AUTH_PARAMS);
   if (locationState && locationState.authParams) { authParams = locationState.authParams; }
   if (launch) { authParams.launch = launch; }
 

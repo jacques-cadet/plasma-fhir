@@ -128,7 +128,7 @@ function LandingScreen(props: any) {
                                 <strong>Instructions:</strong><br />
                                 <ul className="list-disc px-6">
                                     <li>
-                                    Edit <code>EPIC_PATIENT_SANDBOX</code> in <code>config.ts</code> and set use your "Non-Production Client ID" for a <em>Patient App</em><br /><br />
+                                    Edit <code>EPIC_PATIENT_SANDBOX</code> in <code>config.ts</code> and use your "Non-Production Client ID" for a <em>Patient App</em><br /><br />
                                     </li>
                                 </ul>
                                 
@@ -158,7 +158,7 @@ function LandingScreen(props: any) {
                                 <strong>Instructions:</strong><br />
                                 <ul className="list-disc px-6">
                                     <li>
-                                    Edit <code>EPIC_CLINICIAN_SANDBOX</code> in <code>config.ts</code> and set use your "Non-Production Client ID" for a <em>Clinician App</em><br /><br />
+                                    Edit <code>EPIC_CLINICIAN_SANDBOX</code> in <code>config.ts</code> and use your "Non-Production Client ID" for a <em>Clinician App</em><br /><br />
                                     </li>
                                 </ul>
 
@@ -173,6 +173,66 @@ function LandingScreen(props: any) {
                                     Launch
                                 </div>
                             </Link>
+                        </td>
+                    </tr>
+
+                    {/* EPIC PATIENT PORTAL LAUNCH */}
+                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">Epic (Sandbox)</th>
+                        <td className="px-6 py-4 whitespace-nowrap">🤒 Patient</td>
+                        <td className="px-6 py-4">Patient Portal</td>
+                        <td className="px-6 py-4 text-center">R4</td>
+                        <td className="px-6 py-4 text-xs">
+                                <strong>Instructions:</strong><br />
+                                <ul className="list-disc px-6">
+                                    <li>
+                                        Update <code>LaunchScreen.tsx</code> and set <code>AUTH_PARAMS</code> to your "Non-Production Client ID" for a <em>Patient App</em>
+                                    </li>
+                                    <li>
+                                        Navigate to <a className="underline text-blue-600" href="https://fhir.epic.com/Documentation?docId=launching" target="_blank">Epic App Launcher</a>
+                                    </li>                                    
+                                    <li>
+                                        Select "Patients"
+                                    </li>
+                                    <li>
+                                        Select the correct app from the dropdown
+                                    </li>
+                                    <li>
+                                        In "App Launch URL", type <code>https://localhost:3000/launch</code> and launch
+                                    </li>
+                                </ul>
+                        </td>
+                        <td className="px-6 py-4 text-right">                            
+                        </td>
+                    </tr>
+
+                    {/* EPIC EHR LAUNCH */}
+                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">Epic (Sandbox)</th>
+                        <td className="px-6 py-4 whitespace-nowrap">👨‍⚕️ Clinician</td>
+                        <td className="px-6 py-4">EHR</td>
+                        <td className="px-6 py-4 text-center">R4</td>
+                        <td className="px-6 py-4 text-xs">
+                                <strong>Instructions:</strong><br />
+                                <ul className="list-disc px-6">
+                                    <li>
+                                        Update <code>LaunchScreen.tsx</code> and set <code>AUTH_PARAMS</code> to your "Non-Production Client ID" for a <em>Clinician App</em>
+                                    </li>
+                                    <li>
+                                        Navigate to <a className="underline text-blue-600" href="https://fhir.epic.com/Documentation?docId=launching" target="_blank">Epic App Launcher</a>
+                                    </li>                                    
+                                    <li>
+                                        Select "Clinicians or Administrative Users"
+                                    </li>
+                                    <li>
+                                        Select the correct app from the dropdown
+                                    </li>
+                                    <li>
+                                        In "App Launch URL", type <code>https://localhost:3000/launch</code> and launch
+                                    </li>
+                                </ul>
+                        </td>
+                        <td className="px-6 py-4 text-right">                            
                         </td>
                     </tr>
 
