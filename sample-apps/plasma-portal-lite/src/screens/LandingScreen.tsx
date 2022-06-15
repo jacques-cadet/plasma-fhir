@@ -8,6 +8,7 @@ const SIMPLE_VIEW = false;
 const AUTH_PARAMS_SMART = config.SMART;
 const AUTH_PARAMS_SMART_PATIENT = config.SMART_PATIENT;
 const AUTH_PARAMS_EPIC_PATIENT_SANDBOX = config.EPIC_PATIENT_SANDBOX;
+const AUTH_PARAMS_EPIC_CLINICIAN_SANDBOX = config.EPIC_CLINICIAN_SANDBOX;
 const AUTH_PARAMS_EPIC_PATIENT_LIVE_R4 = config.EPIC_PATIENT_LIVE_R4;
 
 function LandingScreen(props: any) {
@@ -154,7 +155,12 @@ function LandingScreen(props: any) {
                         <td className="px-6 py-4">Standalone</td>
                         <td className="px-6 py-4 text-center">R4</td>
                         <td className="px-6 py-4 text-xs">
-                                TODO:<br /><br />
+                                <strong>Instructions:</strong><br />
+                                <ul className="list-disc px-6">
+                                    <li>
+                                    Edit <code>EPIC_CLINICIAN_SANDBOX</code> in <code>config.ts</code> and set use your "Non-Production Client ID" for a <em>Clinician App</em><br /><br />
+                                    </li>
+                                </ul>
 
                                 <strong>Login:</strong><br />
                                 <ul className="list-disc px-6">
@@ -162,7 +168,7 @@ function LandingScreen(props: any) {
                                 </ul>
                         </td>
                         <td className="px-6 py-4 text-right">
-                            <Link to="/launch" state={{ authParams: AUTH_PARAMS_EPIC_PATIENT_SANDBOX }} className="text-center">
+                            <Link to="/launch" state={{ authParams: AUTH_PARAMS_EPIC_CLINICIAN_SANDBOX }} className="text-center">
                                 <div className="my-3 inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                                     Launch
                                 </div>
