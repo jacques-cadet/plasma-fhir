@@ -128,6 +128,9 @@ function LandingScreen(props: any) {
                                 <strong>Instructions:</strong><br />
                                 <ul className="list-disc px-6">
                                     <li>
+                                        Set a redirect URL of <code>https://localhost:3000/app</code>
+                                    </li>
+                                    <li>
                                     Edit <code>EPIC_PATIENT_SANDBOX</code> in <code>config.ts</code> and use your "Non-Production Client ID" for a <em>Patient App</em><br /><br />
                                     </li>
                                 </ul>
@@ -158,6 +161,9 @@ function LandingScreen(props: any) {
                                 <strong>Instructions:</strong><br />
                                 <ul className="list-disc px-6">
                                     <li>
+                                        Set a redirect URL of <code>https://localhost:3000/app</code>
+                                    </li>
+                                    <li>
                                     Edit <code>EPIC_CLINICIAN_SANDBOX</code> in <code>config.ts</code> and use your "Non-Production Client ID" for a <em>Clinician App</em><br /><br />
                                     </li>
                                 </ul>
@@ -186,7 +192,10 @@ function LandingScreen(props: any) {
                                 <strong>Instructions:</strong><br />
                                 <ul className="list-disc px-6">
                                     <li>
-                                        Update <code>LaunchScreen.tsx</code> and set <code>AUTH_PARAMS</code> to your "Non-Production Client ID" for a <em>Patient App</em>
+                                        Set a redirect URL of <code>https://localhost:3000/app</code>
+                                    </li>
+                                    <li>
+                                        Update <code>LaunchScreen.tsx</code> and set <code>DEFAULT_AUTH_PARAMS</code> to your "Non-Production Client ID" for a <em>Patient App</em>
                                     </li>
                                     <li>
                                         Navigate to <a className="underline text-blue-600" href="https://fhir.epic.com/Documentation?docId=launching" target="_blank">Epic App Launcher</a>
@@ -216,7 +225,10 @@ function LandingScreen(props: any) {
                                 <strong>Instructions:</strong><br />
                                 <ul className="list-disc px-6">
                                     <li>
-                                        Update <code>LaunchScreen.tsx</code> and set <code>AUTH_PARAMS</code> to your "Non-Production Client ID" for a <em>Clinician App</em>
+                                        Set a redirect URL of <code>https://localhost:3000/app</code>
+                                    </li>
+                                    <li>
+                                        Update <code>LaunchScreen.tsx</code> and set <code>DEFAULT_AUTH_PARAMS</code> to your "Non-Production Client ID" for a <em>Clinician App</em>
                                     </li>
                                     <li>
                                         Navigate to <a className="underline text-blue-600" href="https://fhir.epic.com/Documentation?docId=launching" target="_blank">Epic App Launcher</a>
