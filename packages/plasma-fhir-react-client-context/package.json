@@ -1,7 +1,7 @@
 {
   "name": "plasma-fhir-react-client-context",
   "author": "Eric Morgan",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Provide the fhir client context",
   "license": "Apache-2.0",
   "scripts": {
@@ -34,15 +34,15 @@
     "react-dom": "^16.8.0 || 17.x"
   },
   "files": [
-      "dist"
+    "dist"
   ],
   "main": "./dist/plasma-fhir-react-client-context.umd.js",
   "module": "./dist/plasma-fhir-react-client-context.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
-      ".": {
-          "import": "./dist/plasma-fhir-react-client-context.es.js",
-          "require": "./dist/plasma-fhir-react-client-context.umd.js"
-      }
+    ".": {
+      "import": "./dist/plasma-fhir-react-client-context.es.js",
+      "require": "./dist/plasma-fhir-react-client-context.umd.js"
+    }
   }
 }
