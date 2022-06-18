@@ -4,6 +4,7 @@ import Client from "fhirclient/lib/Client";
 import { FHIRClientContext } from "./FHIRClientContext";
 
 export interface IFHIRClientProviderProps { 
+    renderError?: (errorMessage: any) => JSX.Element;      // If you want to display an error, provide a function to render it
     children?: React.ReactNode;
 }
 
@@ -13,8 +14,11 @@ export const FHIRClientProvider: React.FC<IFHIRClientProviderProps> = (props) =>
     const [patientId, setPatientId] = useState<string | null>(null);
 
     // If there is an error, just return that...
-    if (error) {
-        return <div>{error.message}</div>
+    if (error) { 
+        console.error(error);
+        return (props.renderError) 
+            ? props.renderError(error.message)
+            : null;
     }
 
     // Return context...
