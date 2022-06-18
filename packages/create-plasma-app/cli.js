@@ -2,6 +2,7 @@
 
 const inquirer = require("inquirer");
 const path = require("path");
+const fs = require("fs");
 const fse = require("fs-extra");
 const { execSync } = require("child_process");
 
@@ -61,9 +62,15 @@ async function run() {
   }
 
   // Copy the template...
-  const templateName = getTemplateName(answers.userContext, answers.templateType);
-  const sharedTemplate = path.resolve(__dirname, "templates", templateName);
+  const templateData = getTemplateData(answers.userContext, answers.templateType);
+  const sharedTemplate = path.resolve(__dirname, "templates", templateData.templateDirectory);
   await fse.copy(sharedTemplate, projectDir);
+
+  // Create the config.ts file...
+  console.log("Configuring...");
+  const exampleConfigFile = path.resolve(projectDir, templateData.exampleConfigFilePath);
+  const configFile = path.resolve(projectDir, templateData.configFilePath);
+  fs.copyFileSync(exampleConfigFile, configFile);
 
   // Install the new project...
   console.log("Installing...");
@@ -79,20 +86,35 @@ async function run() {
  * Returns the name of the template folder based on the inputs
  * @param {userContext} "patients", "clinicians"
  * @param {templateType} "blank", "template"
+ * @returns { 
+ *   templateDirectory: string, 
+ *   exampleConfigFilePath: string 
+ *   configFilePath: string
+ * }
+ * 
  */
-function getTemplateName(userContext, templateType) {
+function getTemplateData(userContext, templateType) {
+  let templateDirectory = "";
 
   // Patient...
   if (userContext === "patients") {
-    if (templateType === "template") { return "patient-standalone-template-portal"; }
-    else if (templateType === "blank") { return "patient-standalone-template-blank"; }
+    if (templateType === "template") { templateDirectory = "patient-standalone-template-portal"; }
+    else if (templateType === "blank") { templateDirectory = "patient-standalone-template-blank"; }
   }
 
   // Provider...
   if (userContext === "providers") {
-    if (templateType === "template") { return "provider-ehr-template-portal"; }
-    else if (templateType === "blank") { return "provider-ehr-template-blank"; }
+    if (templateType === "template") { templateDirectory = "provider-ehr-template-portal"; }
+    else if (templateType === "blank") { templateDirectory = "provider-ehr-template-blank"; }
   }
 
-  return "";
+  // Compute path of config.example.ts...
+  const exampleConfigFilePath = `src/config/config.example.ts`;
+  const configFilePath = `src/config/config.ts`;
+
+  return { 
+    templateDirectory: templateDirectory,
+    exampleConfigFilePath: exampleConfigFilePath,
+    configFilePath: configFilePath
+  };
 }

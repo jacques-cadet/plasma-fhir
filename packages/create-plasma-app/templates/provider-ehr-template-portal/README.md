@@ -2,7 +2,7 @@
 This is used as the Patient-Standalone Starter Template.
 
 ## Setup
-- Rename `config/config.example.ts` to `config/config.ts`
+- Update `config/config.ts`
 
 ## Run Locally
 - Mac: `HTTPS=true npm start`
