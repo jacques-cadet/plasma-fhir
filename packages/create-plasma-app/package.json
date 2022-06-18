@@ -1,13 +1,11 @@
 {
   "name": "create-plasma-app",
   "author": "Eric Morgan",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Create a new Plasma app",
   "license": "Apache-2.0",
   "main": "cli.js",
-  "bin": {
-    "create-plasma-app": "cli.js"
-  },
+  "bin":  "./cli.js",
   "scripts": {
     "start": "node cli.js",
     "test": "echo \"Error: no test specified\" && exit 1",
