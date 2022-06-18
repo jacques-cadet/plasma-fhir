@@ -91,8 +91,6 @@ async function run() {
     execSync(`cd ${projectDir} && npm install`, { stdio: "inherit" });
   } catch (error) { console.log("Unable to install."); }
 
-  // TODO: Rename config.example.ts to config.ts
-
   // TODO: Add the Epic Non-Production ID (if applicable)...
 
   // Finished...
