@@ -32,8 +32,21 @@ async function run() {
       type: "list", name: "userContext", message: "Who will be using this app?", choices: ["Patients", "Providers"], filter(val) { return val.toLowerCase(); } 
     },
 
+    //{
+    //  type: "list", name: "isStandalone", message: "Will this app be a standalone app or integrated (e.g. EHR Launch)?", choices: ["Standalone", "Integrated"], filter(val) { return val === "Standalone"; }
+    //}
+
+    {
+      type: "list", name: "devicePlatform", message: "What type of app is this?", choices: ["Web"/*, "Mobile"*/], filter(val) { return val.toLowerCase(); }
+    },
+
     //{ 
     //  type: "checkbox", name: "platforms", message: "What platforms do you want to support?", choices: ["Epic", "Cerner"], default: ["Epic", "Cerner"]
+    //},
+
+    // TODO: Need to test this one
+    //{
+    //  type: "input", name: "epicNonProdID", message: "What is your Epic Non-Production Client ID? (Leave blank if you don't have it)", default: "", when: (answers) => (answers.platforms.indexOf("Epic") >= 0)
     //},
 
     { 
@@ -61,7 +74,7 @@ async function run() {
   }
 
   // Copy the template...
-  const templateName = getTemplateName(answers.userContext, answers.templateType);
+  const templateName = getTemplateName(answers.devicePlatform, answers.userContext, answers.templateType);
   const sharedTemplate = path.resolve(__dirname, "templates", templateName);
   await fse.copy(sharedTemplate, projectDir);
 
@@ -71,27 +84,36 @@ async function run() {
     execSync(`cd ${projectDir} && npm install`, { stdio: "inherit" });
   } catch (error) { console.log("Unable to install."); }
 
+  // TODO: Rename config.example.ts to config.ts
+
+  // TODO: Add the Epic Non-Production ID (if applicable)...
+
   // Finished...
   console.log("Done! Check out the README for information on how to launch your app!");
 }
 
 /**
  * Returns the name of the template folder based on the inputs
+ * @param {devicePlatform} "web", "mobile"
  * @param {userContext} "patients", "clinicians"
  * @param {templateType} "blank", "template"
  */
-function getTemplateName(userContext, templateType) {
+function getTemplateName(devicePlatform, userContext, templateType) {
 
   // Patient...
-  if (userContext === "patients") {
-    if (templateType === "template") { return "patient-standalone-template-portal"; }
-    else if (templateType === "blank") { return "patient-standalone-template-blank"; }
+  if (devicePlatform === "web") {
+    if (userContext === "patients") {
+      if (templateType === "template") { return "patient-standalone-template-portal"; }
+      else if (templateType === "blank") { return "patient-standalone-template-blank"; }
+    }
   }
 
   // Provider...
-  if (userContext === "providers") {
-    if (templateType === "template") { return "provider-ehr-template-portal"; }
-    else if (templateType === "blank") { return "provider-ehr-template-blank"; }
+  if (devicePlatform === "web") {
+    if (userContext === "providers") {
+      if (templateType === "template") { return "provider-ehr-template-portal"; }
+      else if (templateType === "blank") { return "provider-ehr-template-blank"; }
+    }
   }
 
   return "";
