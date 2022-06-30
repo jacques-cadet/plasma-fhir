@@ -5,8 +5,6 @@ import ObservationValueView from "./ObservationValueView";
 
 export interface IObservationComponentViewProps { observation?: Observation };
 export default function ObservationComponentView(props: IObservationComponentViewProps) {
-    console.log(props.observation);
-
     // Check if data is available...
     if (!props.observation) { return <div />; }
 
