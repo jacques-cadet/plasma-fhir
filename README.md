@@ -8,7 +8,6 @@ Plasma FHIR Framework.
 - `plasma-fhir-app-utils` Utility functions and APIs to help with building apps
 - `plasma-fhir-react-client-context` A React component that provides access to the `fhirclient` in a React app
 - `plasma-fhir-react-components` A library of React components for displaying and interacting with FHIR resources. Styles can be customized as needed.
-- `plasma-fhir-react-native-components` A library of React Native components for displaying and interacting with FHIR resources.
 
 ### Sample Apps
 - `playground` Package for testing things out (not actually a real app)
@@ -16,7 +15,6 @@ Plasma FHIR Framework.
 - `plasma-portal-lite` This is used as the template for `create-plasma-app`
 - 🔜 `family-history-editor`
 - 🔜 `plasma-pedigree`
-- 🔜 `plasma-portal-native`
 - 🔜 `family-history-social-network`
 - 🔜 `risk-calculator`
 
@@ -145,4 +143,3 @@ ___
 
 - API's that will be auto-downloaded (meaning you can immediately use it on an Epic Client):
   - https://fhir.epic.com/Documentation?docId=patientfacingfhirapps
-
