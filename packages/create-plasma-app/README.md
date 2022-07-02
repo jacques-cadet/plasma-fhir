@@ -1,20 +1,16 @@
-# create-plasma-fhir-app
-CLI for generating a PlasmaFHIR app. This is the recommended way to create a new PlasmaFHIR application.
+---
+description: >-
+  Command Line Interface (CLI) for creating a PlasmaFHIR app. You can choose
+  from various templates to get started with.
+---
 
-## Usage
-- `npx create-plasma-app my-app`
-- Follow the instructions
+# Create Plasma App
 
-## Development
+### Usage
 
-### Run Code
-- `yarn start` to run/test it
+* `npx create-plasma-app my-app`
+* Follow the instructions
 
-### Run Code (as executable) / Test Locally
-- `npm i -g`
-- `npx create-plasma-app`
-
-### Publish/Deploy
-- Login as `plasmafhir`
-- Increment version
-- `npm publish`
+{% hint style="info" %}
+**Good to know:** Splitting your product into fundamental concepts, objects, or areas can be a great way to let readers deep dive into the concepts that matter most to them.
+{% endhint %}
