@@ -1,4 +1,4 @@
-# Plasma Portal (Lite)
+# README
 
 This is used as the Patient-Standalone Starter Template.
 
