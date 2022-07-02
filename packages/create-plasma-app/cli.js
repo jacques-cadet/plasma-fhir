@@ -38,7 +38,7 @@ async function run() {
     //}
 
     {
-      type: "list", name: "devicePlatform", message: "What type of app is this?", choices: ["Web"/*, "Mobile"*/], filter(val) { return val.toLowerCase(); }
+      type: "list", name: "devicePlatform", message: "What type of app is this?", choices: ["Web", "Mobile"], filter(val) { return val.toLowerCase(); }
     },
 
     //{ 
@@ -75,7 +75,7 @@ async function run() {
   }
 
   // Copy the template...
-  const templateData = getTemplateData(answers.userContext, answers.templateType);
+  const templateData = getTemplateData(answers.devicePlatform, answers.userContext, answers.templateType);
   const sharedTemplate = path.resolve(__dirname, "templates", templateData.templateDirectory);
   await fse.copy(sharedTemplate, projectDir);
 
@@ -109,24 +109,50 @@ async function run() {
  * }
  * 
  */
-function getTemplateData(userContext, templateType) {
+function getTemplateData(devicePlatform, userContext, templateType) {
   let templateDirectory = "";
+  let exampleConfigFilePath = "";
+  let configFilePath = "";
+  
+  // Web...
+  if (devicePlatform === "web") {
 
-  // Patient...
-  if (userContext === "patients") {
-    if (templateType === "template") { templateDirectory = "patient-standalone-template-portal"; }
-    else if (templateType === "blank") { templateDirectory = "patient-standalone-template-blank"; }
+    // Patient...
+    if (userContext === "patients") {
+      if (templateType === "template") { templateDirectory = "patient-standalone-template-portal"; }
+      else if (templateType === "blank") { templateDirectory = "patient-standalone-template-blank"; }
+    }
+
+    // Provider...
+    if (userContext === "providers") {
+      if (templateType === "template") { templateDirectory = "provider-ehr-template-portal"; }
+      else if (templateType === "blank") { templateDirectory = "provider-ehr-template-blank"; }
+    }
+
+    // Compute path of config.example.ts...
+    exampleConfigFilePath = `src/config/config.example.ts`;
+    configFilePath = `src/config/config.ts`;
+  } 
+
+  // Mobile...
+  if (devicePlatform === "mobile") {
+
+    // Patient...
+    if (userContext === "patients") {
+      if (templateType === "template") { templateDirectory = "native-template-portal"; }
+      else if (templateType === "blank") { templateDirectory = "native-template-portal"; }
+    }
+
+    // Provider...
+    if (userContext === "providers") {
+      if (templateType === "template") { templateDirectory = "native-template-portal"; }
+      else if (templateType === "blank") { templateDirectory = "native-template-portal"; }
+    }
+
+    // Compute path of config.example.ts...
+    exampleConfigFilePath = `constants/Config.example.ts`;
+    configFilePath = `constants/Config.ts`;
   }
-
-  // Provider...
-  if (userContext === "providers") {
-    if (templateType === "template") { templateDirectory = "provider-ehr-template-portal"; }
-    else if (templateType === "blank") { templateDirectory = "provider-ehr-template-blank"; }
-  }
-
-  // Compute path of config.example.ts...
-  const exampleConfigFilePath = `src/config/config.example.ts`;
-  const configFilePath = `src/config/config.ts`;
 
   return { 
     templateDirectory: templateDirectory,
