@@ -13,5 +13,5 @@
 
 ## Sample Apps
 
-* [README](sample-apps/readme.md)
+* [Sample Apps](sample-apps/sample-apps.md)
 * [Plasma Portal (Lite)](use-cases/for-designers/README.md)
