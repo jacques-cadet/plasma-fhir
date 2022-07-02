@@ -13,5 +13,6 @@
 
 ## Sample Apps
 
-* [Plasma Portal (Lite)](sample-apps/plasma-portal-lite/README.md)
+* [Introduction](sample-apps/introduction.md)
+* [Plasma Portal (Lite)](use-cases/for-designers/README.md)
   * [Plasma Portal (Lite)](sample-apps/plasma-portal-lite/plasma-portal-lite.md)
