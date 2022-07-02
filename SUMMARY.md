@@ -9,7 +9,7 @@
 
 ## Packages
 
-* [Create Plasma App](packages/create-plasma-app.md)
+* [create-plasma-app](packages/create-plasma-app/README.md)
 
 ## Use Cases
 

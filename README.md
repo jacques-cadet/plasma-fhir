@@ -50,8 +50,8 @@ Follow our handy guides to get started on the basics as quickly as possible:
 
 Learn the fundamentals of MyProduct to get a deeper understanding of our main features:
 
-{% content-ref url="packages/create-plasma-app.md" %}
-[create-plasma-app.md](packages/create-plasma-app.md)
+{% content-ref url="packages/create-plasma-app/" %}
+[create-plasma-app](packages/create-plasma-app/)
 {% endcontent-ref %}
 
 {% content-ref url="broken-reference" %}
