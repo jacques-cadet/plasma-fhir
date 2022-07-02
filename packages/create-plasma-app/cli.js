@@ -107,13 +107,12 @@ async function run() {
  *   exampleConfigFilePath: string 
  *   configFilePath: string
  * }
- * 
  */
 function getTemplateData(devicePlatform, userContext, templateType) {
   let templateDirectory = "";
   let exampleConfigFilePath = "";
   let configFilePath = "";
-  
+
   // Web...
   if (devicePlatform === "web") {
 

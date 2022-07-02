@@ -10,7 +10,7 @@ CLI for generating a PlasmaFHIR app. This is the recommended way to create a new
 ### Run Code
 - `yarn start` to run/test it
 
-### Run Code (as executable)
+### Run Code (as executable) / Test Locally
 - `npm i -g`
 - `npx create-plasma-app`
 
