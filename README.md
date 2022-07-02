@@ -50,20 +50,20 @@ Follow our handy guides to get started on the basics as quickly as possible:
 
 Learn the fundamentals of MyProduct to get a deeper understanding of our main features:
 
-{% content-ref url="packages/create-plasma-app/" %}
-[create-plasma-app](packages/create-plasma-app/)
+{% content-ref url="packages/create-plasma-app.md" %}
+[create-plasma-app.md](packages/create-plasma-app.md)
 {% endcontent-ref %}
 
-{% content-ref url="packages/members.md" %}
-[members.md](packages/members.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="packages/task-lists.md" %}
-[task-lists.md](packages/task-lists.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="packages/tasks.md" %}
-[tasks.md](packages/tasks.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% hint style="info" %}

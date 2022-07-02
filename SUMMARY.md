@@ -9,11 +9,7 @@
 
 ## Packages
 
-* [Create Plasma App](packages/create-plasma-app/README.md)
-  * [Sub Project](packages/create-plasma-app/sub-project.md)
-* [Members](packages/members.md)
-* [Task Lists](packages/task-lists.md)
-* [Tasks](packages/tasks.md)
+* [Create Plasma App](packages/create-plasma-app.md)
 
 ## Use Cases
 
