@@ -2,12 +2,12 @@
 
 CLI for generating a PlasmaFHIR app. This is the recommended way to create a new PlasmaFHIR application.
 
-### Usage
+## Usage
 
 * `npx create-plasma-app my-app`
-* Follow the instructions
+* Follow through the instructions. You will be asked some questions about your app.
 
-### Development
+## Development
 
 #### Run Code
 

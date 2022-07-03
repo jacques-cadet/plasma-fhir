@@ -2,6 +2,8 @@
 
 Patient Portal built with Plasma FHIR.
 
+![](../../.gitbook/assets/image.png)
+
 ## Description
 
 * Standalone patient portal utilizing FHIR and the PlasmaFHIR framework.
