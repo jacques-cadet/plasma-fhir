@@ -1,6 +1,14 @@
 # What is Plasma FHIR?
 
+Plasma FHIR is a framework to help with building interoperable health IT applications. It utilizes SMART-on-FHIR. Some features of this framework include:
 
+* Templates to scaffold a new app
+  * For web, we provide React templates
+  * For mobile, we provide React Native templates
+* Component libraries for displaying and working with FHIR resources
+* Full TypeScript support
+* Sample applications to use as a reference
+* Videos and guides to help build your application
 
 ### Summary
 

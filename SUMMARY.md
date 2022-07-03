@@ -5,7 +5,8 @@
 ## Docs
 
 * [Guides](docs/guides/README.md)
-  * [Create a Patient App](docs/guides/create-a-patient-app.md)
+  * [Getting Started](docs/guides/getting-started.md)
+  * [Create an Epic App](docs/guides/create-an-epic-app.md)
 
 ## Packages
 

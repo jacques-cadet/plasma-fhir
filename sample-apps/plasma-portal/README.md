@@ -8,8 +8,6 @@ Patient Portal built with Plasma FHIR.
 * Select your health system, login using your MyChart credentials, and view your health data!
   * Note: Currently only Epic-based health systems are available
 
-***
-
 ## To Run Locally
 
 * Update `config/config.ts` to set `mode = "LOCAL"`
@@ -18,12 +16,10 @@ Patient Portal built with Plasma FHIR.
   * Windows: `($env:HTTPS = "true") -and (npm start)`
   * Mac: `HTTPS=true npm start`
 
-***
-
 ## Instructions for Deploying to https://plasmafhir.com/portal
 
 * Update `config/config.ts` to set `mode = "PRODUCTION"`
-* Instructions found here: https://github.com/rafgraph/spa-github-pages
+* Instructions found here: [https://github.com/rafgraph/spa-github-pages](https://github.com/rafgraph/spa-github-pages)
   * Add the `404.html` page in the root directory and set `pathSegmentsToKeep = 1` since we will be using `/portal`
   * Add the script from the instructions into `index.html`
   * Set `<BrowserRouter basename="/portal">` (this is already handled by `config.ts`)
