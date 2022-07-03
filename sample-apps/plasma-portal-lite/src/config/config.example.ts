@@ -29,6 +29,14 @@ const config = {
         "scope":            "launch launch/patient patient.read patient.search observation.read observation.search",
     },
 
+    // Epic (Clinician-Context, Sandbox)
+    "EPIC_CLINICIAN_SANDBOX": { 
+        "iss":              "https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4",
+        "clientId":         "{EPIC NON-PRODUCTION CLIENT ID FOR CLINICIAN APP}",
+        "redirectUri":      `${baseUrl}/app`,
+        "scope":            "launch launch/patient patient.read patient.search observation.read observation.search",
+    },
+
     // Epic (Patient Context, Production, R4)
     "EPIC_PATIENT_LIVE_R4": { 
         "iss":          "{FHIR ENDPOINT FOR EPIC HEALTH SYSTEM}",

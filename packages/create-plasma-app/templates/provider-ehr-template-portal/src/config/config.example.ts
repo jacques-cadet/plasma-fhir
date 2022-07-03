@@ -2,8 +2,17 @@
 const baseUrl = "https://localhost:3000";
 
 export default {
-    // SMART-on-FHIR
+    // SMART-HEALTH-IT
     "SMART": { 
+        "clientId":           "smart-client-id-not-needed",
+        "completeInTarget":   true,
+        "fhirServiceUrl":     "https://launch.smarthealthit.org/v/r4/fhir",
+        "redirectUri":        `${baseUrl}/app`,
+        "scope":              "launch launch/patient patient/*.read offline_access",
+    },
+
+    // SMART-HEALTH-IT (hard-coded patient)
+    "SMART_PATIENT": { 
         "clientId":           "smart-client-id-not-needed",
         "completeInTarget":   true,
         "fhirServiceUrl":     "https://launch.smarthealthit.org/v/r4/fhir",
@@ -13,13 +22,28 @@ export default {
     },
 
     // Epic (Patient-Context, Sandbox)
-    "EPIC_PATIENT_SANDBOX": { },
+    "EPIC_PATIENT_SANDBOX": { 
+        "iss":              "https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4",
+        "clientId":         "{EPIC NON-PRODUCTION CLIENT ID FOR PATIENT APP}",
+        "redirectUri":      `${baseUrl}/app`,
+        "scope":            "launch launch/patient patient.read patient.search observation.read observation.search",
+    },
 
-    // Epic (Patient Context, Production, DSTU2)
-    "EPIC_PATIENT_DSTU2": { },
+    // Epic (Clinician-Context, Sandbox)
+    "EPIC_CLINICIAN_SANDBOX": { 
+        "iss":              "https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4",
+        "clientId":         "{EPIC NON-PRODUCTION CLIENT ID FOR CLINICIAN APP}",
+        "redirectUri":      `${baseUrl}/app`,
+        "scope":            "launch launch/patient patient.read patient.search observation.read observation.search",
+    },
 
     // Epic (Patient Context, Production, R4)
-    "EPIC_PATIENT_R4": { },
+    "EPIC_PATIENT_LIVE_R4": { 
+        "iss":          "{FHIR ENDPOINT FOR EPIC HEALTH SYSTEM}",
+        "clientId":     "{EPIC CLIENT ID FOR PATIENT APP}",
+        "redirectUri":  `${baseUrl}/app`,
+        "scope":        "launch launch/patient patient.read patient.search observation.read observation.search",
+    },
 
     // Cerner (R4)
     "CERNER_PATIENT_R4": { },
