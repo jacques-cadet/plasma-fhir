@@ -26,3 +26,13 @@ Patient Portal built with Plasma FHIR.
   * Set the `redirectUri` to `https://plasmafhir.com/portal/app`
 * Build the site with `yarn build`
 * Copy files into the `/portal` directory, but DO NOT copy `404.html`. Keep `404.html` at the root level
+
+## Technical Notes
+
+### Libraries/Packages Being Used
+
+* Plasma Portal
+  * Install SASS
+  * TailwindCSS
+  * React Table
+  * fhirclient
