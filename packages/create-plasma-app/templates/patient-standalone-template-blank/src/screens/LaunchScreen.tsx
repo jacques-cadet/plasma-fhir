@@ -4,7 +4,7 @@ import { fhirclient } from "fhirclient/lib/types";
 import { FHIRClientLauncher } from 'plasma-fhir-react-client-context';
 
 import config from "../config/config";
-const AUTH_PARAMS_SMART = config.SMART;
+const AUTH_PARAMS_SMART = config.SMART_PATIENT;
 
 interface ILocationState {
   authParams?: any;

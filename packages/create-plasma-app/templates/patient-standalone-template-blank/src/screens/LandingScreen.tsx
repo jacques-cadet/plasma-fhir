@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import config from "../config/config";
 
 // Pre-configured auth params...
-const AUTH_PARAMS_SMART = config.SMART;
+const AUTH_PARAMS_SMART = config.SMART_PATIENT;
 
 function LandingScreen(props: any) {
     return (

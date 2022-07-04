@@ -10,7 +10,7 @@ import { FHIRClientContext } from "../components/plasma-fhir-react-native-client
 // TODO: I don't want to put the consumer there. How do I avoid it?
 
 import config from "../constants/Config";
-const DEFAULT_AUTH_PARAMS = config.EPIC_PATIENT_SANDBOX;
+const AUTH_PARAMS_SMART = config.SMART_PATIENT;
 
 export default function LaunchScreen({ route, navigation }: NativeStackScreenProps<any, 'LaunchScreen'>) {
     if (!route.params) { return null; }
