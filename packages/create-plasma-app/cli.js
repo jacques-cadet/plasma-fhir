@@ -56,7 +56,7 @@ async function run() {
   ];
 
   // Prompt user...
-  console.log("🔥 🎇Welcome to PlasmaFHIR! Let's create a new project!🎇");
+  console.log("🔥 🎇 Welcome to PlasmaFHIR! Let's create a new project! 🎇");
   console.log("");
   const answers = await inquirer.prompt(questions);
   if (!answers.dir) { answers.dir = dir; }  // Add directory if it was specified in the arguments...
