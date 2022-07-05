@@ -23,11 +23,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Convert = exports.DateTimeUtils = exports.FHIRResourceHelpers = exports.FHIRClientHelper = void 0;
-const FHIRClientHelper = __importStar(require("./FHIRClientHelper"));
-exports.FHIRClientHelper = FHIRClientHelper;
+exports.Convert = exports.DateTimeUtils = exports.PlasmaFHIRUtils = exports.PlasmaFHIRApi = exports.FHIRResourceHelpers = void 0;
 const FHIRResourceHelpers = __importStar(require("./FHIRResourceHelpers"));
 exports.FHIRResourceHelpers = FHIRResourceHelpers;
+const PlasmaFHIRApi = __importStar(require("./PlasmaFHIRApi"));
+exports.PlasmaFHIRApi = PlasmaFHIRApi;
+const PlasmaFHIRUtils = __importStar(require("./PlasmaFHIRUtils"));
+exports.PlasmaFHIRUtils = PlasmaFHIRUtils;
 const utils_1 = require("./utils");
 Object.defineProperty(exports, "DateTimeUtils", { enumerable: true, get: function () { return utils_1.DateTimeUtils; } });
 Object.defineProperty(exports, "Convert", { enumerable: true, get: function () { return utils_1.Convert; } });

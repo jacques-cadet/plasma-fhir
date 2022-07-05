@@ -24,6 +24,7 @@ ___
 - `yarn test`
 
 ### Publish/Deploy
+- `yarn build`
 - Login as `plasmafhir`
 - Increment version
 - `npm publish`
