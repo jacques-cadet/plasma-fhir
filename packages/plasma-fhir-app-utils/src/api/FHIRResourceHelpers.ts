@@ -2,6 +2,10 @@ import * as r4 from "fhir/r4";
 import { DateTimeUtils } from "./utils";
 
 //
+// Helper functions associated with each FHIR resource type.
+//
+
+//
 // REFERENCE
 //
 

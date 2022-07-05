@@ -1,7 +1,7 @@
 {
   "name": "plasma-fhir-app-utils",
   "author": "Eric Morgan",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "PlasmaFHIR app utils",
   "license": "Apache-2.0",
   "main": "src/index.js",

@@ -1,4 +1,5 @@
-import * as FHIRClientHelper from "./FHIRClientHelper";
 import * as FHIRResourceHelpers from "./FHIRResourceHelpers";
+import * as PlasmaFHIRApi from "./PlasmaFHIRApi";
+import * as PlasmaFHIRUtils from "./PlasmaFHIRUtils";
 import { DateTimeUtils, Convert } from "./utils";
-export { FHIRClientHelper, FHIRResourceHelpers, DateTimeUtils, Convert };
+export { FHIRResourceHelpers, PlasmaFHIRApi, PlasmaFHIRUtils, DateTimeUtils, Convert };
