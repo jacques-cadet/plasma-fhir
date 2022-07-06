@@ -25,6 +25,8 @@ ___
 
 ### Publish/Deploy
 - `yarn build`
+- `yarn test`
+  - Windows: `npx mocha -r ts-node/register tests/**/*.spec.ts`
 - Login as `plasmafhir`
 - Increment version
 - `npm publish`
