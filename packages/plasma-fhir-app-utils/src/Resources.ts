@@ -1,9 +1,70 @@
 import * as r4 from "fhir/r4";
-import { DateTimeUtils } from "./utils";
+import * as DateTimeUtils from "./DateTimeUtils";
 
 //
 // Helper functions associated with each FHIR resource type.
 //
+
+//
+// PATIENT
+//
+
+export interface Patient extends r4.Patient {}
+export class Patient {
+
+    // Get the patient's "official" name...
+    public static getOfficialName(patient: Patient): HumanName | undefined {
+        if (!patient.name) { return undefined; }
+        if (patient.name.length === 0) { return undefined; }
+        const officialNames = HumanName.getNamesByUse(patient.name, "official");
+
+        // If no official names, just pick one...
+        return (officialNames.length > 0)
+            ? officialNames[0]
+            : patient.name[0];
+    }
+
+    // Get the patient's "home" address...
+    public static getHomeAddress(patient: Patient): Address | undefined {
+        if (!patient.address) { return undefined; }
+        if (patient.address.length === 0) { return undefined; }
+        const officialAddresses = Address.getAddressesByUse(patient.address, "home");
+
+        // If no official addresses, just pick one...
+        return (officialAddresses.length > 0)
+            ? officialAddresses[0]
+            : patient.address[0];
+    }
+}
+
+//
+// HUMANNAME
+//
+
+export interface HumanName extends r4.HumanName {}
+export class HumanName {
+
+    // Gets all names based on the given "use"...
+    public static getNamesByUse(names: HumanName[], use: r4.HumanName["use"]): HumanName[] {
+        return names.filter(name => name.use === use);
+    }
+
+    // Convert name to a string...
+    public static toString(name: HumanName): string {
+        // If text is available, use that...
+        if (name.text) { return name.text; }
+        
+        // Get all name pieces...
+        let pieces = [];
+        if (name.prefix)    { pieces.push(Array.isArray(name.prefix) ? name.prefix.join(" ") : name.prefix); }
+        if (name.given)     { pieces.push(Array.isArray(name.given) ? name.given.join(" ") : name.given); }
+        if (name.family)    { pieces.push(Array.isArray(name.family) ? name.family.join(" ") : name.family); }
+
+        // Format all pieces...
+        let sName = pieces.join(" ").trim();
+        return sName;
+    }
+}
 
 //
 // REFERENCE
@@ -294,6 +355,11 @@ export class Ratio {
 
 export interface Address extends r4.Address {}
 export class Address {
+
+    // Gets all addresses based on the given "use"...
+    public static getAddressesByUse(addresses: Address[], use: r4.Address["use"]): Address[] {
+        return addresses.filter(address => address.use === use);
+    }
 
     public static toString(address: Address): string {
         if (!address) { return ""; }
