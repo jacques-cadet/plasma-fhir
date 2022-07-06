@@ -1,7 +1,7 @@
 {
   "name": "plasma-fhir-react-components",
   "author": "Eric Morgan",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "PlasmaFHIR React Components",
   "license": "Apache-2.0",
   "main": "dist/cjs/index.js",

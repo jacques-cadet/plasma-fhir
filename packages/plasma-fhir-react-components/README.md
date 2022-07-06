@@ -57,6 +57,7 @@ When deploying, please rollup and publish new version to NPM
 ### Publish/Deploy
 - Increment version
 - `yarn rollup`
+- `yarn storybook` (make sure everything looks ok)
 - `npm publish`
 
 ___
