@@ -2,6 +2,7 @@ import React from "react";
 import { Patient } from "fhir/r4";
 import { HumanNameView, AddressView } from "..";
 import SexAgeDOB from "./SexAgeDOB";
+import { Resources } from "plasma-fhir-app-utils";
 
 export interface IPatientHeaderProps { patient?: Patient };
 export default function PatientHeader(props: IPatientHeaderProps) {
@@ -9,10 +10,13 @@ export default function PatientHeader(props: IPatientHeaderProps) {
     if (!props.patient) { return <div />; }
     if (!props.patient.name) { return <div />; }
 
+    const officialName = Resources.Patient.getOfficialName(props.patient);
+    const homeAddress = Resources.Patient.getHomeAddress(props.patient);
+
     return (
         <div className="PatientHeader_container">
             <div>
-                <HumanNameView humanName={props.patient.name[0]} />
+                <HumanNameView humanName={officialName} />
 
                 <div className="PatientHeader_sexAgeDOB">
                     <SexAgeDOB patient={props.patient} />
@@ -27,9 +31,7 @@ export default function PatientHeader(props: IPatientHeaderProps) {
                 <div className="PatientHeader_address">
                     <label>Address</label>
                 </div>
-                {props.patient.address?.map((addr, idx: number) => { 
-                    return <AddressView key={`AddressView_${idx}`} address={addr} />; 
-                })}
+                <AddressView address={homeAddress} />
 
             </div>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Address } from "fhir/r4";
-import { FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
+import { Resources } from "plasma-fhir-app-utils";
 
 export interface IAddressViewProps { address?: Address };
 export function AddressView(props: IAddressViewProps) {
@@ -38,7 +38,7 @@ function getCityStateZipElement(address: Address): JSX.Element
 {
     return (
         <div className="AddressView_cityStateContainer">
-            {PlasmaFHIR.Address.toString(address)}
+            {Resources.Address.toString(address)}
         </div>
     );
 }
