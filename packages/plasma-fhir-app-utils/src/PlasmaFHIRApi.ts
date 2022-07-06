@@ -186,6 +186,7 @@ export default class PlasmaFHIRApi {
     
         // Convert to JSON and format in a useful way...
         const jsonResponse = await rawResponse.json();      // TODO: fhirclient says json() will throw error if body is empty, so use text() and JSON.parse() instead?
+        if (!jsonResponse.entry) { return []; }             // This will happen if there are no results, so just return empty array
         const entries: T[] = jsonResponse.entry.map((entry: any) => { return entry.resource as T; });
         return entries.filter((x: T) => { return x.resourceType === resourceName; });
     }
@@ -254,12 +255,12 @@ export default class PlasmaFHIRApi {
     }
 
     // Delete any resource...
-    public async deleteResource<T extends r4.Resource>(resource: T, serverUrl: string = "", authToken: string = ""): Promise<boolean> {
+    public async deleteResource<T extends r4.Resource>(resource: T, serverUrl: string = "", authToken: string = ""): Promise<r4.OperationOutcome> {
         return this.deleteResourceById(resource.resourceType, resource.id || "", serverUrl, authToken);
     }
     
     // Delete any resource...
-    public async deleteResourceById<T extends r4.Resource>(resourceName: string, id: string, serverUrl: string = "", authToken: string = ""): Promise<boolean> {
+    public async deleteResourceById<T extends r4.Resource>(resourceName: string, id: string, serverUrl: string = "", authToken: string = ""): Promise<r4.OperationOutcome> {
         // Default parameters...
         if (!serverUrl) { serverUrl = this.serverUrl; }
         if (!authToken) { authToken = this.authToken; }
@@ -282,6 +283,6 @@ export default class PlasmaFHIRApi {
 
         // Convert to JSON and format in a useful way...
         const jsonResponse = await rawResponse.json();
-        return jsonResponse;    // TODO: TEST THIS
+        return jsonResponse;
     }
 }

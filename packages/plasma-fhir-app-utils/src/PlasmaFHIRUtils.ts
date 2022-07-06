@@ -2,10 +2,6 @@
 // Utility methods for working with FHIR services.
 //
 
-export function print(): void {
-    console.log("004");
-}
-
 // Return the "Conformance Statement" for this FHIR URL...
 export function getConformanceStatementURL(baseURL: string): string {
     if (!baseURL.endsWith("/")) { baseURL += "/"; }

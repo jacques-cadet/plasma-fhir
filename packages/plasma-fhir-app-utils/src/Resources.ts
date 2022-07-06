@@ -615,3 +615,48 @@ export class FamilyMemberHistoryCondition {
         return condition;
     }
 }
+
+//
+// DEVICE
+//
+
+export interface Device extends r4.Device {}
+export class Device {
+
+}
+
+export interface DeviceDeviceName extends r4.DeviceDeviceName {}
+export class DeviceDeviceName {
+    constructor(name: string, type: DeviceDeviceName["type"]) {
+        this.name = name;
+        this.type = type;
+    }
+
+    public static toString(deviceName: DeviceDeviceName): string {
+        return deviceName.name;
+    }
+}
+
+//
+// FLAG
+//
+
+export interface Flag extends r4.Flag {}
+export class Flag {
+
+    // Gets flags by a specific status...
+    public static getFlagsByStatus(flags: Flag[], status: r4.Flag["status"]): Flag[] {
+        return flags.filter(flag => flag.status === status);
+    }
+}
+
+//
+// DOCUMENTREFERENCE
+//
+
+export interface DocumentReference extends r4.DocumentReference {}
+export class DocumentReference {
+    public static getDocumentReferencesByStatus(documentReferences: DocumentReference[], status: r4.DocumentReference["status"]): DocumentReference[] {
+        return documentReferences.filter(documentReference => documentReference.status === status);
+    }
+}
