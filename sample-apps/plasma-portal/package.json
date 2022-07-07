@@ -2,7 +2,7 @@
   "name": "plasma-portal",
   "author": "Eric Morgan",
   "version": "0.0.1",
-  "description": "",
+  "description": "Patient portal written with Plasma FHIR",
   "license": "UNLICENSED",
   "homepage": "https://plasmafhir.com/portal",
   "private": true,

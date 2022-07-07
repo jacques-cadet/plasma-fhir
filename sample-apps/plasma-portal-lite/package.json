@@ -2,7 +2,7 @@
   "name": "plasma-portal-lite",
   "author": "Eric Morgan",
   "version": "0.0.1",
-  "description": "",
+  "description": "Basic patient portal written with Plasma FHIR",
   "license": "Apache-2.0",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
