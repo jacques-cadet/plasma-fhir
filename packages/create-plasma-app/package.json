@@ -1,7 +1,7 @@
 {
   "name": "create-plasma-app",
   "author": "Eric Morgan",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Create a new Plasma app",
   "license": "Apache-2.0",
   "main": "cli.js",
