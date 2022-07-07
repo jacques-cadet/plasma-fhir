@@ -14819,7 +14819,13 @@ pkg-up@^3.1.0:
     find-up "^3.0.0"
 
 "plasma-fhir-app-utils@file:packages/plasma-fhir-app-utils":
-  version "0.0.3"
+  version "0.0.4"
+  dependencies:
+    "@types/fhir" "^0.0.34"
+    fhirclient "^2.4.0"
+
+"plasma-fhir-react-components@file:packages/plasma-fhir-react-components":
+  version "0.0.2"
   dependencies:
     "@types/fhir" "^0.0.34"
     fhirclient "^2.4.0"
@@ -18325,10 +18331,10 @@ ts-morph@^13.0.0:
     "@ts-morph/common" "~0.12.3"
     code-block-writer "^11.0.0"
 
-ts-node@^10.7.0:
-  version "10.8.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.8.0.tgz#3ceb5ac3e67ae8025c1950626aafbdecb55d82ce"
-  integrity sha512-/fNd5Qh+zTt8Vt1KbYZjRHCE9sI5i7nqfD/dzBBRDeVXZXS6kToW6R7tTU6Nd4XavFs0mAVCg29Q//ML7WsZYA==
+ts-node@^10.8.2:
+  version "10.8.2"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.8.2.tgz#3185b75228cef116bf82ffe8762594f54b2a23f2"
+  integrity sha512-LYdGnoGddf1D6v8REPtIH+5iq/gTDuZqv2/UJUU7tKjuEU8xVZorBM+buCGNjj+pGEud+sOoM4CX3/YzINpENA==
   dependencies:
     "@cspotcode/source-map-support" "^0.8.0"
     "@tsconfig/node10" "^1.0.7"
