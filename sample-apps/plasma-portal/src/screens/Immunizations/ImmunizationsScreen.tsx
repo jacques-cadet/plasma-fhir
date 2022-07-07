@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FHIRr4 } from "plasma-fhir-react-components";
 
-import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
+import { PlasmaFHIRApi, Resources } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
 import { Card } from "@mantine/core";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
@@ -11,9 +11,9 @@ export default function ImmunizationScreen() {
     const { 
         data: immunizationData, isDataLoaded, hasErrorLoading, errorMessage,
         elLoadingSpinner, elErrorMessage
-    } = useDataLoadScreen<PlasmaFHIR.Immunization>({
+    } = useDataLoadScreen<Resources.Immunization>({
         context: context,
-        getData: FHIRClientHelper.getImmunizations
+        getData: (patientId: string) => (PlasmaFHIRApi.fromFHIRClient(context.client as any)).readImmunization(patientId)
     });
 
     return (

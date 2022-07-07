@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Grid, Card } from "@mantine/core";
 
-import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
+import { PlasmaFHIRApi, Resources } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
 import { FHIRr4, FHIRdstu2 } from "plasma-fhir-react-components";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
@@ -11,9 +11,9 @@ export default function AllergiesScreen() {
     const { 
         data: allergyIntolerance, isDataLoaded, hasErrorLoading, errorMessage,
         elLoadingSpinner, elErrorMessage
-    } = useDataLoadScreen<PlasmaFHIR.AllergyIntolerance>({
+    } = useDataLoadScreen<Resources.AllergyIntolerance>({
         context: context,
-        getData: FHIRClientHelper.getAllergyIntolerance
+        getData: (patientId: string) => (PlasmaFHIRApi.fromFHIRClient(context.client as any)).readAllergyIntolerance(patientId)
     });
 
     // Determine which FHIR release version we're using...
@@ -52,7 +52,7 @@ export default function AllergiesScreen() {
                                 ? <Card shadow="sm" className="border">
                                     <div>
                                         <FHIRr4.AllergyIntoleranceView allergyIntolerance={allergy} />
-                                        {allergy.reaction ? allergy.reaction.map((reaction, idx) => {
+                                        {allergy.reaction ? allergy.reaction.map((reaction: any, idx: number) => {
                                             return <FHIRr4.AllergyIntoleranceReactionView reaction={reaction} />
                                         }) : null}                                        
                                     </div>

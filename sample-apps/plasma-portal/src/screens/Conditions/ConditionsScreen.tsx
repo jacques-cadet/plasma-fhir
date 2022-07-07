@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Client from 'fhirclient/lib/Client';
 import { FHIRr4 } from "plasma-fhir-react-components";
 
-import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
+import { PlasmaFHIRApi, Resources } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
 import { Card } from "@mantine/core";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
@@ -14,9 +14,9 @@ export default function ConditionsScreen() {
     const { 
         data: conditions, isDataLoaded, hasErrorLoading, errorMessage,
         elLoadingSpinner, elErrorMessage
-    } = useDataLoadScreen<PlasmaFHIR.Condition>({
+    } = useDataLoadScreen<Resources.Condition>({
         context: context,
-        getData: (fhirClient: Client) => FHIRClientHelper.getConditions(fhirClient, "problem-list-item")
+        getData: (patientId: string) => (PlasmaFHIRApi.fromFHIRClient(context.client as any)).readCondition(patientId, { category: "problem-list-item" })
     });
 
     console.log(conditions);
@@ -35,7 +35,7 @@ export default function ConditionsScreen() {
             {isDataLoaded && !hasErrorLoading ? 
             <div className="g-4">
             {
-                conditions.map((condition: PlasmaFHIR.Condition, idx: number) => { 
+                conditions.map((condition: Resources.Condition, idx: number) => { 
                     return (
                         <div className="py-2" key={"ConditionView_" + idx.toString()}>
                             <Card shadow="sm" className="border">

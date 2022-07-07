@@ -3,7 +3,7 @@ import { FHIRClientContext } from "plasma-fhir-react-client-context";
 import { Patient, Immunization } from 'fhir/r4';
 import { Card } from "../components";
 import { FHIRr4 } from "plasma-fhir-react-components";
-import { FHIRClientHelper } from "plasma-fhir-app-utils";
+import { PlasmaFHIRApi } from "plasma-fhir-app-utils";
 
 interface ITestScreenProps { };
 function TestScreen(props: ITestScreenProps) {
@@ -20,6 +20,8 @@ function TestScreen(props: ITestScreenProps) {
         // Get FHIR client...
         const fhirClient = context.client;
         if (!fhirClient) { return; }
+        const plasma = PlasmaFHIRApi.fromFHIRClient(fhirClient);
+        const patientId = fhirClient.patient.id || "";
 
         // Read patient resource...
         fhirClient.patient.read().then((value: Patient) => {
@@ -29,13 +31,13 @@ function TestScreen(props: ITestScreenProps) {
         });
 
         // Load Observations::Vital Signs...
-        FHIRClientHelper.getVitals(fhirClient).then((value: any) => {
+        plasma.readVitals(patientId).then((value: any) => {
             console.log("Observations::VitalSigns", value);
             if (!value) { return; }
         });
 
         // Load Observations::Smoking Status...
-        FHIRClientHelper.getSmokingStatus(fhirClient).then((value: any) => {
+        plasma.readSmokingStatus(patientId).then((value: any) => {
             console.log("Observations::SmokingStatus", value);
             if (!value) { return; }
         });

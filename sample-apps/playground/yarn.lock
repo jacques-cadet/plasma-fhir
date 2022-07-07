@@ -5541,7 +5541,7 @@
   dependencies:
     "bser" "2.1.1"
 
-"fhirclient@2.4.0":
+"fhirclient@^2.4.0", "fhirclient@2.4.0":
   "integrity" "sha512-j5+u2A+vYHeYyS1vxwEAGikjUCFyqXOwsrh6nhgXlVLxd1brtqRAS3PK6rTtp6UPtWfh17352DWcpZJE/2PgzA=="
   "resolved" "https://registry.npmjs.org/fhirclient/-/fhirclient-2.4.0.tgz"
   "version" "2.4.0"
@@ -8775,16 +8775,23 @@
   dependencies:
     "find-up" "^3.0.0"
 
-"plasma-fhir-app-utils@file:../plasma-fhir-app-utils":
-  "resolved" "file:../plasma-fhir-app-utils"
-  "version" "0.0.1"
+"plasma-fhir-app-utils@^0.0.5":
+  "integrity" "sha512-m8ZxQdXwA0seT9U38r3hSIgoDRwNotmATJbRlE+YhGQ+5FQXNMlPz3dytQpz9VznWWsUSBBIosqO0RTDX2rvaQ=="
+  "resolved" "https://registry.npmjs.org/plasma-fhir-app-utils/-/plasma-fhir-app-utils-0.0.5.tgz"
+  "version" "0.0.5"
   dependencies:
     "@types/fhir" "^0.0.34"
     "fhirclient" "^2.4.0"
 
-"plasma-fhir-react-components@file:../plasma-fhir-react-components":
-  "resolved" "file:../plasma-fhir-react-components"
-  "version" "0.0.1"
+"plasma-fhir-react-client-context@*":
+  "integrity" "sha512-iwW0dQtLtnvuekx/VMpAqVTrnPF9edFTVh/P89s/+DixHkj01wbgd5CN+v6VdhfnJ6TF1Udh8xPLowHYUinG4w=="
+  "resolved" "https://registry.npmjs.org/plasma-fhir-react-client-context/-/plasma-fhir-react-client-context-0.0.2.tgz"
+  "version" "0.0.2"
+
+"plasma-fhir-react-components@^0.0.2":
+  "integrity" "sha512-0WiCgdXapongfKzyu0iEuu1ClpY0A5BYLjbJp793VMutfah5TPmyhV+rBWQD98WNTcaQs0mZI8UI07m+UYGynQ=="
+  "resolved" "https://registry.npmjs.org/plasma-fhir-react-components/-/plasma-fhir-react-components-0.0.2.tgz"
+  "version" "0.0.2"
   dependencies:
     "@types/fhir" "^0.0.34"
     "fhirclient" "^2.4.0"
@@ -9522,7 +9529,7 @@
     "shell-quote" "^1.6.1"
     "ws" "^7"
 
-"react-dom@*", "react-dom@^16.8.0  || ^17.0.0", "react-dom@^16.8.0 || 17.x", "react-dom@^17.0.2", "react-dom@>=16.8", "react-dom@>=16.8.6":
+"react-dom@*", "react-dom@^16.8.0  || ^17.0.0", "react-dom@^16.8.0 || 17.x", "react-dom@^17.0.2", "react-dom@>=16.8", "react-dom@>=16.8.0", "react-dom@>=16.8.6":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"

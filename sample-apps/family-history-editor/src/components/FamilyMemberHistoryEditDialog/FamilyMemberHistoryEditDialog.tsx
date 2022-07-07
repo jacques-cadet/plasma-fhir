@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FHIRr4 } from "plasma-fhir-react-components";
-import { FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
+import { Resources } from "plasma-fhir-app-utils";
 import { Modal, Text, Input, Checkbox, Button, Group } from '@mantine/core';
 
 // TODO: Imported CodingSelector doesn't work
@@ -34,7 +34,7 @@ function CodingSelector(props: ICodingSelectorProps) {
 
 
 export interface IFamilyMemberHistoryEditDialogProps {
-    familyMemberHistory: PlasmaFHIR.FamilyMemberHistory | null;
+    familyMemberHistory: Resources.FamilyMemberHistory | null;
 
     show: boolean;
     title: string;
@@ -47,8 +47,8 @@ export interface IFamilyMemberHistoryEditDialogProps {
 
 export default function FamilyMemberHistoryEditDialog(props: IFamilyMemberHistoryEditDialogProps) {
     const [name, setName] = useState<string>("");
-    const [relationship, setRelationship] = useState<PlasmaFHIR.Coding>(PlasmaFHIR.FamilyMemberHistory_Relationship.Father);
-    const [sex, setSex] = useState<PlasmaFHIR.Coding | null>(null);
+    const [relationship, setRelationship] = useState<Resources.Coding>(Resources.FamilyMemberHistory_Relationship.Father);
+    const [sex, setSex] = useState<Resources.Coding | null>(null);
     const [isDeceased, setIsDeceased] = useState<boolean>(false);
     const [age, setAge] = useState<string>("");
     const [deathAge, setDeathAge] = useState<string>("");
@@ -97,9 +97,9 @@ export default function FamilyMemberHistoryEditDialog(props: IFamilyMemberHistor
                         {/* Relationship */}
                         <label className="block text-gray-700 text-sm font-bold mb-2">Relationship</label>
                         <CodingSelector 
-                            codes={Object.keys(PlasmaFHIR.FamilyMemberHistory_Relationship).map((key) => (PlasmaFHIR.FamilyMemberHistory_Relationship as any)[key])} 
+                            codes={Object.keys(Resources.FamilyMemberHistory_Relationship).map((key) => (Resources.FamilyMemberHistory_Relationship as any)[key])} 
                             selectedCode={relationship}
-                            onChange={(code: PlasmaFHIR.Coding) => setRelationship(code)} 
+                            onChange={(code: Resources.Coding) => setRelationship(code)} 
                         />
                         <div className="pb-3" />
 
@@ -108,9 +108,9 @@ export default function FamilyMemberHistoryEditDialog(props: IFamilyMemberHistor
                             <div>
                                 <label className="text-gray-700 text-sm font-bold pr-2">Sex</label>
                                 <CodingSelector 
-                                    codes={Object.keys(PlasmaFHIR.AdministrativeGender).map((key) => (PlasmaFHIR.AdministrativeGender as any)[key])} 
+                                    codes={Object.keys(Resources.AdministrativeGender).map((key) => (Resources.AdministrativeGender as any)[key])} 
                                     selectedCode={sex}
-                                    onChange={(code: PlasmaFHIR.Coding) => setSex(code)} 
+                                    onChange={(code: Resources.Coding) => setSex(code)} 
                                 />
                             </div>
 
