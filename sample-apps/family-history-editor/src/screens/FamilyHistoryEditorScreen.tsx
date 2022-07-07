@@ -8,14 +8,14 @@ import {
 } from "../components";
 import { FHIRr4 } from "plasma-fhir-react-components";
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
-import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
+import { PlasmaFHIRApi, Resources } from "plasma-fhir-app-utils";
 
 interface ITestScreenProps { };
 function TestScreen(props: ITestScreenProps) {
     const context = useContext(FHIRClientContext);    
     const [patientData, setPatientData] = useState<Patient | undefined>(undefined);
     const [isPatientDataLoaded, setIsPatientDataLoaded] = useState<boolean>(false);
-    const [familyMemberHistory, setFamilyMemberHistory] = useState<PlasmaFHIR.FamilyMemberHistory[]>([]);
+    const [familyMemberHistory, setFamilyMemberHistory] = useState<Resources.FamilyMemberHistory[]>([]);
     const [isFamilyMemberHistoryLoaded, setIsFamilyMemberHistoryLoaded] = useState<boolean>(false);
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -24,13 +24,13 @@ function TestScreen(props: ITestScreenProps) {
     const [indexOfActiveFamilyMember, setIndexOfActiveFamilyMember] = useState<number>(-1);
 
 
-    const [rangeValue, setRangeValue] = useState<PlasmaFHIR.Range | undefined>(new PlasmaFHIR.Range(new PlasmaFHIR.Quantity(0, ""), undefined));
+    const [rangeValue, setRangeValue] = useState<Resources.Range | undefined>(new Resources.Range(new Resources.Quantity(0, ""), undefined));
     const [rangeFormat, setRangeFormat] = useState<string>("0 - 10");
 
-    const [rangeValue2, setRangeValue2] = useState<PlasmaFHIR.Range | undefined>(new PlasmaFHIR.Range(new PlasmaFHIR.Quantity(0, ""), undefined));
+    const [rangeValue2, setRangeValue2] = useState<Resources.Range | undefined>(new Resources.Range(new Resources.Quantity(0, ""), undefined));
     const [rangeFormat2, setRangeFormat2] = useState<string>("20 - 30");
 
-    const [ageValue, setAgeValue] = useState<PlasmaFHIR.Range | undefined>(undefined);
+    const [ageValue, setAgeValue] = useState<Resources.Range | undefined>(undefined);
     const [ageFormat, setAgeFormat] = useState<string>("");
 
 
@@ -42,9 +42,11 @@ function TestScreen(props: ITestScreenProps) {
         // Get FHIR client...
         const fhirClient = context.client;
         if (!fhirClient) { return; }
+        const plasma = PlasmaFHIRApi.fromFHIRClient(fhirClient);
+        const patientId = fhirClient.patient.id || "";
 
         // Query for FamilyMemberHistory...
-        FHIRClientHelper.getFamilyMemberHistory(fhirClient).then((data: PlasmaFHIR.FamilyMemberHistory[]) => {
+        plasma.readFamilyMemberHistory(patientId).then((data: Resources.FamilyMemberHistory[]) => {
             console.log("famhx", data);
             setFamilyMemberHistory(data);
             setIsFamilyMemberHistoryLoaded(true);
@@ -65,7 +67,7 @@ function TestScreen(props: ITestScreenProps) {
 
         // Build promises for creating family members...
         const testFamily = createTestFamily(fhirClient.patient.id);
-        const pCreateRelatives = testFamily.map((relative: PlasmaFHIR.FamilyMemberHistory) => {
+        const pCreateRelatives = testFamily.map((relative: Resources.FamilyMemberHistory) => {
             return fhirClient.create(relative as fhirclient.FHIR.Resource);
         });
 
@@ -173,7 +175,7 @@ function TestScreen(props: ITestScreenProps) {
     const data = React.useMemo((): FamilyHistoryTableColumns[] => {
         return familyMemberHistory.map((familyMemberHistory, idx) => {
             const sConditions = (familyMemberHistory.condition)
-                ? familyMemberHistory.condition.map((c) => { return c.code.text; }).join(", ")
+                ? familyMemberHistory.condition.map((c: any) => { return c.code.text; }).join(", ")
                 : "";
 
             return {
@@ -231,13 +233,13 @@ function TestScreen(props: ITestScreenProps) {
                 value={rangeFormat}
                 onChange={(e) => {
                     const s = e.target.value;
-                    const range = PlasmaFHIR.Range.fromString(s);
+                    const range = Resources.Range.fromString(s);
 
                     // Try to parse the range. If we can, then update the value and reformat.
                     // If we can't, erase the value and leave the format as-is.
                     if (range) {
                         setRangeValue(range);
-                        setRangeFormat(PlasmaFHIR.Range.toString(range));
+                        setRangeFormat(Resources.Range.toString(range));
                     } else {
                         setRangeValue(undefined);
                         setRangeFormat(s);
@@ -250,13 +252,13 @@ function TestScreen(props: ITestScreenProps) {
                 value={ageFormat}
                 onChange={(e) => {
                     const s = e.target.value;
-                    const range = PlasmaFHIR.Range.fromAgeString(s);
+                    const range = Resources.Range.fromAgeString(s);
 
                     // Try to parse the range. If we can, then update the value and reformat.
                     // If we can't, erase the value and leave the format as-is.
                     if (range) {
                         setAgeValue(range);
-                        setAgeFormat(PlasmaFHIR.Range.toString(range));
+                        setAgeFormat(Resources.Range.toString(range));
                     } else {
                         setAgeValue(undefined);
                         setAgeFormat(s);
@@ -291,21 +293,21 @@ function TestScreen(props: ITestScreenProps) {
 }
 
 // Creates and returns a test family...
-const createTestFamily = (patientId: string): PlasmaFHIR.FamilyMemberHistory[] => {
-    const father = new PlasmaFHIR.FamilyMemberHistory(patientId, "R_01", "Father");
+const createTestFamily = (patientId: string): Resources.FamilyMemberHistory[] => {
+    const father = new Resources.FamilyMemberHistory(patientId, "R_01", "Father");
     father.name = "John";
-    father.sex = PlasmaFHIR.AdministrativeGender.Male;
-    father.ageAge = PlasmaFHIR.Age.fromYears(60);
+    father.sex = Resources.AdministrativeGender.Male;
+    father.ageAge = Resources.Age.fromYears(60);
 
-    const mother = new PlasmaFHIR.FamilyMemberHistory(patientId, "R_02", "Mother");
+    const mother = new Resources.FamilyMemberHistory(patientId, "R_02", "Mother");
     mother.name = "Mary";
-    mother.sex = PlasmaFHIR.AdministrativeGender.Female;
-    mother.ageAge = PlasmaFHIR.Age.fromYears(58);
+    mother.sex = Resources.AdministrativeGender.Female;
+    mother.ageAge = Resources.Age.fromYears(58);
 
-    const son = new PlasmaFHIR.FamilyMemberHistory(patientId, "R_03", "Son");
+    const son = new Resources.FamilyMemberHistory(patientId, "R_03", "Son");
     son.name = "Tim";
-    son.sex = PlasmaFHIR.AdministrativeGender.Male;
-    son.ageAge = PlasmaFHIR.Age.fromYears(25);
+    son.sex = Resources.AdministrativeGender.Male;
+    son.ageAge = Resources.Age.fromYears(25);
 
     return [father, mother, son];
 }

@@ -2,18 +2,8 @@
 
 ### Framework
 - [ ] Make an easier way to get everything installed when first downloading
-- [ ] Put links to `fhirclient` where needed.
-  - [ ] Contact owners to notify them
-  - [ ] Make sure it's ok to include it in my projects
-- [ ] Add a license
 
 ### create-plasma-fhir-app
-- [ ] Doesn't work on Windows?
-- [ ] Can't immediately launch (because of the config file thing). Not sure if I want to fix this or not.
-- [ ] Patient Portal Launch - Blank
-- [ ] Patient Portal Launch - Plasma Portal
-- [ ] EHR Launch - Blank
-- [ ] EHR Launch - Plasma Portal
 
 ### plasma-fhir-app-utils
 
@@ -23,10 +13,8 @@
 - [ ] Is the _data folder needed?
 - [ ] Is the _util folder needed?
 - [ ] `yarn test` doesn't work (I guess I don't have tests?)
-- [ ] Publish to NPM
 
 ### plasma-fhir-react-native-components
-- [ ] Need to figure out the OAUTH2 workflow
 - [ ] Need to come up with a good system for customizing/styling the components on the client
 
 ### playground

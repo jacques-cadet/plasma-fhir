@@ -46,11 +46,11 @@ export default class PlasmaFHIRApi {
         searchOptions: IAllergyIntoleranceSearchOptions = { "clinical-status": "active" }, 
         serverUrl = "", 
         authToken = ""):
-    Promise<Resources.Observation[]> {
+    Promise<Resources.AllergyIntolerance[]> {
 
         if (!serverUrl) { serverUrl = this.serverUrl; }
         if (!authToken) { authToken = this.authToken; }
-        return this.readPatientResource<Resources.Observation>(patientId, "AllergyIntolerance", searchOptions, serverUrl, authToken);
+        return this.readPatientResource<Resources.AllergyIntolerance>(patientId, "AllergyIntolerance", searchOptions, serverUrl, authToken);
     }
     
     // Condition

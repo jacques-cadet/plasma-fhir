@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { FHIRr4 } from "plasma-fhir-react-components";
 
-import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
+import { Resources, PlasmaFHIRApi } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
 import { useTable, useSortBy, Column, useRowState } from "react-table";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
 
-const getVitalCategory = (vitalCode: PlasmaFHIR.CodeableConcept) => {
+const getVitalCategory = (vitalCode: Resources.CodeableConcept) => {
     const vitalKey: string = vitalCode.coding ? (vitalCode.coding[0].code || '') : (vitalCode.text || '');
-    const vitalDisplay: string = PlasmaFHIR.CodeableConcept.getDisplayText(vitalCode, true);
+    const vitalDisplay: string = Resources.CodeableConcept.getDisplayText(vitalCode, true);
     
     return {
         'vitalKey': vitalKey,
@@ -21,9 +21,9 @@ export default function VitalsScreen() {
     const { 
         data: vitalsData, isDataLoaded, hasErrorLoading, errorMessage,
         elLoadingSpinner, elErrorMessage
-    } = useDataLoadScreen<PlasmaFHIR.Observation>({
+    } = useDataLoadScreen<Resources.Observation>({
         context: context,
-        getData: FHIRClientHelper.getVitals
+        getData: (patientId: string) => (PlasmaFHIRApi.fromFHIRClient(context.client as any)).readVitals(patientId)
     });
 
     // TODO: Figure out how to use react-table datetime sorting
@@ -50,7 +50,7 @@ export default function VitalsScreen() {
             return da === db ? eb.localeCompare(ea) : db - da;
         });
 
-        const vitalsGroupedByEncounter: PlasmaFHIR.Observation[][] = vitalsSortedByDateAndEncounter.reduce((vitalGroups: PlasmaFHIR.Observation[][], vital) => {
+        const vitalsGroupedByEncounter: Resources.Observation[][] = vitalsSortedByDateAndEncounter.reduce((vitalGroups: Resources.Observation[][], vital) => {
             if (vitalGroups.length === 0) {
                 vitalGroups.push([vital]);
                 return vitalGroups;

@@ -1,6 +1,6 @@
 import React, { useContext, useCallback, useEffect, useState } from 'react';
 import { useTable, useSortBy, Column } from "react-table";
-import { FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
+import { Resources } from "plasma-fhir-app-utils";
 
 /** 
  * Definition of columns for the table 
@@ -27,7 +27,7 @@ export default function FamilyHistoryTable({ data }: ITableProps) {
         return (rowA: any, rowB: any, columnId: string, desc: boolean) => { 
             const cca = rowA.values[columnId].props.codeableConcept;
             const ccb = rowB.values[columnId].props.codeableConcept;
-            return PlasmaFHIR.CodeableConcept.sortByDisplayText(cca, ccb);
+            return Resources.CodeableConcept.sortByDisplayText(cca, ccb);
         };
     }, []);
 

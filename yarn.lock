@@ -14818,18 +14818,6 @@ pkg-up@^3.1.0:
   dependencies:
     find-up "^3.0.0"
 
-"plasma-fhir-app-utils@file:packages/plasma-fhir-app-utils":
-  version "0.0.4"
-  dependencies:
-    "@types/fhir" "^0.0.34"
-    fhirclient "^2.4.0"
-
-"plasma-fhir-react-components@file:packages/plasma-fhir-react-components":
-  version "0.0.2"
-  dependencies:
-    "@types/fhir" "^0.0.34"
-    fhirclient "^2.4.0"
-
 plist@^3.0.1, plist@^3.0.5:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/plist/-/plist-3.0.5.tgz#2cbeb52d10e3cdccccf0c11a63a85d830970a987"

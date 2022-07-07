@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { HumanName } from 'fhir/r4';
+import { Resources } from "plasma-fhir-app-utils";
 
 export interface IHumanNameViewProps { humanName?: HumanName };
 export function HumanNameView(props: IHumanNameViewProps) {
@@ -16,19 +17,7 @@ export function HumanNameView(props: IHumanNameViewProps) {
 function formatName(name?: HumanName): string {
     // Check if name exists...
     if (!name) { return "Unknown"; }
-
-    // If text is available, use that...
-    if (name.text) { return name.text; }
-    
-    // Get all name pieces...
-    let pieces = [];
-    if (name.prefix)    { pieces.push(Array.isArray(name.prefix) ? name.prefix.join(" ") : name.prefix); }
-    if (name.given)     { pieces.push(Array.isArray(name.given) ? name.given.join(" ") : name.given); }
-    if (name.family)    { pieces.push(Array.isArray(name.family) ? name.family.join(" ") : name.family); }
-
-    // Format all pieces...
-    let sName = pieces.join(" ").trim();
-    return sName;
+    return Resources.HumanName.toString(name);
 }
 
 const styles = StyleSheet.create({

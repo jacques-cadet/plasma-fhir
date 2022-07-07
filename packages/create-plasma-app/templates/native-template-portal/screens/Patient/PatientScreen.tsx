@@ -3,7 +3,7 @@ import { View, Text, ActivityIndicator } from "react-native";
 import { FHIRr4 } from '../../components/plasma-fhir-react-native-components';
 import { FHIRClientContext } from "../../components/plasma-fhir-react-native-client-context";
 import { Patient } from 'fhir/r4';
-import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
+import { PlasmaFHIRApi, Resources } from "plasma-fhir-app-utils";
 
 interface IPatientScreenProps { };
 function PatientScreen(props: IPatientScreenProps) {
@@ -19,6 +19,8 @@ function PatientScreen(props: IPatientScreenProps) {
         // Get FHIR client...
         const fhirClient = context.client;
         if (!fhirClient) { return; }
+        const plasma = PlasmaFHIRApi.fromFHIRClient(fhirClient);
+        const patientId = fhirClient.patient.id || "";
 
         // Read patient resource...
         fhirClient.patient.read().then((value: Patient) => {
@@ -28,7 +30,7 @@ function PatientScreen(props: IPatientScreenProps) {
         });
 
         // Load vitals...
-        FHIRClientHelper.getVitals(fhirClient).then((value: PlasmaFHIR.Observation[]) => {
+        plasma.readVitals(patientId).then((value: Resources.Observation[]) => {
             console.log("vitals", value);
         });
 

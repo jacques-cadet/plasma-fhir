@@ -4,7 +4,7 @@ import { FHIRr4 } from "plasma-fhir-react-components";
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
 import { Patient } from 'fhir/r4';
 import { Card } from "@mantine/core";
-import { FHIRClientHelper } from "plasma-fhir-app-utils";
+import { PlasmaFHIRApi } from "plasma-fhir-app-utils";
 
 interface IPatientScreenProps { };
 function PatientScreen(props: IPatientScreenProps) {
@@ -20,6 +20,8 @@ function PatientScreen(props: IPatientScreenProps) {
         // Get FHIR client...
         const fhirClient = context.client;
         if (!fhirClient) { return; }
+        const plasma = PlasmaFHIRApi.fromFHIRClient(fhirClient);
+        const patientId = fhirClient.patient.id || "";
 
         // Read patient resource...
         fhirClient.patient.read().then((value: Patient) => {
@@ -29,7 +31,7 @@ function PatientScreen(props: IPatientScreenProps) {
         });
 
         // Load Observations::Smoking Status...
-        FHIRClientHelper.getSmokingStatus(fhirClient).then((value: any) => {
+        plasma.readSmokingStatus(patientId).then((value: any) => {
             console.log("Observations::SmokingStatus", value);
             if (!value) { return; }
         });

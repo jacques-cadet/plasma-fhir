@@ -4,7 +4,7 @@ import Client from 'fhirclient/lib/Client';
 
 export interface IUseDataLoadScreenProps<T> {
     context: IFHIRClientContext;
-    getData: (fhirClient: Client) => Promise<T[]>;
+    getData: (patientId: string) => Promise<T[]>;
 }
 
 export default function useDataLoadScreen<T>(props: IUseDataLoadScreenProps<T>) {
@@ -18,8 +18,9 @@ export default function useDataLoadScreen<T>(props: IUseDataLoadScreenProps<T>) 
         {
             const fhirClient = props.context.client;
             if (!fhirClient)  { return; }
+            const patientId = fhirClient.patient.id || "";
             
-            props.getData(fhirClient).then((value: T[]) => {
+            props.getData(patientId).then((value: T[]) => {
                 console.log(value);
 
                 setIsDataLoaded(true);

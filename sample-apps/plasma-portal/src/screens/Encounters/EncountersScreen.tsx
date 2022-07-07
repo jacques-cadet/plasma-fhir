@@ -3,7 +3,7 @@ import { useTable, useSortBy, Column } from "react-table";
 import { Table as MantineTable } from "@mantine/core";
 import { FHIRr4 } from "plasma-fhir-react-components";
 
-import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
+import { PlasmaFHIRApi, Resources } from "plasma-fhir-app-utils";
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
 import useDataLoadScreen from "./../../hooks/useDataLoadScreen";
 
@@ -12,9 +12,9 @@ export default function EncountersScreen() {
     const { 
         data: encounters, isDataLoaded, hasErrorLoading, errorMessage,
         elLoadingSpinner, elErrorMessage
-    } = useDataLoadScreen<PlasmaFHIR.Encounter>({
+    } = useDataLoadScreen<Resources.Encounter>({
         context: context,
-        getData: FHIRClientHelper.getEncounters
+        getData: (patientId: string) => (PlasmaFHIRApi.fromFHIRClient(context.client as any)).readEncounter(patientId)
     });
 
     // TODO: Figure out how to use react-table datetime sorting
@@ -32,7 +32,7 @@ export default function EncountersScreen() {
         return (rowA: any, rowB: any, columnId: string, desc: boolean) => { 
             const cca = rowA.values[columnId].props.codeableConcept;
             const ccb = rowB.values[columnId].props.codeableConcept;
-            return PlasmaFHIR.CodeableConcept.sortByDisplayText(cca, ccb);
+            return Resources.CodeableConcept.sortByDisplayText(cca, ccb);
         };
     }, []);
 
