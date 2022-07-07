@@ -6440,8 +6440,9 @@
     "find-up" "^3.0.0"
 
 "plasma-fhir-app-utils@*":
-  "resolved" "file:../../plasma-fhir-app-utils"
-  "version" "0.0.1"
+  "integrity" "sha512-VnYTbciV3Q7Xr69e6m0GNhn6LN8wkufkw2n40w+gmuVI68pDj8nOZE5eDhoBIbhS2tKOZJuPmA1f5E+USAQ9Qg=="
+  "resolved" "https://registry.npmjs.org/plasma-fhir-app-utils/-/plasma-fhir-app-utils-0.0.4.tgz"
+  "version" "0.0.4"
   dependencies:
     "@types/fhir" "^0.0.34"
     "fhirclient" "^2.4.0"
@@ -6451,9 +6452,10 @@
   "resolved" "https://registry.npmjs.org/plasma-fhir-react-client-context/-/plasma-fhir-react-client-context-0.0.1.tgz"
   "version" "0.0.1"
 
-"plasma-fhir-react-components@*":
-  "resolved" "file:../../plasma-fhir-react-components"
-  "version" "0.0.1"
+"plasma-fhir-react-components@^0.0.2":
+  "integrity" "sha512-0WiCgdXapongfKzyu0iEuu1ClpY0A5BYLjbJp793VMutfah5TPmyhV+rBWQD98WNTcaQs0mZI8UI07m+UYGynQ=="
+  "resolved" "https://registry.npmjs.org/plasma-fhir-react-components/-/plasma-fhir-react-components-0.0.2.tgz"
+  "version" "0.0.2"
   dependencies:
     "@types/fhir" "^0.0.34"
     "fhirclient" "^2.4.0"
@@ -7168,7 +7170,7 @@
     "strip-ansi" "^6.0.1"
     "text-table" "^0.2.0"
 
-"react-dom@*", "react-dom@^16.8.0 || 17.x", "react-dom@^17.0.2", "react-dom@>=16.8":
+"react-dom@*", "react-dom@^16.8.0 || 17.x", "react-dom@^17.0.2", "react-dom@>=16.8", "react-dom@>=16.8.0":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -7267,7 +7269,7 @@
   optionalDependencies:
     "fsevents" "^2.3.2"
 
-"react@*", "react@^16.8.0 || 17.x", "react@^17.0.2", "react@>= 16", "react@>=16.8", "react@17.0.2":
+"react@*", "react@^16.8.0 || 17.x", "react@^17.0.2", "react@>= 16", "react@>=16.8", "react@>=16.8.0", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { FHIRClientContext } from "plasma-fhir-react-client-context";
 import { Patient } from 'fhir/r4';
 import { FHIRr4 } from "plasma-fhir-react-components";
-import { FHIRClientHelper, FHIRResourceHelpers as PlasmaFHIR } from "plasma-fhir-app-utils";
+import { PlasmaFHIRApi, Resources } from "plasma-fhir-app-utils";
 
 interface ITestScreenProps { };
 function TestScreen(props: ITestScreenProps) {
@@ -18,6 +18,8 @@ function TestScreen(props: ITestScreenProps) {
         // Get FHIR client...
         const fhirClient = context.client;
         if (!fhirClient) { return; }
+        const plasma = PlasmaFHIRApi.fromFHIRClient(fhirClient);
+        const patientId = fhirClient.patient.id + "";
 
         // Read patient resource...
         fhirClient.patient.read().then((value: Patient) => {
@@ -27,7 +29,7 @@ function TestScreen(props: ITestScreenProps) {
         });
 
         // Load vitals...
-        FHIRClientHelper.getVitals(fhirClient).then((value: PlasmaFHIR.Observation[]) => {
+        plasma.readVitals(patientId).then((value: Resources.Observation[]) => {
             console.log("vitals", value);
         });
 
