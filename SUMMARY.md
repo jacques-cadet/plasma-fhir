@@ -14,6 +14,7 @@
 
 * [create-plasma-app](packages/create-plasma-app/README.md)
 * [plasma-fhir-app-utils](packages/plasma-fhir-app-utils/README.md)
+  * [PlasmaFHIRApi](packages/plasma-fhir-app-utils/plasmafhirapi.md)
 * [plasma-fhir-react-client-context](packages/plasma-fhir-react-client-context/README.md)
 * [plasma-fhir-react-components](packages/plasma-fhir-react-components/README.md)
 
