@@ -14,7 +14,7 @@ Check out our Storybook project to see a demo of each component.
 
 Import the components and use them in your application. They should take a FHIR resource as a prop.
 
-```ts
+```tsx
 import { FHIRr4 } from "plasma-fhir-react-components";
 
 export function MyComponent(props: any) {

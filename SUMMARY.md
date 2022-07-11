@@ -15,13 +15,16 @@
 * [create-plasma-app](packages/create-plasma-app/README.md)
 * [plasma-fhir-app-utils](packages/plasma-fhir-app-utils/README.md)
   * [PlasmaFHIRApi](packages/plasma-fhir-app-utils/plasmafhirapi.md)
+  * [Resources](packages/plasma-fhir-app-utils/resources.md)
+  * [PlasmaFHIRUtils](packages/plasma-fhir-app-utils/plasmafhirutils.md)
+  * [Conversions](packages/plasma-fhir-app-utils/conversions.md)
+  * [DateTimeUtils](packages/plasma-fhir-app-utils/datetimeutils.md)
 * [plasma-fhir-react-client-context](packages/plasma-fhir-react-client-context/README.md)
 * [plasma-fhir-react-components](packages/plasma-fhir-react-components/README.md)
 
 ## Sample Apps
 
-* [Family History Editor](sample-apps/family-history-editor/README.md)
-* [Plasma Pedigree](sample-apps/plasma-pedigree/README.md)
 * [Plasma Portal](sample-apps/plasma-portal/README.md)
 * [Plasma Portal Lite](sample-apps/plasma-portal-lite/README.md)
+* [Family History Editor](sample-apps/family-history-editor/README.md)
 * [Playground](sample-apps/playground/README.md)

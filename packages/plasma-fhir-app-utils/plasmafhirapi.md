@@ -41,7 +41,7 @@ plasma.readResource<Resources.Immunization>("Immunization",  { "patient": patien
 
 ### Reading Data (Patient Specific)
 
-When you are working with patient-specific data, it's recommended to use `readPatientResource`. This function will specifically ask you to provide the `patientId` so you don't forget.
+When you are working with patient-specific data, it's recommended to use `readPatientResource`. This function will specifically ask you to provide the `patientId` so you don't forget. This method will incur an additional network query cost the first time you use it, because it will look up the "Conformance Statement" to determine which search parameter to use for the patient.
 
 ```typescript
 import { PlasmaFHIRApi, Resources } from "plasma-fhir-app-utils";
