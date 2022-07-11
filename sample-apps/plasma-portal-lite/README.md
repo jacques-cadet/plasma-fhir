@@ -1,6 +1,6 @@
-# README
+# Plasma Portal Lite
 
-This is used as the Patient-Standalone Starter Template.
+This is used as the Patient-Standalone Starter Template. It's a lighter version of the [Plasma Portal](../plasma-portal/).
 
 ## Setup
 

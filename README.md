@@ -10,6 +10,10 @@ Plasma FHIR is a framework to help with building interoperable health IT applica
 * Sample applications to use as a reference
 * Videos and guides to help build your application
 
+## Contact
+
+You may contact us at plasmafhir@gmail.com
+
 ## References
 
 #### SMART-on-FHIR
