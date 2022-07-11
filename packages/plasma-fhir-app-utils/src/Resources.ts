@@ -75,6 +75,10 @@ export class Reference {
     constructor(reference: string) {
         this.reference = reference;
     }
+
+    public static createPatientReference(patientId: string): Reference {
+        return new Reference("Patient/" + patientId);
+    }
 }
 
 //
@@ -444,6 +448,7 @@ export class Encounter {
 
     }
 
+    // Sort encounters by date...
     public static sort(a: Encounter, b: Encounter): number {
         if (!a.period || !a.period.start) { return -1; }
         if (!b.period || !b.period.start) { return 1; }
@@ -579,21 +584,15 @@ export const FamilyMemberHistory_Relationship = {
 
 export interface FamilyMemberHistory extends r4.FamilyMemberHistory { }
 export class FamilyMemberHistory {
-    constructor(patientId: string, id: string, relationship: keyof typeof FamilyMemberHistory_Relationship | Coding) {
+    constructor(patientId: string, relationship: keyof typeof FamilyMemberHistory_Relationship | Coding) {
         this.resourceType = "FamilyMemberHistory";
         this.status = "completed";
         this.relationship = (typeof relationship === "string") 
             ? CodeableConcept.fromSingleCoding(FamilyMemberHistory_Relationship[relationship])
             : CodeableConcept.fromSingleCoding(relationship);
-        this.patient = FamilyMemberHistory.createPatientReference(patientId);
+        this.patient = Reference.createPatientReference(patientId);
 
-        this.id = id;
         this.condition = [];
-    }
-
-    // Create a FamilyMemberHistory.patient value...
-    private static createPatientReference(patientId: string): Reference {
-        return new Reference("Patient/" + patientId);
     }
 }
 
