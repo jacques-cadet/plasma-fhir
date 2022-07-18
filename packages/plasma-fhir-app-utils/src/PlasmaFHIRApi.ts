@@ -27,6 +27,13 @@ export default class PlasmaFHIRApi {
         return new PlasmaFHIRApi(serverUrl, authToken);
     }
 
+    // Initializes a PlasmaFHIRApi that can be used on a backend server. Requires Node 18.x or higher...
+    public static async forBackend(serverUrl: string, privateKey: string, clientId: string, tokenUrl: string): Promise<PlasmaFHIRApi> {
+        const tokenData = await PlasmaFHIRUtils.getBackendAccessCode(privateKey, clientId, tokenUrl);
+        if (!tokenData.access_token) { throw new Error("Unable to initialize PlasmaFHIR::forBackend"); }
+        return new PlasmaFHIRApi(serverUrl, tokenData.access_token);
+    }
+
     // FamilyMemberHistory
     public async readFamilyMemberHistory(
         patientId: string, 
