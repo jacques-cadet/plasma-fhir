@@ -6,7 +6,9 @@
 
 * [Guides](docs/guides/README.md)
   * [Getting Started](docs/guides/getting-started.md)
-  * [Create an Epic App](docs/guides/create-an-epic-app.md)
+  * [Create an Epic Patient App](docs/guides/create-an-epic-app.md)
+  * [Create an Epic Clinician App](docs/guides/create-an-epic-clinician-app.md)
+  * [Create an Epic Backend App](docs/guides/create-an-epic-backend-app.md)
   * [Testing with SMART Health IT Sandbox](docs/guides/testing-with-smart-health-it-sandbox.md)
   * [Developing/Contributing to Plasma FHIR](docs/guides/developing-contributing-to-plasma-fhir.md)
 

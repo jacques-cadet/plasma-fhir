@@ -21,6 +21,24 @@ If you are using the [client-js](https://github.com/smart-on-fhir/client-js) lib
 const plasma = PlasmaFHIRApi.fromFHIRCLient(fhirClient);
 ```
 
+### Initialization on Backend (Experimental)
+
+If you want to use the API for a backend workflow, you can initialize a `PlasmaFHIRApi` like this:
+
+```typescript
+const plasma = await PlasmaFHIRApi.forBackend(serverUrl,
+    privateKey, clientId, tokenUrl);
+```
+
+* `serverUrl`: URL of the FHIR server
+* `privateKey`: Private key used for the JWT
+* `clientId`: Client ID of your app
+* `tokenUrl`: URL of the token endpoint
+
+**(!) Important:** You MUST use Node 18.x or higher (because it uses the `fetch` API).
+
+_(This initialization method may change slightly in the future)_
+
 ## Reading Data
 
 Any resource can be read using `readResource` and specifying the type of resource you want to read, along with any query string parameters you want to include.
