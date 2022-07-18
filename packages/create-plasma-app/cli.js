@@ -30,7 +30,7 @@ async function run() {
     },
 
     { 
-      type: "list", name: "userContext", message: "Who will be using this app?", choices: ["Patients", "Providers"], filter(val) { return val.toLowerCase(); } 
+      type: "list", name: "userContext", message: "Who will be using this app?", choices: ["Patients", "Providers", "Backend"], filter(val) { return val.toLowerCase(); } 
     },
 
     //{
@@ -38,7 +38,7 @@ async function run() {
     //}
 
     {
-      type: "list", name: "devicePlatform", message: "What type of app is this?", choices: ["Web", "Mobile"], filter(val) { return val.toLowerCase(); }
+      type: "list", name: "devicePlatform", message: "What type of app is this?", choices: ["Web", "Mobile"], when: (answers) => { return answers.userContext !== "backend"; }, filter(val) { return val.toLowerCase(); }
     },
 
     //{ 
@@ -113,8 +113,15 @@ function getTemplateData(devicePlatform, userContext, templateType) {
   let exampleConfigFilePath = "";
   let configFilePath = "";
 
+  // Backend...
+  if (userContext === "backend") {
+    templateDirectory = "backend-template";
+    exampleConfigFilePath = `src/config/config.example.ts`;
+    configFilePath = `src/config/config.ts`;
+  }
+
   // Web...
-  if (devicePlatform === "web") {
+  else if (devicePlatform === "web") {
 
     // Patient...
     if (userContext === "patients") {
@@ -134,7 +141,7 @@ function getTemplateData(devicePlatform, userContext, templateType) {
   } 
 
   // Mobile...
-  if (devicePlatform === "mobile") {
+  else if (devicePlatform === "mobile") {
 
     // Patient...
     if (userContext === "patients") {
