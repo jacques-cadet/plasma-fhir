@@ -1,0 +1,30 @@
+{
+  "name": "plasma-fhir-backend-utils",
+  "author": "Eric Morgan",
+  "version": "0.0.1",
+  "description": "PlasmaFHIR backend utils",
+  "license": "Apache-2.0",
+  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.js",
+  "scripts": {
+    "test": "tsc && mocha -r ts-node/register tests/**/*.spec.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.0",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/mocha": "^9.1.0",
+    "@types/uuid": "^8.3.4",
+    "chai": "^4.3.6",
+    "mocha": "^9.2.2",
+    "ts-node": "^10.8.2",
+    "tsc": "^2.0.4",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "plasma-fhir-app-utils": "^0.0.6",
+    "url": "^0.11.0",
+    "uuid": "^8.3.2"
+  }
+}
