@@ -20,6 +20,7 @@ Utility functions and APIs to help with building apps.
 ### Build
 
 * `yarn build`
+  * or `tsc` if that doesn't work
 
 ### Unit Tests
 
