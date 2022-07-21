@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import { PlasmaFHIRApi, Resources } from "plasma-fhir-app-utils";
+import { plasmaForBackend } from "plasma-fhir-backend-utils";
 import config from "./config/config";
 
 const PRIVATE_KEY_FILE = __dirname + "/epic-privatekey.pem";
@@ -9,7 +10,7 @@ const PATIENT_ID = "eD.LxhDyX35TntF77l7etUA3";      // Jason Argonaut (Epic Sand
 
 async function main() {
     // Initialize Plasma...
-    const plasma = await PlasmaFHIRApi.forBackend(configData.iss, privateKey, configData.clientId, configData.tokenUrl);
+    const plasma: PlasmaFHIRApi = await plasmaForBackend(configData.iss, privateKey, configData.clientId, configData.tokenUrl);
 
     // Load patient data...
     plasma.readPatient(PATIENT_ID).then((patients: Resources.Patient[]) => {

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "fs": "^0.0.1-security",
-    "plasma-fhir-app-utils": "^0.0.6"
+    "plasma-fhir-app-utils": "^0.0.7",
+    "plasma-fhir-backend-utils": "^0.0.3"
   }
 }
