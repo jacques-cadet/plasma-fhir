@@ -1,7 +1,7 @@
 {
   "name": "plasma-fhir-backend-utils",
   "author": "Eric Morgan",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "PlasmaFHIR backend utils",
   "license": "Apache-2.0",
   "main": "./dist/src/index.js",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "jsonwebtoken": "^8.5.1",
-    "plasma-fhir-app-utils": "^0.0.6",
+    "plasma-fhir-app-utils": "^0.0.7",
     "url": "^0.11.0",
     "uuid": "^8.3.2"
   }
