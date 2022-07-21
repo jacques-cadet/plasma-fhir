@@ -92,6 +92,16 @@ export class Coding {
         this.code = code;
         this.display = display;
     }
+
+    // Filter codings based on system...
+    public static getCodingsBySystem(codings: Coding[], system: string): Coding[] {
+        return codings.filter(coding => coding.system === system);
+    }
+
+    // Filter codings based on code...
+    public static getCodingsByCode(codings: Coding[], code: string): Coding[] {
+        return codings.filter(coding => coding.code === code);
+    }
 }
 
 //
