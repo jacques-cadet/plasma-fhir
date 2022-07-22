@@ -21,6 +21,7 @@
   * [PlasmaFHIRUtils](packages/plasma-fhir-app-utils/plasmafhirutils.md)
   * [Conversions](packages/plasma-fhir-app-utils/conversions.md)
   * [DateTimeUtils](packages/plasma-fhir-app-utils/datetimeutils.md)
+* [plasma-fhir-backend-utils](packages/plasma-fhir-backend-utils/README.md)
 * [plasma-fhir-react-client-context](packages/plasma-fhir-react-client-context/README.md)
 * [plasma-fhir-react-components](packages/plasma-fhir-react-components/README.md)
 
